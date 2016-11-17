@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <div id="app">
+        <header>
+            <div class="row">
+                <button id="toggle-sidebar" class="active">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <img src={logo} className="app-logo" alt="logo" />
+                <strong>To-Do List</strong>
+                <div class="search-holder">
+                    <div class="search">
+                        <label for="check">Show active</label>
+                        <input type="checkbox" id="check">
+                    </div>
+                    <form class="form-search" action="javascript:;">
+                        <input type="text">
+                        <button class="clear">
+                            <i class="fa fa-window-close"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="progress-bar">
+                <div class="progress"></div>
+            </div>
+        </header>
+        <main class="main">
+            <div  class="two-columns">
+                <div class="sidebar active">
+                    <div class="row">
+                        <div class="add-item-holder">
+                            <div class="add-item">
+                                <form action="javascript:;">
+                                    <input type="text" placeholder="Enter category title">
+                                    <button type="submit">Add</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="categories-holder">
+                        <ul>
+                            <li class="category">
+                                <label for="cat-1">Category 1</label>
+                                <input type="checkbox" id="cat-1">
+
+                                <div class="actions">
+                                    <button><i class="fa fa-trash"></i></button>
+                                    <button><i class="fa fa-plus-square"></i></button>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="content">
+                    <div class="row">
+                        <div class="add-item-holder">
+                            <div class="add-item">
+                                <form action="javascript:;">
+                                    <input type="text" placeholder="Enter category title">
+                                    <button type="submit">Add</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="list-holder">
+                            <table class="todo-list">
+                                <tr class="todo-item row">
+                                    <td class="check">
+                                        <input type="checkbox" id="todo-item-1">
+                                    </td>
+                                    <td class="info">
+                                        <label for="todo-item-1">To-Do item #n</label>
+                                    </td>
+                                    <td class="actions">
+                                        <button><i class="edit fa fa-pencil-square-o"></i></button>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
+
+<script>
+    var btn = document.querySelector('#toggle-sidebar');
+    var bar = document.querySelector('.main .sidebar');
+    if (btn && bar)
+        btn.onclick = function () {
+            this.classList.toggle('active');
+            bar.classList.toggle('active');
+        };
+</script>

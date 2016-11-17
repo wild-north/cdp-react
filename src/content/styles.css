@@ -1,0 +1,11 @@
+.content {
+    padding: 0 5px;
+}
+.content .item-actions {
+    width:20%;
+    text-align: center;
+}
+.content .add-item-holder {
+    text-align: right;
+    margin-right: 10px;
+}

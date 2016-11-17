@@ -1,0 +1,20 @@
+.sidebar {
+    padding: 0 5px;
+}
+.sidebar .add-item-holder {
+    text-align: center;
+}
+
+.toggle-sidebar {
+    background-color: transparent;
+    font-size: 18px;
+    border: none;
+    color: #ddd;
+    height: auto;
+}
+.toggle-sidebar i {
+    transition: 250ms linear all;
+}
+.toggle-sidebar.active i{
+    transform: rotate(90deg);
+}

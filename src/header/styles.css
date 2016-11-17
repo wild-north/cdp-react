@@ -1,0 +1,47 @@
+header {
+    background-color: #343434;
+    color: #ddd;
+}
+.row {
+    margin-bottom: 10px;
+}
+header strong,
+header .search-holder{
+    height:50px;
+    line-height:50px;
+}
+
+header strong{
+    margin-left:30px;
+    font-size:21px;
+}
+
+header .search-holder {
+    float: right;
+    padding: 0 10px;
+}
+.logo {
+    width: 30px;
+    height :30px;
+}
+.show-active,
+.form-search{
+    display: inline-block;
+    margin-right: 10px;
+}
+.form-search input[type=text]{
+    padding-right: 30px;
+    width:170px;
+    height:25px;
+    transition: 0.3s linear width;
+}
+.form-search.active input[type=text] {
+    width:600px;
+}
+
+.form-search .clear {
+    margin-left:-33px;
+    border: none;
+    font-size:16px;
+    border: none;
+}
