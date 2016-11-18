@@ -1,7 +1,14 @@
 import React, { Component, PropTypes } from 'react';
 import './styles.css';
-import Actions from '../actions'
 import _ from 'lodash';
+
+
+const addCategory = ({index}) => {
+    alert('You trying to add a new sub-category to category with ID = ' + index);
+};
+const deleteCategory = ({index}) => {
+    alert('You trying to delete category with ID = ' + index);
+};
 
 export default class Category extends Component {
 
@@ -9,15 +16,21 @@ export default class Category extends Component {
         const { children, title, index, parentIndex } = this.props;
 
         const fullIndex = (_.isNumber(parentIndex) ? parentIndex + '.' : '') + index;
-        const id = 'cat-' + fullIndex;
+
 
         return (
             <li className="category">
                 <div className="input-holder">
-                    <label htmlFor={id}>{fullIndex}: {title}</label>
-                    <input type="checkbox" id={id} />
+                    <button className="fa fa-angle-double-right">&nbsp;</button>
+                    <span className="title">{fullIndex} {title}</span>
+                    <button className="fa fa-pencil-square-o smaller">&nbsp;</button>
                 </div>
-                <Actions/>
+                <div className="actions-holder">
+                    <div className="actions">
+                        <button className="fa fa-plus-square-o" onClick={addCategory}>&nbsp;</button>
+                        <button className="fa fa-trash-o" onClick={deleteCategory}>&nbsp;</button>
+                    </div>
+                </div>
                 {children}
             </li>
         );

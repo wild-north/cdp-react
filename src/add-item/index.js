@@ -9,7 +9,7 @@ export default class AddItem extends Component {
             <div className="add-item">
                 <form action="">
                     <input type="text" placeholder={placeholder} />
-                    <button><i className="fa fa-plus-square">&nbsp;</i></button>
+                    <button className="fa fa-plus-square">&nbsp;</button>
                 </form>
             </div>
         );

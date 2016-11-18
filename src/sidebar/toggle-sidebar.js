@@ -4,9 +4,7 @@ import './styles.css';
 export default class ToggleSidebar extends Component {
     render() {
         return (
-            <button className="toggle-sidebar active">
-                <i className="fa fa-bars">&nbsp;</i>
-            </button>
+            <button className="toggle-sidebar fa fa-bars active">&nbsp;</button>
         );
     }
 };

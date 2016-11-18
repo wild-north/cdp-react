@@ -21,6 +21,9 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+.row {
+  margin-bottom: 10px;
+}
 
 input[type=text] {
   border-radius: 3px;
@@ -28,7 +31,6 @@ input[type=text] {
   height:22px;
   width:200px;
   padding: 0 5px;
-
 }
 button {
   text-align: center;
@@ -46,48 +48,38 @@ button:hover {
   margin: 0 auto;
 }
 
+.two-columns {
+  background-color: rgba(246, 246, 246, 0.8);
+}
 .two-columns .sidebar{
   float: left;
   height:700px;
   width: 0;
-  background-color: #97c6b9;
   padding-top: 10px;
   transition: 400ms linear width;
   overflow: hidden;
+  border-right: 1px solid #ddd;
+
 }
 .two-columns .sidebar.active{
   width: 30%;
 }
 .two-columns .content{
   height:700px;
-  background-color: #c6c395;
   padding-top: 10px;
   overflow: hidden;
 }
-.actions {
-  float: right;
-}
-.actions button{
+button.fa{
   margin-right:3px;
-  padding: 0 0 0 5px;
+  padding: 0;
+  font-size:16px;
+  border: none;
+  color: #535353;
+  background-color: transparent;
 }
-
-.todo-item {
-  background-color: #fff;
-  height:30px;
+button.fa.smaller{
+  font-size: 0.85em;
 }
-.todo-item .info,
-.todo-item .actions {
-  text-align: center;
-  line-height:30px;
-  float: none;
+button.fa:hover {
+  color: #61dafb;
 }
-.todo-item .check {
-  width: 30px;
-  text-align: center;
-}
-.todo-item .info label {
-  display: inline-block;
-  width: 100%;
-}
-

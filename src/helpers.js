@@ -1,0 +1,1 @@
+export const omitEvent = fn => (ev, ...params) => fn(...params);

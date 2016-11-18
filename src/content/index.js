@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
-import Actions from '../actions';
 import './styles.css';
 
 import AddItem from '../add-item';
+import TodoItem from '../todo-item';
+
+const editTodo = () => {
+    alert('You trying to edit todo-item');
+};
 
 export default class Content extends Component {
     render() {
@@ -17,17 +21,9 @@ export default class Content extends Component {
                     <div className="list-holder">
                         <table className="todo-list">
                             <tbody>
-                                <tr className="todo-item row">
-                                    <td className="check">
-                                        <input type="checkbox" id="todo-item-1" />
-                                    </td>
-                                    <td className="info">
-                                        <label htmlFor="todo-item-1">To-Do item #n</label>
-                                    </td>
-                                    <td className="item-actions">
-                                        <Actions/>
-                                    </td>
-                                </tr>
+                                <TodoItem onClick={editTodo} index={'1.1.1'} title={'Hello world'}/>
+                                <TodoItem onClick={editTodo} index={'1.1.2'} title={'Lorem ipsum'}/>
+                                <TodoItem onClick={editTodo} index={'1.1.3'} title={'Solor sit amet'}/>
                             </tbody>
                         </table>
                     </div>

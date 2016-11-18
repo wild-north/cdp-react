@@ -1,17 +1,23 @@
-.categories-holder {
-    padding:2px;
-}
 .category{
-    background-color: #fff;
     line-height: 30px;
-    padding-left:10px;
+    padding:0 0 0 10px;
     overflow: hidden;
+    border-bottom:1px solid #ddd;
+}
+.category:last-child{
+    border: none;
 }
 .category .input-holder {
     display: inline-block;
     width:60%;
 }
+.category .input-holder .title {
+    margin-right:3px;
+}
 .category input[type=checkbox] {
     float: right;
     margin-top: 10px;
+}
+.actions-holder{
+    float: right;
 }

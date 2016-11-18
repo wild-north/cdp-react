@@ -1,9 +1,7 @@
 header {
     background-color: #343434;
     color: #ddd;
-}
-.row {
-    margin-bottom: 10px;
+    padding-left:10px;
 }
 header strong,
 header .search-holder{
@@ -12,17 +10,27 @@ header .search-holder{
 }
 
 header strong{
-    margin-left:30px;
     font-size:21px;
 }
-
+header .button-holder {
+    display: inline-block;
+    margin-right:20px;
+}
 header .search-holder {
     float: right;
     padding: 0 10px;
 }
-.logo {
+.logo img {
     width: 30px;
     height :30px;
+    transition: 0.15s linear all;
+}
+@keyframes app-logo-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+.logo:hover img {
+    animation: app-logo-spin infinite 5s linear;
 }
 .show-active,
 .form-search{
@@ -41,7 +49,6 @@ header .search-holder {
 
 .form-search .clear {
     margin-left:-33px;
-    border: none;
     font-size:16px;
     border: none;
 }

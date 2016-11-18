@@ -4,17 +4,21 @@
 .sidebar .add-item-holder {
     text-align: center;
 }
-
-.toggle-sidebar {
+.sidebar .categories-holder {
+    padding:2px;
+}
+.toggle-sidebar.fa {
     background-color: transparent;
     font-size: 18px;
     border: none;
     color: #ddd;
     height: auto;
+    padding: 0;
+    margin: 0;
 }
-.toggle-sidebar i {
+.toggle-sidebar {
     transition: 250ms linear all;
 }
-.toggle-sidebar.active i{
+.toggle-sidebar.active {
     transform: rotate(90deg);
 }
