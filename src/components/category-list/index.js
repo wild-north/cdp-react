@@ -7,11 +7,13 @@ export default class CategoryList extends Component {
         let { list = [], parentIndex = '' } = this.props;
         return (
             <ul>
-                { list.map(({index, title, children}, key) => {
-                    const currentIndex = parentIndex ? parentIndex + '.' + index : index;
+                { list.map(({title, children}, key) => {
+                    const index = key + 1;
+                    const fullIndex = parentIndex ? parentIndex + '.' + index : index;
+
                     return (
-                        <Category key={key} index={currentIndex} title={title}>
-                            { children && children.length ? <CategoryList list={children} parentIndex={currentIndex}/> : null }
+                        <Category key={key} index={fullIndex} title={title}>
+                            { children && children.length ? <CategoryList list={children} parentIndex={fullIndex}/> : null }
                         </Category>
                     );
                 }) }

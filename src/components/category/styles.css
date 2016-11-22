@@ -33,3 +33,6 @@
 .actions-holder{
     float: right;
 }
+.category .opener.active{
+    transform: rotate(90deg);
+}

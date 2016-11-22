@@ -15,9 +15,22 @@ const editCategory = ({index}) => {
 };
 
 export default class Category extends Component {
+    constructor() {
+        super();
+        this.state = {
+            showKids: false
+        };
+        this.toggleKids = this.toggleKids.bind(this);
+    }
+    toggleKids() {
+        this.setState({
+            showKids: !this.state.showKids
+        })
+    }
 
     render() {
         const { children, title, index, parentIndex } = this.props;
+        const { showKids } = this.state;
 
         const fullIndex = (_.isNumber(parentIndex) ? parentIndex + '.' : '') + index;
 
@@ -25,7 +38,13 @@ export default class Category extends Component {
         return (
             <li className={classnames("category", {'no-children': !children})}>
                 <div className="input-holder">
-                    {children ? <button className="fa fa-angle-double-right">&nbsp;</button> : null}
+                    {
+                        children ?
+                            <button
+                                className={classnames("fa fa-angle-double-right opener", {'active': !showKids})}
+                                onClick={this.toggleKids} />
+                            : null
+                    }
                     <span className="title">{fullIndex} {title}</span>
                 </div>
                 <div className="actions-holder">
@@ -35,7 +54,7 @@ export default class Category extends Component {
                         <button className="fa fa-trash-o" onClick={deleteCategory}>&nbsp;</button>
                     </div>
                 </div>
-                {children}
+                {showKids && children ? children : null}
             </li>
         );
     }
