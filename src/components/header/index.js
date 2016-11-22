@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './styles.css';
 import SearchForm from '../search-form';
 import ToggleSidebar from '../sidebar/toggle-sidebar';
-import logo from '../logo.svg';
+import logo from './logo.svg';
 
 
 export default class Header extends Component {

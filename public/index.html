@@ -28,5 +28,20 @@
       To begin the development, run `npm start`.
       To create a production bundle, use `npm run build`.
     -->
+    <script>
+window.onload = function () {
+    const btn = document.querySelector('.toggle-sidebar');
+    const sidebar = document.querySelectorAll('.sidebar');
+    const ACTIVE_CLASS = 'active';
+
+    if (btn && sidebar.length)
+        btn.addEventListener('click', (e) => {
+            e.target.classList.toggle(ACTIVE_CLASS);
+            sidebar.forEach((val) => {
+                val.classList.toggle(ACTIVE_CLASS);
+            });
+        });
+}
+    </script>
   </body>
 </html>

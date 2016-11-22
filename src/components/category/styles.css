@@ -4,6 +4,12 @@
     overflow: hidden;
     border-bottom:1px solid #ddd;
 }
+.category * {
+    overflow: hidden;
+}
+.category.no-children{
+    padding-left:25px;
+}
 .category:last-child{
     border: none;
 }
@@ -17,6 +23,12 @@
 .category input[type=checkbox] {
     float: right;
     margin-top: 10px;
+}
+.category .title {
+    cursor: default;
+}
+.category .title:hover{
+    text-decoration: underline;
 }
 .actions-holder{
     float: right;

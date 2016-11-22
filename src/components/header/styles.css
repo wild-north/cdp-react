@@ -20,6 +20,9 @@ header .search-holder {
     float: right;
     padding: 0 10px;
 }
+.logo {
+    cursor: default;
+}
 .logo img {
     width: 30px;
     height :30px;
@@ -31,24 +34,4 @@ header .search-holder {
 }
 .logo:hover img {
     animation: app-logo-spin infinite 5s linear;
-}
-.show-active,
-.form-search{
-    display: inline-block;
-    margin-right: 10px;
-}
-.form-search input[type=text]{
-    padding-right: 30px;
-    width:170px;
-    height:25px;
-    transition: 0.3s linear width;
-}
-.form-search.active input[type=text] {
-    width:600px;
-}
-
-.form-search .clear {
-    margin-left:-33px;
-    font-size:16px;
-    border: none;
 }

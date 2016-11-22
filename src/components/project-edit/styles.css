@@ -1,0 +1,46 @@
+.project-info {
+    padding:5px;
+}
+.project-info .right {
+    float: right;
+}
+.project-info .action-btn {
+    border-radius: 3px;
+    margin-right:5px;
+    transition: 0.15s linear all;
+    font-size: 12px;
+    min-width: 80px;
+}
+.project-info .action-btn i {
+    margin-left:3px;
+    font-size: 14px;
+}
+.project-info .action-btn.accept:hover {
+    -webkit-box-shadow: inset 0px 0px 4px 1px #ddd;
+    -moz-box-shadow: inset 0px 0px 4px 1px #ddd;
+    box-shadow: inset 0px 0px 4px 1px #ddd;
+}
+.project-info .action-btn.accept:hover i {
+    color: green;
+}
+.project-info .action-btn.decline:hover {
+    -webkit-box-shadow: inset 0px 0px 4px 1px #ddd;
+    -moz-box-shadow: inset 0px 0px 4px 1px #ddd;
+    box-shadow: inset 0px 0px 4px 1px #ddd;
+}
+.project-info .action-btn.decline:hover i {
+    color: red;
+}
+
+.project-info label {
+    font-size: 13px;
+}
+
+.project-info textarea {
+    display: block;
+    width: 98%;
+    height: 150px;
+    resize: none;
+    padding:5px;
+    font-size:13px;
+}

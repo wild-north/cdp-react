@@ -1,0 +1,20 @@
+.show-active,
+.form-search{
+    display: inline-block;
+    margin-right: 10px;
+}
+.form-search input[type=text]{
+    padding-right: 30px;
+    width:170px;
+    height:25px;
+    transition: 0.3s linear width;
+}
+.form-search.active input[type=text] {
+    width:600px;
+}
+
+.form-search .clear {
+    margin-left:-24px;
+    font-size:14px;
+    border: none;
+}

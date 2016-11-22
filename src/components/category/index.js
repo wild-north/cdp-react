@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import './styles.css';
 import _ from 'lodash';
+import classnames from 'classnames';
 
 
 const addCategory = ({index}) => {
@@ -19,9 +20,9 @@ export default class Category extends Component {
 
 
         return (
-            <li className="category">
+            <li className={classnames("category", {'no-children': !children})}>
                 <div className="input-holder">
-                    <button className="fa fa-angle-double-right">&nbsp;</button>
+                    {children ? <button className="fa fa-angle-double-right">&nbsp;</button> : null}
                     <span className="title">{fullIndex} {title}</span>
                     <button className="fa fa-pencil-square-o smaller">&nbsp;</button>
                 </div>
