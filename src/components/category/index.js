@@ -10,6 +10,9 @@ const addCategory = ({index}) => {
 const deleteCategory = ({index}) => {
     alert('You trying to delete category with ID = ' + index);
 };
+const editCategory = ({index}) => {
+    alert('You trying to delete category with ID = ' + index);
+};
 
 export default class Category extends Component {
 
@@ -24,10 +27,10 @@ export default class Category extends Component {
                 <div className="input-holder">
                     {children ? <button className="fa fa-angle-double-right">&nbsp;</button> : null}
                     <span className="title">{fullIndex} {title}</span>
-                    <button className="fa fa-pencil-square-o smaller">&nbsp;</button>
                 </div>
                 <div className="actions-holder">
                     <div className="actions">
+                        <button className="fa fa-pencil-square-o" onClick={editCategory}>&nbsp;</button>
                         <button className="fa fa-plus-square-o" onClick={addCategory}>&nbsp;</button>
                         <button className="fa fa-trash-o" onClick={deleteCategory}>&nbsp;</button>
                     </div>

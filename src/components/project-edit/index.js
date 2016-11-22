@@ -11,14 +11,14 @@ export default class ProjectEdit extends Component {
                 </div>
                 <form action="">
                     <div className="row">
-                        <input type="text" value="To-do Item #1"/>
+                        <input type="text" defaultValue="To-do Item #1"/>
                     </div>
                     <div className="row">
                         <label htmlFor="is-project-active">Active</label>
                         <input type="checkbox" id="is-project-active"/>
                     </div>
                     <div className="row">
-                        <textarea cols="30" rows="10">&nbsp;</textarea>
+                        <textarea cols="30" rows="10" defaultValue={""} />
                     </div>
                 </form>
             </div>
