@@ -20,6 +20,9 @@
 .category .input-holder .title {
     margin-right:3px;
 }
+.category .input-holder .edit {
+    width: 120px;
+}
 .category input[type=checkbox] {
     float: right;
     margin-top: 10px;

@@ -14,25 +14,37 @@ const editCategory = ({index}) => {
     alert('You trying to delete category with ID = ' + index);
 };
 
+
+const SEPARATOR = '.';
+
+const getFullIndex = (parentIndex, index) => (_.isNumber(parentIndex) ? parentIndex + SEPARATOR : '') + index;
+
 export default class Category extends Component {
     constructor() {
         super();
         this.state = {
-            showKids: false
+            showKids: false,
+            editMode: false
         };
         this.toggleKids = this.toggleKids.bind(this);
+        this.toggleEdit = this.toggleEdit.bind(this);
     }
     toggleKids() {
         this.setState({
             showKids: !this.state.showKids
         })
     }
+    toggleEdit() {
+        this.setState({
+            editMode: !this.state.editMode
+        })
+    }
 
     render() {
         const { children, title, index, parentIndex } = this.props;
-        const { showKids } = this.state;
+        const { showKids, editMode } = this.state;
 
-        const fullIndex = (_.isNumber(parentIndex) ? parentIndex + '.' : '') + index;
+        const fullIndex = getFullIndex(parentIndex, index);
 
 
         return (
@@ -45,11 +57,18 @@ export default class Category extends Component {
                                 onClick={this.toggleKids} />
                             : null
                     }
-                    <span className="title">{fullIndex} {title}</span>
+                    <span
+                        className={classnames("title", {'hidden': editMode})}
+                    >{fullIndex} {title}</span>
+                    <input type="text"
+                           defaultValue={title}
+                           className={classnames("edit", {'hidden': !editMode})}
+                    />
                 </div>
                 <div className="actions-holder">
                     <div className="actions">
-                        <button className="fa fa-pencil-square-o" onClick={editCategory}>&nbsp;</button>
+                        <button className={classnames("fa fa-pencil-square-o", {'hidden': editMode})} onClick={this.toggleEdit}>&nbsp;</button>
+                        <button className={classnames("fa fa-check", {'hidden': !editMode})} onClick={this.toggleEdit}>&nbsp;</button>
                         <button className="fa fa-plus-square-o" onClick={addCategory}>&nbsp;</button>
                         <button className="fa fa-trash-o" onClick={deleteCategory}>&nbsp;</button>
                     </div>

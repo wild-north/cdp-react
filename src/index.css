@@ -49,7 +49,9 @@ button:hover {
   width: 940px;
   margin: 0 auto;
 }
-
+.hidden {
+  display: none !important;
+}
 .two-columns {
   background-color: rgba(246, 246, 246, 0.8);
   height:600px;
