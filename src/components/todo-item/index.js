@@ -3,15 +3,15 @@ import './styles.css';
 
 export default class TodoItem extends Component {
     render() {
-        const { title, index, onClick } = this.props;
-        const checkboxClass = `todo-item-${index}`;
+        const { title, index, onClick, checked } = this.props;
+        const checkboxId = `todo-item-${index}`;
         return (
             <tr className="todo-item row">
                 <td className="check">
-                    <input type="checkbox" id={checkboxClass} />
+                    <input type="checkbox" id={checkboxId} defaultChecked={checked}/>
                 </td>
                 <td className="info">
-                    <label htmlFor={checkboxClass}>{index} {title}</label>
+                    <label htmlFor={checkboxId}>{index} {title}</label>
                 </td>
                 <td className="item-actions">
                     <div className="actions">

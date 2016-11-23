@@ -16,7 +16,7 @@
 }
 
 .todo-item:nth-child(odd) {
-    background-color: #aaa;
+    background-color: #8b8b8b;
     color: #fff;
 }
 .todo-item:nth-child(odd) button.fa {
@@ -36,7 +36,6 @@
 }
 .todo-item .info {
     text-align: left;
-    padding-left: 15px;
 }
 .todo-item .check {
     width: 30px;
@@ -44,5 +43,7 @@
 }
 .todo-item .info label {
     display: inline-block;
-    width: 100%;
+    width: 98%;
+    padding-left: 15px;
+    cursor: pointer;
 }

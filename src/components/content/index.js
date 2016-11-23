@@ -2,11 +2,9 @@ import React, { Component } from 'react';
 import './styles.css';
 
 import AddItem from '../add-item';
-import TodoItem from '../todo-item';
+import TodoList from '../todo-list';
+import todoListData from '../../dummy/todo-items';
 
-const editTodo = () => {
-    alert('You trying to edit todo-item');
-};
 
 export default class Content extends Component {
     render() {
@@ -19,13 +17,7 @@ export default class Content extends Component {
                 </div>
                 <div className="row">
                     <div className="list-holder">
-                        <table className="todo-list">
-                            <tbody>
-                                <TodoItem onClick={editTodo} index={'1.1.1'} title={'Hello world'}/>
-                                <TodoItem onClick={editTodo} index={'1.1.2'} title={'Lorem ipsum'}/>
-                                <TodoItem onClick={editTodo} index={'1.1.3'} title={'Solor sit amet'}/>
-                            </tbody>
-                        </table>
+                        <TodoList list={todoListData} />
                     </div>
                 </div>
             </div>

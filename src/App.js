@@ -7,45 +7,7 @@ import ProgressBar from './components/progress-bar';
 import ProjectEdit from './components/project-edit';
 import AddItem from './components/add-item';
 import CategoryList from './components/category-list';
-
-
-const dummyList = [
-    {
-        title: 'Frontend',
-        children: [
-            {title: 'es6'},
-            {
-                title: 'react',
-                children: [
-                    {
-                        title: 'components',
-                        children: [
-                            {title: 'stateful'},
-                            {title: 'stateless'}
-
-                        ]
-                    },
-                    {title: 'life cycle'},
-                    {title: 'routing'}
-
-                ]
-            },
-            {title: 'redux'}
-        ]
-    },
-    {
-        title: 'Markup',
-        children: [
-            {title: 'HTML5'},
-            {
-                title: 'CSS3',
-                children: [
-                    {title: 'Flexbox'}
-                ]
-            }
-        ]
-    }
-];
+import categoriesList from './dummy/categories';
 
 class App extends Component {
   render() {
@@ -62,7 +24,7 @@ class App extends Component {
                         </div>
                     </div>
                     <div className="categories-holder">
-                        <CategoryList list={dummyList}/>
+                        <CategoryList list={categoriesList}/>
                     </div>
                 </Sidebar>
                 <Content />
@@ -71,7 +33,7 @@ class App extends Component {
                 <h1>{'To-Do item #1'}</h1>
                 <Sidebar>
                     <div className="categories-holder">
-                        {/*<CategoryList list={dummyList}/>*/}
+                        <CategoryList list={categoriesList}/>
                     </div>
                 </Sidebar>
                 <ProjectEdit />
