@@ -57,20 +57,25 @@ export default class Category extends Component {
                                 onClick={this.toggleKids} />
                             : null
                     }
-                    <span
-                        className={classnames("title", {'hidden': editMode})}
-                    >{fullIndex} {title}</span>
-                    <input type="text"
-                           defaultValue={title}
-                           className={classnames("edit", {'hidden': !editMode})}
-                    />
+
+                    {editMode ? <input type="text"  defaultValue={title}  className="edit"/>
+                                : <span className="title">{fullIndex} {title}</span>}
+
                 </div>
                 <div className="actions-holder">
                     <div className="actions">
-                        <button className={classnames("fa fa-pencil-square-o", {'hidden': editMode})} onClick={this.toggleEdit}>&nbsp;</button>
-                        <button className={classnames("fa fa-check", {'hidden': !editMode})} onClick={this.toggleEdit}>&nbsp;</button>
-                        <button className="fa fa-plus-square-o" onClick={addCategory}>&nbsp;</button>
-                        <button className="fa fa-trash-o" onClick={deleteCategory}>&nbsp;</button>
+                        { editMode ?
+                            <span>
+                                <button className="fa fa-check green" onClick={this.toggleEdit}>&nbsp;</button>
+                                <button className="fa fa-times red" onClick={this.toggleEdit}>&nbsp;</button>
+                            </span>
+                         :
+                            <span>
+                                <button className="fa fa-pencil-square-o" onClick={this.toggleEdit}>&nbsp;</button>
+                                <button className="fa fa-plus-square-o" onClick={addCategory}>&nbsp;</button>
+                                <button className="fa fa-trash-o" onClick={deleteCategory}>&nbsp;</button>
+                            </span> }
+
                     </div>
                 </div>
                 {showKids && children ? children : null}

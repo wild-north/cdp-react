@@ -4,8 +4,11 @@
     overflow: hidden;
     border-bottom:1px solid #ddd;
 }
-.category * {
-    overflow: hidden;
+button.fa.green {
+    color: #018501;
+}
+button.fa.red {
+    color: #a80202;
 }
 .category.no-children{
     padding-left:25px;
@@ -15,13 +18,13 @@
 }
 .category .input-holder {
     display: inline-block;
-    width:60%;
+    max-width: 190px;
 }
 .category .input-holder .title {
     margin-right:3px;
 }
 .category .input-holder .edit {
-    width: 120px;
+    width: 150px;
 }
 .category input[type=checkbox] {
     float: right;

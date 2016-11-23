@@ -7,7 +7,7 @@ export default class ProjectEdit extends Component {
             <div className="content project-info">
                 <div className="row right">
                     <button className="action-btn accept">Save changes <i className="fa fa-floppy-o">&nbsp;</i></button>
-                    <button className="action-btn decline">Cancel <i className="fa fa fa-times">&nbsp;</i></button>
+                    <button className="action-btn decline">Cancel <i className="fa fa-times">&nbsp;</i></button>
                 </div>
                 <form action="">
                     <div className="row">
