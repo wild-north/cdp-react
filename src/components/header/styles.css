@@ -2,6 +2,7 @@ header {
     background-color: #343434;
     color: #ddd;
     padding-left:10px;
+    height:56px;
 }
 header strong,
 header .search-holder{
@@ -26,12 +27,11 @@ header .search-holder {
 .logo img {
     width: 30px;
     height :30px;
-    transition: 0.15s linear all;
 }
 @keyframes app-logo-spin {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
 }
 .logo:hover img {
-    animation: app-logo-spin infinite 5s linear;
+    animation: app-logo-spin infinite 4s linear;
 }
