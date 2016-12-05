@@ -3,7 +3,7 @@ import './styles.css';
 
 import AddItem from '../add-item';
 import TodoList from '../todo-list';
-import todoListData from '../../dummy/todo-items';
+import todoListData from '../../mocks/todo-items';
 
 
 export default class Content extends Component {

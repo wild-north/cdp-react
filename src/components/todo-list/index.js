@@ -9,7 +9,7 @@ const editTodo = () => {
 export default class TodoList extends Component {
     render() {
         const { list } = this.props;
-        console.log(list);
+
         return (
             <div className="list-holder">
                 <table className="todo-list">

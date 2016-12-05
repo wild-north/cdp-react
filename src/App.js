@@ -7,10 +7,41 @@ import ProgressBar from './components/progress-bar';
 import ProjectEdit from './components/project-edit';
 import AddItem from './components/add-item';
 import CategoryList from './components/category-list';
-import categoriesList from './dummy/categories';
+import categoriesList from './mocks/categories';
+
+import { SEPARATOR } from './components/category-list';
+
+function processList(arr) {
+    return arr.map(val => {
+        if ('kids' in val) {
+            val.opened = true;
+            processList(val.kids);
+        }
+        return val;
+    });
+}
+
+
+const changeOpened = (indexesString, list) => {
+    const indexArray = indexesString.split(SEPARATOR);
+    let currentValue;
+    indexArray.forEach(index => {
+        --index;
+        currentValue = currentValue ? currentValue.kids[index] : list[index];
+    });
+    if (typeof currentValue === 'object' && 'opened' in currentValue) {
+        currentValue.opened = !currentValue.opened;
+        console.log(currentValue);
+    }
+};
+
 
 class App extends Component {
-  render() {
+    toggleOpened(index, list) {
+        return () => changeOpened(index, list);
+    }
+
+    render() {
     return (
       <div id="app">
         <Header/>
@@ -24,7 +55,7 @@ class App extends Component {
                         </div>
                     </div>
                     <div className="categories-holder">
-                        <CategoryList list={categoriesList}/>
+                        <CategoryList list={processList(categoriesList)} toggleOpened={this.toggleOpened}/>
                     </div>
                 </Sidebar>
                 <Content />
@@ -33,7 +64,7 @@ class App extends Component {
                 <h1>{'To-Do item #1'}</h1>
                 <Sidebar>
                     <div className="categories-holder">
-                        <CategoryList list={categoriesList}/>
+                        <CategoryList list={processList(categoriesList)} toggleOpened={this.toggleOpened}/>
                     </div>
                 </Sidebar>
                 <ProjectEdit />
@@ -41,7 +72,7 @@ class App extends Component {
         </main>
       </div>
     );
-  }
+    }
 }
 
 export default App;

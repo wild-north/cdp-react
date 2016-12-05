@@ -10,6 +10,11 @@ button.fa.green {
 button.fa.red {
     color: #a80202;
 }
+.category * {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
 .category.no-children{
     padding-left:25px;
 }
@@ -39,6 +44,9 @@ button.fa.red {
 .actions-holder{
     float: right;
 }
-.category .opener.active{
+.category .opener{
     transform: rotate(90deg);
+}
+.category .opener.active{
+    transform: rotate(0);
 }
