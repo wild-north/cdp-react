@@ -35,6 +35,9 @@ button.fa.red {
     float: right;
     margin-top: 10px;
 }
+.category.active > div {
+    background-color: #bababa;
+}
 .category .title {
     cursor: default;
 }

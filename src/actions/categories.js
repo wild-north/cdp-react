@@ -96,3 +96,20 @@ export const addCategory = (list, newTitle) => {
     list.unshift( new CategegoryModel(newTitle) );
     return list;
 };
+export const getSelectedCategory = (list, indexesString) => {
+
+    list = list.slice();
+
+    const indexArray = indexesString.split(SEPARATOR);
+
+    let currentValue;
+    indexArray.forEach(index => {
+        currentValue = currentValue ? currentValue.kids[index - 1] : list[index - 1];
+    });
+
+    return currentValue;
+};
+export const toggleProject = (category, index) => {
+    category.projects[index].done = !category.projects[index].done;
+    return category;
+};

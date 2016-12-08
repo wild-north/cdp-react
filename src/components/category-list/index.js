@@ -3,37 +3,43 @@ import './styles.css';
 import Category from '../category';
 import { SEPARATOR } from '../../constants';
 
+// {/*{title, opened}*/}
+// {/*title={title}*/}
+// {/*opened={opened}*/}
 
 export default class CategoryList extends Component {
 
     render() {
-        let { list, parentIndex = '', toggle, remove, rename, add} = this.props;
+        let { list, parentIndex = '', toggle, remove, rename, add, selectCategory, selectedCategory} = this.props;
 
         return (
             <ul>
                 {
-                    list.map(({title, kids, opened}, key) => {
+                    list.map((item, key) => {
                         const index = key + 1;
                         const fullIndex = parentIndex ? `${parentIndex}${SEPARATOR}${index}` : index;
 
                         return (
-
                             <Category key={key}
                                       index={fullIndex}
-                                      title={title}
-                                      opened={opened}
+                                      item={item}
                                       toggle={toggle}
                                       remove={remove}
                                       rename={rename}
-                                      add={add} >
+                                      add={add}
+                                      selectCategory={selectCategory}
+                                      selectedCategory={selectedCategory}
+                            >
                                 {
-                                    kids && kids.length ?
-                                        <CategoryList list={kids}
+                                    item.kids && item.kids.length ?
+                                        <CategoryList list={item.kids}
                                                       parentIndex={fullIndex}
                                                       toggle={toggle}
                                                       remove={remove}
                                                       rename={rename}
                                                       add={add}
+                                                      selectCategory={selectCategory}
+                                                      selectedCategory={selectedCategory}
                                         />
                                         : null
                                 }

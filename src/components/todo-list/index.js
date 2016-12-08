@@ -8,20 +8,26 @@ const editTodo = () => {
 
 export default class TodoList extends Component {
     render() {
-        const { list } = this.props;
+        const { list, toggle } = this.props;
 
         return (
             <div className="list-holder">
                 <table className="todo-list">
                     <tbody>
-                        {list.map(({title, index, done}, key) => (
-                            <TodoItem key={key}
-                                      onClick={editTodo}
-                                      index={index}
-                                      title={title}
-                                      checked={done}
-                            />
-                        ))}
+                        {
+                            list && list.length ?
+                                list.map(({title, done}, key) => (
+                                        <TodoItem key={key}
+                                                  onClick={editTodo}
+                                                  index={key}
+                                                  title={title}
+                                                  checked={done}
+                                                  toggle={toggle}
+                                        />
+                                    )
+                                )
+                                : null
+                        }
                     </tbody>
                 </table>
             </div>

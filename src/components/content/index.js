@@ -3,11 +3,11 @@ import './styles.css';
 
 import AddItem from '../add-item';
 import TodoList from '../todo-list';
-import todoListData from '../../mocks/todo-items';
 
 
 export default class Content extends Component {
     render() {
+        // const { list, toggle } = this.props;
         return (
             <div className="content">
                 <div className="row">
@@ -17,7 +17,7 @@ export default class Content extends Component {
                 </div>
                 <div className="row">
                     <div className="list-holder">
-                        <TodoList list={todoListData} />
+                        <TodoList {...this.props} />
                     </div>
                 </div>
             </div>

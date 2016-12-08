@@ -1,34 +1,43 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import './styles.css';
 import classnames from 'classnames';
 import { getFullIndex } from '../../helpers';
 
-const EditTitle = ({tmpTitle, onChange, fullIndex, save, disableEdit}) => {
-    return (
-        <form action="" onSubmit={save(fullIndex)}>
-            <div className="input-holder">
-                <input type="text" value={tmpTitle} className="edit" onChange={onChange}/>
-            </div>
-            <div className="actions-holder">
-                <div className="actions">
-                    <button className="fa fa-check green" type="submit">{' '}</button>
-                    <button className="fa fa-times red" onClick={disableEdit}>{' '}</button>
+class EditTitle extends Component {
+    componentDidMount() {
+        document.querySelector('.edit-title input[type=text]').focus();
+    }
+    render() {
+        const { tmpTitle, onChange, fullIndex, save, disableEdit } = this.props;
+
+        return (
+            <form className="edit-title" action="" onSubmit={save(fullIndex)}>
+                <div className="input-holder">
+                    <input type="text" value={tmpTitle} className="edit" onChange={onChange}/>
                 </div>
-            </div>
-        </form>
-    );
-};
-const Title = ({showOpener, opened, fullIndex, title, enableEdit, remove, toggle, add}) => {
+                <div className="actions-holder">
+                    <div className="actions">
+                        <button className="fa fa-check green" type="submit">{' '}</button>
+                        <button className="fa fa-times red" onClick={disableEdit}>{' '}</button>
+                    </div>
+                </div>
+            </form>
+        );
+    }
+}
+
+const Title = ({showOpener, opened, fullIndex, title, enableEdit, remove, toggle, add, selectCategory}) => {
+
     return (
         <div>
             <div className="input-holder">
                 {
                     showOpener ?
-                        <button className={classnames("fa fa-angle-double-right opener", {'active': !opened})}
-                                onClick={toggle(fullIndex)} />
-                        : null
+                        <button onClick={toggle(fullIndex)}
+                                className={classnames("fa fa-angle-double-right opener", {'active': !opened})} />
+                      : null
                 }
-                <span className="title">{fullIndex} {title}</span>
+                <span className="title" onClick={selectCategory(fullIndex)}>{fullIndex} {title}</span>
             </div>
             <div className="actions-holder">
                 <div className="actions">
@@ -58,6 +67,7 @@ export default class Category extends Component {
         this.remove = this.remove.bind(this);
         this.toggle = this.toggle.bind(this);
         this.add = this.add.bind(this);
+        this.selectCategory = this.selectCategory.bind(this);
     }
     enableEdit() {
         this.setState({
@@ -65,7 +75,8 @@ export default class Category extends Component {
             editMode: true
         });
     }
-    disableEdit() {
+    disableEdit(e) {
+        e.preventDefault();
         this.setState(this.defaultState);
     }
     onChange(e) {
@@ -82,6 +93,7 @@ export default class Category extends Component {
             this.setState(this.defaultState);
         }
     }
+
     remove(index) {
         return () => {
             this.props.remove(index);
@@ -99,34 +111,42 @@ export default class Category extends Component {
                 this.props.add(index, newTitle);
         }
     }
+    selectCategory(index) {
+        return () => {
+            this.props.selectCategory(index);
+        }
+    }
 
     render() {
-        const { children, title, index, parentIndex, opened } = this.props;
+        const { children, index, parentIndex, selectedCategory, item } = this.props;
         const { editMode, tmpTitle } = this.state;
         const fullIndex = getFullIndex(parentIndex, index);
 
         return (
-            <li className={classnames("category", {'no-children': !children})}>
+            <li className={classnames("category", {'no-children': !children, 'active': item === selectedCategory})}>
                 {
                     editMode ?
                         <EditTitle  tmpTitle={tmpTitle}
                                     fullIndex={fullIndex}
                                     save={this.save}
                                     onChange={this.onChange}
-                                    disableEdit={this.disableEdit} />
+                                    disableEdit={this.disableEdit}
+                        />
 
-                      :  <Title     showOpener={!!children}
-                                    opened={opened}
+                    :  <Title       showOpener={!!children}
+                                    opened={item.opened}
                                     fullIndex={fullIndex}
-                                    title={title}
+                                    title={item.title}
                                     enableEdit={this.enableEdit}
                                     remove={this.remove}
                                     toggle={this.toggle}
-                                    add={this.add} />
+                                    add={this.add}
+                                    selectCategory={this.selectCategory}
+                        />
                 }
 
                 {
-                    opened && children ?
+                    item.opened && children ?
                         children
                         : null
                 }
@@ -135,8 +155,8 @@ export default class Category extends Component {
     }
 };
 
-Category.propTypes = {
-    index: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-    title: PropTypes.string.isRequired,
-    parentIndex: PropTypes.number
-};
+// Category.propTypes = {
+//     index: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+//     title: PropTypes.string.isRequired,
+//     parentIndex: PropTypes.number
+// };

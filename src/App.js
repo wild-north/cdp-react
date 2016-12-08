@@ -4,13 +4,14 @@ import Header from './components/header';
 import Content from './components/content';
 import Sidebar from './components/sidebar';
 import ProgressBar from './components/progress-bar';
-// import ProjectEdit from './components/project-edit';
+import ProjectEdit from './components/project-edit';
 import AddItem from './components/add-item';
 import CategoryList from './components/category-list';
 import categoriesList from './mocks/categories';
 
 
-import { toggleCategory, addSubCategory, removeCategory, renameCategory, addCategory } from './actions/categories';
+import { toggleCategory, addSubCategory, removeCategory,
+    renameCategory, addCategory, getSelectedCategory, toggleProject } from './actions/categories';
 
 
 
@@ -18,6 +19,7 @@ class App extends Component {
     constructor() {
         super();
         this.state = {
+            selectedCategory: categoriesList[0],
             categories: categoriesList
         };
         this.toggleCategory = this.toggleCategory.bind(this);
@@ -25,6 +27,8 @@ class App extends Component {
         this.renameCategory = this.renameCategory.bind(this);
         this.addSubCategory = this.addSubCategory.bind(this);
         this.addCategory = this.addCategory.bind(this);
+        this.selectCategory = this.selectCategory.bind(this);
+        this.toggleProject = this.toggleProject.bind(this);
     }
     toggleCategory(index) {
         this.setState({ categories: toggleCategory(this.state.categories, index) });
@@ -40,6 +44,12 @@ class App extends Component {
     }
     addCategory(newTitle) {
         this.setState({ categories: addCategory(this.state.categories, newTitle) });
+    }
+    selectCategory(index) {
+        this.setState({ selectedCategory: getSelectedCategory(this.state.categories, index) });
+    }
+    toggleProject(index) {
+        this.setState({ selectedCategory: toggleProject(this.state.selectedCategory, index) });
     }
 
 
@@ -58,23 +68,34 @@ class App extends Component {
                             </div>
                             <div className="categories-holder">
                                 <CategoryList list={this.state.categories}
+                                              selectedCategory={this.state.selectedCategory}
                                               toggle={this.toggleCategory}
                                               remove={this.removeCategory}
                                               rename={this.renameCategory}
-                                              add={this.addSubCategory} />
+                                              add={this.addSubCategory}
+                                              selectCategory={this.selectCategory}
+                                 />
                             </div>
                         </Sidebar>
-                        <Content />
+                        <Content list={this.state.selectedCategory.projects}
+                                 toggle={this.toggleProject}
+                        />
                     </div>
-                    {/*<div className="two-columns project-details">*/}
-                        {/*<h1>{'To-Do item #1'}</h1>*/}
-                        {/*<Sidebar>*/}
-                            {/*<div className="categories-holder">*/}
-                                {/*<CategoryList list={processList(categoriesList)} toggleOpened={this.toggleOpened}/>*/}
-                            {/*</div>*/}
-                        {/*</Sidebar>*/}
-                        {/*<ProjectEdit />*/}
-                    {/*</div>*/}
+                    <div className="two-columns project-details">
+                        <h1>{'To-Do item #1'}</h1>
+                        <Sidebar>
+                            <div className="categories-holder">
+                                <CategoryList list={this.state.categories}
+                                              toggle={this.toggleCategory}
+                                              remove={this.removeCategory}
+                                              rename={this.renameCategory}
+                                              add={this.addSubCategory}
+                                              selectCategory={this.selectCategory}
+                                />
+                            </div>
+                        </Sidebar>
+                        <ProjectEdit />
+                    </div>
                 </main>
             </div>
         );

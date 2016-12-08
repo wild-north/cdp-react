@@ -17,7 +17,8 @@ export default class AddItem extends Component {
     }
     add(e) {
         e.preventDefault();
-        this.props.add(this.state.text);
+        if (this.state.text)
+            this.props.add(this.state.text);
     }
     render() {
         const { placeholder } = this.props;
