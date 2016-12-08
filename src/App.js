@@ -10,7 +10,7 @@ import CategoryList from './components/category-list';
 import categoriesList from './mocks/categories';
 
 
-import { toggleCategory, addCategory, removeCategory, renameCategory } from './actions/categories';
+import { toggleCategory, addSubCategory, removeCategory, renameCategory, addCategory } from './actions/categories';
 
 
 
@@ -23,19 +23,22 @@ class App extends Component {
         this.toggleCategory = this.toggleCategory.bind(this);
         this.removeCategory = this.removeCategory.bind(this);
         this.renameCategory = this.renameCategory.bind(this);
-        this.addCategory = this.addCategory.bind(this);
+        this.addSubCategory = this.addSubCategory.bind(this);
     }
-    toggleCategory(index, list) {
-        this.setState({ categories: toggleCategory(index, list) });
+    toggleCategory(index) {
+        this.setState({ categories: toggleCategory(this.state.categories, index) });
     }
-    removeCategory(index, list) {
-        this.setState({ categories: removeCategory(index, list) });
+    removeCategory(index) {
+        this.setState({ categories: removeCategory(this.state.categories, index) });
     }
-    renameCategory(index, list, newTitle) {
-        this.setState({ categories: renameCategory(index, list, newTitle) });
+    renameCategory(index, newTitle) {
+        this.setState({ categories: renameCategory(this.state.categories, index, newTitle) });
     }
-    addCategory(index, list, newTitle) {
-        this.setState({ categories: addCategory(index, list, newTitle) });
+    addSubCategory(index, newTitle) {
+        this.setState({ categories: addSubCategory(this.state.categories, index, newTitle) });
+    }
+    addCategory(newTitle) {
+        this.setState({ categories: addCategory(this.state.categories, newTitle) });
     }
 
     render() {
@@ -48,7 +51,7 @@ class App extends Component {
                         <Sidebar>
                             <div className="row">
                                 <div className="add-item-holder">
-                                    <AddItem placeholder="Enter category title"/>
+                                    <AddItem placeholder="Enter category title" add={this.addCategory}/>
                                 </div>
                             </div>
                             <div className="categories-holder">
@@ -56,7 +59,7 @@ class App extends Component {
                                               toggle={this.toggleCategory}
                                               remove={this.removeCategory}
                                               rename={this.renameCategory}
-                                              add={this.addCategory} />
+                                              add={this.addSubCategory} />
                             </div>
                         </Sidebar>
                         <Content />

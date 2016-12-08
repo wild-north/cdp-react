@@ -7,9 +7,7 @@ import { SEPARATOR } from '../../constants';
 export default class CategoryList extends Component {
 
     render() {
-        let { list, rootList, parentIndex = '', toggle, remove, rename, add} = this.props;
-
-        rootList = rootList || list;
+        let { list, parentIndex = '', toggle, remove, rename, add} = this.props;
 
         return (
             <ul>
@@ -21,7 +19,6 @@ export default class CategoryList extends Component {
                         return (
 
                             <Category key={key}
-                                      rootList={rootList}
                                       index={fullIndex}
                                       title={title}
                                       opened={opened}
@@ -31,8 +28,7 @@ export default class CategoryList extends Component {
                                       add={add} >
                                 {
                                     kids && kids.length ?
-                                        <CategoryList rootList={rootList}
-                                                      list={kids}
+                                        <CategoryList list={kids}
                                                       parentIndex={fullIndex}
                                                       toggle={toggle}
                                                       remove={remove}

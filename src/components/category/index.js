@@ -3,7 +3,7 @@ import './styles.css';
 import classnames from 'classnames';
 import { getFullIndex } from '../../helpers';
 
-const EditTitle = ({tmpTitle, onChange, fullIndex, rootList, onSave, disableEdit}) => {
+const EditTitle = ({tmpTitle, onChange, fullIndex, onSave, disableEdit}) => {
     return (
         <div>
             <div className="input-holder">
@@ -11,7 +11,7 @@ const EditTitle = ({tmpTitle, onChange, fullIndex, rootList, onSave, disableEdit
             </div>
             <div className="actions-holder">
                 <div className="actions">
-                    <button className="fa fa-check green" onClick={onSave(fullIndex, rootList)}>{' '}</button>
+                    <button className="fa fa-check green" onClick={onSave(fullIndex)}>{' '}</button>
                     <button className="fa fa-times red" onClick={disableEdit}>{' '}</button>
                 </div>
             </div>
@@ -19,14 +19,14 @@ const EditTitle = ({tmpTitle, onChange, fullIndex, rootList, onSave, disableEdit
         </div>
     );
 };
-const Title = ({showOpener, opened, fullIndex, rootList, title, enableEdit, onRemove, onToggle, onAdd}) => {
+const Title = ({showOpener, opened, fullIndex, title, enableEdit, onRemove, onToggle, onAdd}) => {
     return (
         <div>
             <div className="input-holder">
                 {
                     showOpener ?
                         <button className={classnames("fa fa-angle-double-right opener", {'active': !opened})}
-                                onClick={onToggle(fullIndex, rootList)} />
+                                onClick={onToggle(fullIndex)} />
                         : null
                 }
                 <span className="title">{fullIndex} {title}</span>
@@ -34,8 +34,8 @@ const Title = ({showOpener, opened, fullIndex, rootList, title, enableEdit, onRe
             <div className="actions-holder">
                 <div className="actions">
                     <button title="Edit category name" className="fa fa-pencil-square-o" onClick={enableEdit}>{' '}</button>
-                    <button title="Add new category" className="fa fa-plus-square-o" onClick={onAdd(fullIndex, rootList)}>{' '}</button>
-                    <button title="Delete this category" className="fa fa-trash-o" onClick={onRemove(fullIndex, rootList)}>{' '}</button>
+                    <button title="Add new category" className="fa fa-plus-square-o" onClick={onAdd(fullIndex)}>{' '}</button>
+                    <button title="Delete this category" className="fa fa-trash-o" onClick={onRemove(fullIndex)}>{' '}</button>
                 </div>
             </div>
         </div>
@@ -54,11 +54,11 @@ export default class Category extends Component {
 
         this.enableEdit = this.enableEdit.bind(this);
         this.disableEdit = this.disableEdit.bind(this);
-        this.onSave = this.onSave.bind(this);
+        this.save = this.save.bind(this);
         this.onChange = this.onChange.bind(this);
-        this.onRemove = this.onRemove.bind(this);
-        this.onToggle = this.onToggle.bind(this);
-        this.onAdd = this.onAdd.bind(this);
+        this.remove = this.remove.bind(this);
+        this.toggle = this.toggle.bind(this);
+        this.add = this.add.bind(this);
     }
     enableEdit() {
         this.setState({
@@ -74,34 +74,34 @@ export default class Category extends Component {
             tmpTitle: e.target.value
         });
     }
-    onSave(index, list) {
+    save(index) {
         return () => {
             if (this.props.title !== this.state.tmpTitle) {
-                this.props.rename(index, list, this.state.tmpTitle);
+                this.props.rename(index, this.state.tmpTitle);
             }
             this.setState(this.defaultState);
         }
     }
-    onRemove(index, list) {
+    remove(index) {
         return () => {
-            this.props.remove(index, list);
+            this.props.remove(index);
         }
     }
-    onToggle(index, list) {
+    toggle(index) {
         return () => {
-            this.props.toggle(index, list);
+            this.props.toggle(index);
         }
     }
-    onAdd(index, list) {
+    add(index) {
         return () => {
             const newTitle = prompt('Enter sub-category name', 'New category');
             if (newTitle)
-                this.props.add(index, list, newTitle);
+                this.props.add(index, newTitle);
         }
     }
 
     render() {
-        const { children, title, index, parentIndex, opened, rootList } = this.props;
+        const { children, title, index, parentIndex, opened } = this.props;
         const { editMode, tmpTitle } = this.state;
         const fullIndex = getFullIndex(parentIndex, index);
 
@@ -111,20 +111,18 @@ export default class Category extends Component {
                     editMode ?
                         <EditTitle  tmpTitle={tmpTitle}
                                     fullIndex={fullIndex}
-                                    rootList={rootList}
-                                    onSave={this.onSave}
+                                    onSave={this.save}
                                     onChange={this.onChange}
                                     disableEdit={this.disableEdit} />
 
                       :  <Title     showOpener={!!children}
                                     opened={opened}
                                     fullIndex={fullIndex}
-                                    rootList={rootList}
                                     title={title}
                                     enableEdit={this.enableEdit}
-                                    onRemove={this.onRemove}
-                                    onToggle={this.onToggle}
-                                    onAdd={this.onAdd} />
+                                    onRemove={this.remove}
+                                    onToggle={this.toggle}
+                                    onAdd={this.add} />
                 }
 
                 {

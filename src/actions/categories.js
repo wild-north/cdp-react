@@ -1,4 +1,4 @@
-import { isArray, isObject, includes } from 'lodash';
+import { isArray, isObject } from 'lodash';
 import { SEPARATOR } from '../constants';
 
 class CategegoryModel {
@@ -10,7 +10,7 @@ class CategegoryModel {
 
 }
 
-export const toggleCategory = (indexesString, list) => {
+export const toggleCategory = (list, indexesString) => {
     list = list.slice();
 
     /* get [1,0,1] from '1.0.1' */
@@ -28,7 +28,7 @@ export const toggleCategory = (indexesString, list) => {
     return list;
 };
 
-export const removeCategory = (indexesString, list) => {
+export const removeCategory = (list, indexesString) => {
     if (!confirm('Delete this item?')) return list;
 
     list = list.slice();
@@ -53,7 +53,7 @@ export const removeCategory = (indexesString, list) => {
     return list;
 };
 
-export const renameCategory = (indexesString, list, newTitle) => {
+export const renameCategory = (list, indexesString, newTitle) => {
     if (!confirm('Edit this item?')) return list;
 
     list = list.slice();
@@ -71,7 +71,7 @@ export const renameCategory = (indexesString, list, newTitle) => {
     return list;
 };
 
-export const addCategory = (indexesString, list, newTitle) => {
+export const addSubCategory = (list, indexesString, newTitle) => {
 
     list = list.slice();
     newTitle = newTitle.trim();
@@ -88,6 +88,11 @@ export const addCategory = (indexesString, list, newTitle) => {
         currentValue.kids = isArray(currentValue.kids) ? currentValue.kids : [];
         currentValue.kids.push( new CategegoryModel(newTitle) );
     }
-    console.log(list);
+    return list;
+};
+export const addCategory = (list, newTitle) => {
+
+    list = list.slice();
+    list.unshift( new CategegoryModel(newTitle) );
     return list;
 };
