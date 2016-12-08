@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import './styles.css';
 import Category from '../category';
+import { SEPARATOR } from '../../constants';
 
-export const SEPARATOR = '.';
 
 export default class CategoryList extends Component {
 
     render() {
-        let { list = [], parentIndex = '', toggleOpened, remove, rename} = this.props;
+        let { list, rootList, parentIndex = '', toggle, remove, rename, add} = this.props;
 
-        let parentList = this.props.parentList ? this.props.parentList : this.props.list;
+        rootList = rootList || list;
 
         return (
             <ul>
@@ -19,22 +19,25 @@ export default class CategoryList extends Component {
                         const fullIndex = parentIndex ? `${parentIndex}${SEPARATOR}${index}` : index;
 
                         return (
+
                             <Category key={key}
-                                      parentList={parentList}
+                                      rootList={rootList}
                                       index={fullIndex}
                                       title={title}
                                       opened={opened}
-                                      toggleOpened={toggleOpened}
+                                      toggle={toggle}
                                       remove={remove}
-                                      rename={rename} >
+                                      rename={rename}
+                                      add={add} >
                                 {
                                     kids && kids.length ?
-                                        <CategoryList parentList={parentList}
+                                        <CategoryList rootList={rootList}
                                                       list={kids}
                                                       parentIndex={fullIndex}
-                                                      toggleOpened={toggleOpened}
+                                                      toggle={toggle}
                                                       remove={remove}
                                                       rename={rename}
+                                                      add={add}
                                         />
                                         : null
                                 }

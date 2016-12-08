@@ -1,11 +1,46 @@
 import React, { Component, PropTypes } from 'react';
 import './styles.css';
-import { isNumber } from 'lodash';
 import classnames from 'classnames';
-import SEPARATOR from '../category-list';
+import { getFullIndex } from '../../helpers';
 
+const EditTitle = ({tmpTitle, onChange, fullIndex, rootList, onSave, disableEdit}) => {
+    return (
+        <div>
+            <div className="input-holder">
+                <input type="text" value={tmpTitle} className="edit" onChange={onChange}/>
+            </div>
+            <div className="actions-holder">
+                <div className="actions">
+                    <button className="fa fa-check green" onClick={onSave(fullIndex, rootList)}>{' '}</button>
+                    <button className="fa fa-times red" onClick={disableEdit}>{' '}</button>
+                </div>
+            </div>
 
-const getFullIndex = (parentIndex, index) => (isNumber(parentIndex) ? parentIndex + SEPARATOR : '') + index;
+        </div>
+    );
+};
+const Title = ({showOpener, opened, fullIndex, rootList, title, enableEdit, onRemove, onToggle, onAdd}) => {
+    return (
+        <div>
+            <div className="input-holder">
+                {
+                    showOpener ?
+                        <button className={classnames("fa fa-angle-double-right opener", {'active': !opened})}
+                                onClick={onToggle(fullIndex, rootList)} />
+                        : null
+                }
+                <span className="title">{fullIndex} {title}</span>
+            </div>
+            <div className="actions-holder">
+                <div className="actions">
+                    <button title="Edit category name" className="fa fa-pencil-square-o" onClick={enableEdit}>{' '}</button>
+                    <button title="Add new category" className="fa fa-plus-square-o" onClick={onAdd(fullIndex, rootList)}>{' '}</button>
+                    <button title="Delete this category" className="fa fa-trash-o" onClick={onRemove(fullIndex, rootList)}>{' '}</button>
+                </div>
+            </div>
+        </div>
+    );
+};
 
 
 export default class Category extends Component {
@@ -13,79 +48,85 @@ export default class Category extends Component {
         super();
         this.defaultState = {
             editMode: false,
-            tmpTitle: null
+            tmpTitle: ''
         };
         this.state = this.defaultState;
 
-        this.openEdit = this.openEdit.bind(this);
-        this.cancelEdit = this.cancelEdit.bind(this);
-        this.saveTitle = this.saveTitle.bind(this);
-        this.editTitle = this.editTitle.bind(this);
+        this.enableEdit = this.enableEdit.bind(this);
+        this.disableEdit = this.disableEdit.bind(this);
+        this.onSave = this.onSave.bind(this);
+        this.onChange = this.onChange.bind(this);
+        this.onRemove = this.onRemove.bind(this);
+        this.onToggle = this.onToggle.bind(this);
+        this.onAdd = this.onAdd.bind(this);
     }
-    openEdit() {
+    enableEdit() {
         this.setState({
             tmpTitle: this.props.title,
             editMode: true
         });
     }
-    saveTitle(index, list) {
-        return () => {
-            this.props.rename(index, list, this.state.tmpTitle);
-            this.setState(this.defaultState);
-        }
-    }
-    cancelEdit() {
+    disableEdit() {
         this.setState(this.defaultState);
     }
-    editTitle(e) {
+    onChange(e) {
         this.setState({
             tmpTitle: e.target.value
         });
     }
+    onSave(index, list) {
+        return () => {
+            if (this.props.title !== this.state.tmpTitle) {
+                this.props.rename(index, list, this.state.tmpTitle);
+            }
+            this.setState(this.defaultState);
+        }
+    }
+    onRemove(index, list) {
+        return () => {
+            this.props.remove(index, list);
+        }
+    }
+    onToggle(index, list) {
+        return () => {
+            this.props.toggle(index, list);
+        }
+    }
+    onAdd(index, list) {
+        return () => {
+            const newTitle = prompt('Enter sub-category name', 'New category');
+            if (newTitle)
+                this.props.add(index, list, newTitle);
+        }
+    }
 
     render() {
-        const { children, title, index, parentIndex, opened, toggleOpened, parentList, remove, rename } = this.props;
+        const { children, title, index, parentIndex, opened, rootList } = this.props;
         const { editMode, tmpTitle } = this.state;
-
         const fullIndex = getFullIndex(parentIndex, index);
-
 
         return (
             <li className={classnames("category", {'no-children': !children})}>
-                <div className="input-holder">
-                    {
-                        children ?
-                            <button className={classnames("fa fa-angle-double-right opener", {'active': !opened})}
-                                    onClick={toggleOpened(fullIndex, parentList)} />
-                            : null
-                    }
+                {
+                    editMode ?
+                        <EditTitle  tmpTitle={tmpTitle}
+                                    fullIndex={fullIndex}
+                                    rootList={rootList}
+                                    onSave={this.onSave}
+                                    onChange={this.onChange}
+                                    disableEdit={this.disableEdit} />
 
-                    {
-                        editMode ?
-                            <input type="text" value={tmpTitle} className="edit" onChange={this.editTitle}/>
-                         :  <span className="title">{fullIndex} {title}</span>
-                    }
+                      :  <Title     showOpener={!!children}
+                                    opened={opened}
+                                    fullIndex={fullIndex}
+                                    rootList={rootList}
+                                    title={title}
+                                    enableEdit={this.enableEdit}
+                                    onRemove={this.onRemove}
+                                    onToggle={this.onToggle}
+                                    onAdd={this.onAdd} />
+                }
 
-                </div>
-
-                <div className="actions-holder">
-                    <div className="actions">
-                        {
-                            editMode ?
-                                <span>
-                                    <button className="fa fa-check green" onClick={this.saveTitle(fullIndex, parentList)}>&nbsp;</button>
-                                    <button className="fa fa-times red" onClick={this.cancelEdit}>&nbsp;</button>
-                                </span>
-
-                            :   <span>
-                                    <button className="fa fa-pencil-square-o" onClick={this.openEdit}>&nbsp;</button>
-                                    <button className="fa fa-plus-square-o">&nbsp;</button>
-                                    <button className="fa fa-trash-o" onClick={remove(fullIndex, parentList)}>&nbsp;</button>
-                                </span>
-                        }
-
-                    </div>
-                </div>
                 {
                     opened && children ?
                         children

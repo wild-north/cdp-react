@@ -12,7 +12,7 @@ export default class SearchForm extends Component {
                 </div>
                 <form className="form-search" action="">
                     <input type="text"/>
-                    <button className="clear fa fa-window-close-o">&nbsp;</button>
+                    <button className="clear fa fa-window-close-o">{' '}</button>
                 </form>
             </div>
         );

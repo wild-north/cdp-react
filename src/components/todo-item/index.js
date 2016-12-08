@@ -15,7 +15,7 @@ export default class TodoItem extends Component {
                 </td>
                 <td className="item-actions">
                     <div className="actions">
-                        <button className="fa fa-pencil-square-o" onClick={onClick}>&nbsp;</button>
+                        <button className="fa fa-pencil-square-o" onClick={onClick}>{' '}</button>
                     </div>
                 </td>
             </tr>
