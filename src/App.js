@@ -24,6 +24,7 @@ class App extends Component {
         this.removeCategory = this.removeCategory.bind(this);
         this.renameCategory = this.renameCategory.bind(this);
         this.addSubCategory = this.addSubCategory.bind(this);
+        this.addCategory = this.addCategory.bind(this);
     }
     toggleCategory(index) {
         this.setState({ categories: toggleCategory(this.state.categories, index) });
@@ -40,6 +41,7 @@ class App extends Component {
     addCategory(newTitle) {
         this.setState({ categories: addCategory(this.state.categories, newTitle) });
     }
+
 
     render() {
         return (

@@ -3,30 +3,29 @@ import './styles.css';
 import classnames from 'classnames';
 import { getFullIndex } from '../../helpers';
 
-const EditTitle = ({tmpTitle, onChange, fullIndex, onSave, disableEdit}) => {
+const EditTitle = ({tmpTitle, onChange, fullIndex, save, disableEdit}) => {
     return (
-        <div>
+        <form action="" onSubmit={save(fullIndex)}>
             <div className="input-holder">
                 <input type="text" value={tmpTitle} className="edit" onChange={onChange}/>
             </div>
             <div className="actions-holder">
                 <div className="actions">
-                    <button className="fa fa-check green" onClick={onSave(fullIndex)}>{' '}</button>
+                    <button className="fa fa-check green" type="submit">{' '}</button>
                     <button className="fa fa-times red" onClick={disableEdit}>{' '}</button>
                 </div>
             </div>
-
-        </div>
+        </form>
     );
 };
-const Title = ({showOpener, opened, fullIndex, title, enableEdit, onRemove, onToggle, onAdd}) => {
+const Title = ({showOpener, opened, fullIndex, title, enableEdit, remove, toggle, add}) => {
     return (
         <div>
             <div className="input-holder">
                 {
                     showOpener ?
                         <button className={classnames("fa fa-angle-double-right opener", {'active': !opened})}
-                                onClick={onToggle(fullIndex)} />
+                                onClick={toggle(fullIndex)} />
                         : null
                 }
                 <span className="title">{fullIndex} {title}</span>
@@ -34,8 +33,8 @@ const Title = ({showOpener, opened, fullIndex, title, enableEdit, onRemove, onTo
             <div className="actions-holder">
                 <div className="actions">
                     <button title="Edit category name" className="fa fa-pencil-square-o" onClick={enableEdit}>{' '}</button>
-                    <button title="Add new category" className="fa fa-plus-square-o" onClick={onAdd(fullIndex)}>{' '}</button>
-                    <button title="Delete this category" className="fa fa-trash-o" onClick={onRemove(fullIndex)}>{' '}</button>
+                    <button title="Add new category" className="fa fa-plus-square-o" onClick={add(fullIndex)}>{' '}</button>
+                    <button title="Delete this category" className="fa fa-trash-o" onClick={remove(fullIndex)}>{' '}</button>
                 </div>
             </div>
         </div>
@@ -75,7 +74,8 @@ export default class Category extends Component {
         });
     }
     save(index) {
-        return () => {
+        return (e) => {
+            e.preventDefault();
             if (this.props.title !== this.state.tmpTitle) {
                 this.props.rename(index, this.state.tmpTitle);
             }
@@ -111,7 +111,7 @@ export default class Category extends Component {
                     editMode ?
                         <EditTitle  tmpTitle={tmpTitle}
                                     fullIndex={fullIndex}
-                                    onSave={this.save}
+                                    save={this.save}
                                     onChange={this.onChange}
                                     disableEdit={this.disableEdit} />
 
@@ -120,9 +120,9 @@ export default class Category extends Component {
                                     fullIndex={fullIndex}
                                     title={title}
                                     enableEdit={this.enableEdit}
-                                    onRemove={this.remove}
-                                    onToggle={this.toggle}
-                                    onAdd={this.add} />
+                                    remove={this.remove}
+                                    toggle={this.toggle}
+                                    add={this.add} />
                 }
 
                 {
