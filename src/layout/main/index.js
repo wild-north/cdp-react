@@ -82,6 +82,7 @@ export default  class Main extends Component {
                                       rename={this.renameCategory}
                                       add={this.addSubCategory}
                                       selectCategory={this.selectCategory}
+                                      routeParams={this.props.routeParams}
                         />
                     </div>
                 </Sidebar>
