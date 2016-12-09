@@ -7,7 +7,6 @@ import TodoList from '../todo-list';
 
 export default class Content extends Component {
     render() {
-        // const { list, toggle } = this.props;
         return (
             <div className="content">
                 <div className="row">

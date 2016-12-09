@@ -3,25 +3,25 @@ const dummyList = [
         title: 'Frontend',
         opened: true,
         projects: [
-            {title: 'Первая категория... ',                 done: true},
-            {title: 'consectetur adipisicing elit',         done: false},
-            {title: 'explicabo itaque laudantium mollitia', done: false},
-            {title: 'ipsum minima nam nesciunt quas',       done: false},
-            {title: 'aliquid id sed veritatis voluptatum',  done: false}
+            {title: 'Первая категория... ',                 isActive: true},
+            {title: 'consectetur adipisicing elit',         isActive: false},
+            {title: 'explicabo itaque laudantium mollitia', isActive: false},
+            {title: 'ipsum minima nam nesciunt quas',       isActive: false},
+            {title: 'aliquid id sed veritatis voluptatum',  isActive: false}
         ],
         kids: [
             {
                 title: 'es6',
                 projects: [
-                    {title: 'Lorem ipsum dolor sit amet',           done: true},
-                    {title: 'aliquid id sed veritatis voluptatum',  done: false}
+                    {title: 'Lorem ipsum dolor sit amet',           isActive: true},
+                    {title: 'aliquid id sed veritatis voluptatum',  isActive: false}
                 ],
             },
             {
                 title: 'react',
                 projects: [
-                    {title: 'Lorem ipsum dolor sit amet',           done: true},
-                    {title: 'consectetur adipisicing elit',         done: false}
+                    {title: 'Lorem ipsum dolor sit amet',           isActive: true},
+                    {title: 'consectetur adipisicing elit',         isActive: false}
                 ],
                 opened: true,
                 kids: [
@@ -29,29 +29,29 @@ const dummyList = [
                         title: 'components',
                         opened: true,
                         projects: [
-                            {title: 'explicabo itaque laudantium mollitia', done: false},
-                            {title: 'ipsum minima nam nesciunt quas',       done: false},
-                            {title: 'aliquid id sed veritatis voluptatum',  done: false}
+                            {title: 'explicabo itaque laudantium mollitia', isActive: false},
+                            {title: 'ipsum minima nam nesciunt quas',       isActive: false},
+                            {title: 'aliquid id sed veritatis voluptatum',  isActive: false}
                         ],
                         kids: [
                             {
                                 title: 'stateful',
                                 projects: [
-                                    {title: 'Lorem ipsum dolor sit amet',           done: true},
-                                    {title: 'consectetur adipisicing elit',         done: false},
-                                    {title: 'explicabo itaque laudantium mollitia', done: false},
-                                    {title: 'ipsum minima nam nesciunt quas',       done: false},
-                                    {title: 'aliquid id sed veritatis voluptatum',  done: false},
+                                    {title: 'Lorem ipsum dolor sit amet',           isActive: true},
+                                    {title: 'consectetur adipisicing elit',         isActive: false},
+                                    {title: 'explicabo itaque laudantium mollitia', isActive: false},
+                                    {title: 'ipsum minima nam nesciunt quas',       isActive: false},
+                                    {title: 'aliquid id sed veritatis voluptatum',  isActive: false},
                                 ]
                             },
                             {
                                 title: 'stateless',
                                 projects: [
-                                    {title: 'Lorem ipsum dolor sit amet',           done: true},
-                                    {title: 'consectetur adipisicing elit',         done: false},
-                                    {title: 'explicabo itaque laudantium mollitia', done: false},
-                                    {title: 'ipsum minima nam nesciunt quas',       done: false},
-                                    {title: 'aliquid id sed veritatis voluptatum',  done: false}
+                                    {title: 'Lorem ipsum dolor sit amet',           isActive: true},
+                                    {title: 'consectetur adipisicing elit',         isActive: false},
+                                    {title: 'explicabo itaque laudantium mollitia', isActive: false},
+                                    {title: 'ipsum minima nam nesciunt quas',       isActive: false},
+                                    {title: 'aliquid id sed veritatis voluptatum',  isActive: false}
                                 ]
                             }
                         ]
@@ -59,14 +59,14 @@ const dummyList = [
                     {
                         title: 'life cycle',
                         projects: [
-                            {title: 'consectetur adipisicing elit',         done: false}
+                            {title: 'consectetur adipisicing elit',         isActive: false}
                         ]
                     },
                     {
                         title: 'routing',
                         projects: [
-                            {title: 'Lorem ipsum dolor sit amet',           done: true},
-                            {title: 'consectetur adipisicing elit',         done: false}
+                            {title: 'Lorem ipsum dolor sit amet',           isActive: true},
+                            {title: 'consectetur adipisicing elit',         isActive: false}
                         ]
                     }
                 ]
@@ -74,9 +74,9 @@ const dummyList = [
             {
                 title: 'redux',
                 projects: [
-                    {title: 'consectetur adipisicing elit',         done: false},
-                    {title: 'ipsum minima nam nesciunt quas',       done: false},
-                    {title: 'aliquid id sed veritatis voluptatum',  done: false}
+                    {title: 'consectetur adipisicing elit',         isActive: false},
+                    {title: 'ipsum minima nam nesciunt quas',       isActive: false},
+                    {title: 'aliquid id sed veritatis voluptatum',  isActive: false}
                 ]
             }
         ]
@@ -85,40 +85,40 @@ const dummyList = [
         title: 'Markup',
         opened: false,
         projects: [
-            {title: 'Lorem ipsum dolor sit amet',           done: true},
-            {title: 'consectetur adipisicing elit',         done: false},
-            {title: 'explicabo itaque laudantium mollitia', done: false},
-            {title: 'ipsum minima nam nesciunt quas',       done: false},
-            {title: 'aliquid id sed veritatis voluptatum',  done: false},
+            {title: 'Lorem ipsum dolor sit amet',           isActive: true},
+            {title: 'consectetur adipisicing elit',         isActive: false},
+            {title: 'explicabo itaque laudantium mollitia', isActive: false},
+            {title: 'ipsum minima nam nesciunt quas',       isActive: false},
+            {title: 'aliquid id sed veritatis voluptatum',  isActive: false},
         ],
         kids: [
             {
                 title: 'HTML5',
                 projects: [
-                    {title: 'Lorem ipsum dolor sit amet',           done: true},
-                    {title: 'ipsum minima nam nesciunt quas',       done: false},
-                    {title: 'consectetur adipisicing elit',         done: false},
-                    {title: 'aliquid id sed veritatis voluptatum',  done: false}
+                    {title: 'Lorem ipsum dolor sit amet',           isActive: true},
+                    {title: 'ipsum minima nam nesciunt quas',       isActive: false},
+                    {title: 'consectetur adipisicing elit',         isActive: false},
+                    {title: 'aliquid id sed veritatis voluptatum',  isActive: false}
                 ]
             },
             {
                 title: 'CSS3',
                 opened: false,
                 projects: [
-                    {title: 'Lorem ipsum dolor sit amet',           done: true},
-                    {title: 'consectetur adipisicing elit',         done: false},
-                    {title: 'explicabo itaque laudantium mollitia', done: false},
-                    {title: 'aliquid id sed veritatis voluptatum',  done: false}
+                    {title: 'Lorem ipsum dolor sit amet',           isActive: true},
+                    {title: 'consectetur adipisicing elit',         isActive: false},
+                    {title: 'explicabo itaque laudantium mollitia', isActive: false},
+                    {title: 'aliquid id sed veritatis voluptatum',  isActive: false}
                 ],
                 kids: [
                     {
                         title: 'Flexbox',
                         projects: [
-                            {title: 'Lorem ipsum dolor sit amet',           done: true},
-                            {title: 'consectetur adipisicing elit',         done: false},
-                            {title: 'explicabo itaque laudantium mollitia', done: false},
-                            {title: 'ipsum minima nam nesciunt quas',       done: false},
-                            {title: 'aliquid id sed veritatis voluptatum',  done: false},
+                            {title: 'Lorem ipsum dolor sit amet',           isActive: true},
+                            {title: 'consectetur adipisicing elit',         isActive: false},
+                            {title: 'explicabo itaque laudantium mollitia', isActive: false},
+                            {title: 'ipsum minima nam nesciunt quas',       isActive: false},
+                            {title: 'aliquid id sed veritatis voluptatum',  isActive: false},
                         ]
                     }
                 ]

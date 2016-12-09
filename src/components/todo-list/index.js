@@ -2,13 +2,9 @@ import React, { Component } from 'react';
 import './styles.css';
 import TodoItem from '../todo-item';
 
-const editTodo = () => {
-    alert('You trying to edit todo-item');
-};
-
 export default class TodoList extends Component {
     render() {
-        const { list, toggle } = this.props;
+        const { list, toggle, routeParams } = this.props;
 
         return (
             <div className="list-holder">
@@ -18,11 +14,11 @@ export default class TodoList extends Component {
                             list && list.length ?
                                 list.map(({title, done}, key) => (
                                         <TodoItem key={key}
-                                                  onClick={editTodo}
                                                   index={key}
                                                   title={title}
                                                   checked={done}
                                                   toggle={toggle}
+                                                  routeParams={routeParams}
                                         />
                                     )
                                 )

@@ -2,9 +2,12 @@ import React, { Component } from 'react';
 import './styles.css';
 import classnames from 'classnames';
 import { getFullIndex } from '../../helpers';
+import { Link } from 'react-router';
+import { SEPARATOR, LINK_SEPARATOR } from '../../constants';
 
 class EditTitle extends Component {
     componentDidMount() {
+        /* sorry for that but I couldn't find another way for automatic focus */
         document.querySelector('.edit-title input[type=text]').focus();
     }
     render() {
@@ -37,7 +40,9 @@ const Title = ({showOpener, opened, fullIndex, title, enableEdit, remove, toggle
                                 className={classnames("fa fa-angle-double-right opener", {'active': !opened})} />
                       : null
                 }
-                <span className="title" onClick={selectCategory(fullIndex)}>{fullIndex} {title}</span>
+                <Link to={`/category/${fullIndex.split(SEPARATOR).join(LINK_SEPARATOR)}`} activeClassName="active">
+                    <span className="title" onClick={selectCategory(fullIndex)}><small>{fullIndex}</small> {title}</span>
+                </Link>
             </div>
             <div className="actions-holder">
                 <div className="actions">
@@ -118,12 +123,12 @@ export default class Category extends Component {
     }
 
     render() {
-        const { children, index, parentIndex, selectedCategory, item } = this.props;
+        const { children, index, parentIndex, item } = this.props;
         const { editMode, tmpTitle } = this.state;
         const fullIndex = getFullIndex(parentIndex, index);
 
         return (
-            <li className={classnames("category", {'no-children': !children, 'active': item === selectedCategory})}>
+            <li className={classnames("category", {'no-children': !children})}>
                 {
                     editMode ?
                         <EditTitle  tmpTitle={tmpTitle}
@@ -154,9 +159,3 @@ export default class Category extends Component {
         );
     }
 };
-
-// Category.propTypes = {
-//     index: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-//     title: PropTypes.string.isRequired,
-//     parentIndex: PropTypes.number
-// };

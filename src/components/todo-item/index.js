@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { Link } from 'react-router';
 import './styles.css';
-
+import { CAT_ID } from '../../constants';
 
 const toggleProject = (index, fn) => () => fn(index);
 
-export default class TodoItem extends Component {
-    render() {
-        const { title, index, onClick, checked, toggle } = this.props;
+const TodoItem = (props) => {
+        const { title, index, checked, toggle, routeParams } = props;
         const checkboxId = `todo-item-${index}`;
         return (
             <tr className="todo-item row">
@@ -18,10 +18,13 @@ export default class TodoItem extends Component {
                 </td>
                 <td className="item-actions">
                     <div className="actions">
-                        <button className="fa fa-pencil-square-o" onClick={onClick}>{' '}</button>
+                        <Link to={`/category/${routeParams[CAT_ID]}/project/${index + 1}`}>
+                            <button className="fa fa-pencil-square-o">{' '}</button>
+                        </Link>
                     </div>
                 </td>
             </tr>
         );
-    }
 };
+
+export default TodoItem;

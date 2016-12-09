@@ -3,14 +3,10 @@ import './styles.css';
 import Category from '../category';
 import { SEPARATOR } from '../../constants';
 
-// {/*{title, opened}*/}
-// {/*title={title}*/}
-// {/*opened={opened}*/}
-
 export default class CategoryList extends Component {
 
     render() {
-        let { list, parentIndex = '', toggle, remove, rename, add, selectCategory, selectedCategory} = this.props;
+        let { list, parentIndex = '', toggle, remove, rename, add, selectCategory, selectedCategory } = this.props;
 
         return (
             <ul>

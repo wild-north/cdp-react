@@ -35,7 +35,7 @@ button.fa.red {
     float: right;
     margin-top: 10px;
 }
-.category.active > div > .input-holder > .title {
+.category .input-holder a.active {
     font-weight: bold;
     text-decoration: underline;
 }
