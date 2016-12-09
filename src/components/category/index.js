@@ -42,7 +42,7 @@ const Title = ({showOpener, opened, fullIndex, title, enableEdit, remove, toggle
             <div className="actions-holder">
                 <div className="actions">
                     <button title="Edit category name" className="fa fa-pencil-square-o" onClick={enableEdit}>{' '}</button>
-                    <button title="Add new category" className="fa fa-plus-square-o" onClick={add(fullIndex)}>{' '}</button>
+                    <button title="Add sub-category" className="fa fa-plus-square-o" onClick={add(fullIndex)}>{' '}</button>
                     <button title="Delete this category" className="fa fa-trash-o" onClick={remove(fullIndex)}>{' '}</button>
                 </div>
             </div>
@@ -71,7 +71,7 @@ export default class Category extends Component {
     }
     enableEdit() {
         this.setState({
-            tmpTitle: this.props.title,
+            tmpTitle: this.props.item.title,
             editMode: true
         });
     }
@@ -87,7 +87,7 @@ export default class Category extends Component {
     save(index) {
         return (e) => {
             e.preventDefault();
-            if (this.props.title !== this.state.tmpTitle) {
+            if (this.props.item.title !== this.state.tmpTitle) {
                 this.props.rename(index, this.state.tmpTitle);
             }
             this.setState(this.defaultState);
