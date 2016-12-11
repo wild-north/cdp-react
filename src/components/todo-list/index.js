@@ -12,11 +12,11 @@ export default class TodoList extends Component {
                     <tbody>
                         {
                             list && list.length ?
-                                list.map(({title, done}, key) => (
+                                list.map(({title, isActive}, key) => (
                                         <TodoItem key={key}
                                                   index={key}
                                                   title={title}
-                                                  checked={done}
+                                                  isActive={isActive}
                                                   toggle={toggle}
                                                   routeParams={routeParams}
                                         />

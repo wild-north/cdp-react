@@ -13,14 +13,14 @@ const dummyList = [
             {
                 title: 'es6',
                 projects: [
-                    {title: 'Lorem ipsum dolor sit amet',           isActive: true},
+                    {title: 'Lorem ipsum dolor sit amet',           isActive: false},
                     {title: 'aliquid id sed veritatis voluptatum',  isActive: false}
                 ],
             },
             {
                 title: 'react',
                 projects: [
-                    {title: 'Lorem ipsum dolor sit amet',           isActive: true},
+                    {title: 'Lorem ipsum dolor sit amet',           isActive: false},
                     {title: 'consectetur adipisicing elit',         isActive: false}
                 ],
                 opened: true,
@@ -37,7 +37,7 @@ const dummyList = [
                             {
                                 title: 'stateful',
                                 projects: [
-                                    {title: 'Lorem ipsum dolor sit amet',           isActive: true},
+                                    {title: 'Lorem ipsum dolor sit amet',           isActive: false},
                                     {title: 'consectetur adipisicing elit',         isActive: false},
                                     {title: 'explicabo itaque laudantium mollitia', isActive: false},
                                     {title: 'ipsum minima nam nesciunt quas',       isActive: false},
@@ -47,7 +47,7 @@ const dummyList = [
                             {
                                 title: 'stateless',
                                 projects: [
-                                    {title: 'Lorem ipsum dolor sit amet',           isActive: true},
+                                    {title: 'Lorem ipsum dolor sit amet',           isActive: false},
                                     {title: 'consectetur adipisicing elit',         isActive: false},
                                     {title: 'explicabo itaque laudantium mollitia', isActive: false},
                                     {title: 'ipsum minima nam nesciunt quas',       isActive: false},
@@ -65,7 +65,7 @@ const dummyList = [
                     {
                         title: 'routing',
                         projects: [
-                            {title: 'Lorem ipsum dolor sit amet',           isActive: true},
+                            {title: 'Lorem ipsum dolor sit amet',           isActive: false},
                             {title: 'consectetur adipisicing elit',         isActive: false}
                         ]
                     }
@@ -85,7 +85,7 @@ const dummyList = [
         title: 'Markup',
         opened: false,
         projects: [
-            {title: 'Lorem ipsum dolor sit amet',           isActive: true},
+            {title: 'Lorem ipsum dolor sit amet',           isActive: false},
             {title: 'consectetur adipisicing elit',         isActive: false},
             {title: 'explicabo itaque laudantium mollitia', isActive: false},
             {title: 'ipsum minima nam nesciunt quas',       isActive: false},
@@ -95,7 +95,7 @@ const dummyList = [
             {
                 title: 'HTML5',
                 projects: [
-                    {title: 'Lorem ipsum dolor sit amet',           isActive: true},
+                    {title: 'Lorem ipsum dolor sit amet',           isActive: false},
                     {title: 'ipsum minima nam nesciunt quas',       isActive: false},
                     {title: 'consectetur adipisicing elit',         isActive: false},
                     {title: 'aliquid id sed veritatis voluptatum',  isActive: false}
@@ -105,7 +105,7 @@ const dummyList = [
                 title: 'CSS3',
                 opened: false,
                 projects: [
-                    {title: 'Lorem ipsum dolor sit amet',           isActive: true},
+                    {title: 'Lorem ipsum dolor sit amet',           isActive: false},
                     {title: 'consectetur adipisicing elit',         isActive: false},
                     {title: 'explicabo itaque laudantium mollitia', isActive: false},
                     {title: 'aliquid id sed veritatis voluptatum',  isActive: false}
@@ -114,7 +114,7 @@ const dummyList = [
                     {
                         title: 'Flexbox',
                         projects: [
-                            {title: 'Lorem ipsum dolor sit amet',           isActive: true},
+                            {title: 'Lorem ipsum dolor sit amet',           isActive: false},
                             {title: 'consectetur adipisicing elit',         isActive: false},
                             {title: 'explicabo itaque laudantium mollitia', isActive: false},
                             {title: 'ipsum minima nam nesciunt quas',       isActive: false},
