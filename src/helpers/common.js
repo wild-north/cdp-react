@@ -1,0 +1,1 @@
+export const setProgress = (state, value) => Object.assign({}, state, {progress: value});
