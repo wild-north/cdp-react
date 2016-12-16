@@ -1,6 +1,6 @@
 import { addCategory } from '../helpers/categories';
 import { addTask } from '../helpers/tasks';
-import { setProgress } from '../helpers/common';
+import { setProgress, openSidebar, closeSidebar } from '../helpers/common';
 import { defaultState } from '../store';
 
 const rootReducer = (state = defaultState, {type, payload}) => {
@@ -11,6 +11,10 @@ const rootReducer = (state = defaultState, {type, payload}) => {
             return addCategory(state, payload);
         case 'SET_PROGRESS':
             return setProgress(state, payload);
+        case 'OPEN_SIDEBAR':
+            return openSidebar(state);
+        case 'CLOSE_SIDEBAR':
+            return closeSidebar(state);
         default:
             return state;
     }

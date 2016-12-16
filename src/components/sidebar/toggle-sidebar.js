@@ -1,11 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
+import classnames from 'classnames';
 import './styles.css';
 
-export default class ToggleSidebar extends Component {
-    render() {
-        return (
-            <button className="toggle-sidebar fa fa-bars active">{' '}</button>
-        );
-    }
+const ToggleSidebar = ({open, close, isOpen}) => {
+    const toggle = () => (isOpen) ? close() : open();
+    return (
+        <button className={classnames("toggle-sidebar fa fa-bars", { active: isOpen })}
+                onClick={toggle}
+        >{' '}</button>
+    );
 };
-
+export default ToggleSidebar;

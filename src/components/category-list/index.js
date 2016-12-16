@@ -1,50 +1,59 @@
-import React, {Component} from 'react';
+import React from 'react';
+import { map } from 'lodash';
 import './styles.css';
-import Category from '../category';
-import {SEPARATOR} from '../../constants';
+// import Category from '../category';
+// import {SEPARATOR} from '../../constants';
 
-export default class CategoryList extends Component {
+const CategoryList = (props) => {
+    let {list
+        // , selectedCategoryId, routeParams, selectCategory, open, close, add, remove, rename
+    } = props;
 
-  render() {
-    let {list, parentIndex = '', toggle, remove, rename, add, selectCategory, routeParams} = this.props;
+
+    function getList (list) {
+        return map(list, (value, key) => {
+            console.log(value, key);
+            return value;
+        });
+    }
+    getList(list);
 
     return (
       <ul>
-        {
-          list.map((item, key) => {
-            const index = key + 1;
-            const fullIndex = parentIndex ? `${parentIndex}${SEPARATOR}${index}` : index;
+        {/*{*/}
+          {/*list.map((item, key) => {*/}
 
-            return (
-              <Category key={key}
-                        index={fullIndex}
-                        item={item}
-                        toggle={toggle}
-                        remove={remove}
-                        rename={rename}
-                        add={add}
-                        selectCategory={selectCategory}
-                        routeParams={routeParams}
-              >
-                {
-                  item.kids && item.kids.length ?
-                    <CategoryList list={item.kids}
-                                  parentIndex={fullIndex}
-                                  toggle={toggle}
-                                  remove={remove}
-                                  rename={rename}
-                                  add={add}
-                                  selectCategory={selectCategory}
-                                  routeParams={routeParams}
-                    />
-                    : null
-                }
-              </Category>
-            );
-          })
-        }
+            {/*return (*/}
+              {/*<Category key={key}*/}
+                        {/*index={fullIndex}*/}
+                        {/*item={item}*/}
+                        {/*toggle={toggle}*/}
+                        {/*remove={remove}*/}
+                        {/*rename={rename}*/}
+                        {/*add={add}*/}
+                        {/*selectCategory={selectCategory}*/}
+                        {/*routeParams={routeParams}*/}
+              {/*>*/}
+                {/*{*/}
+                  {/*item.kids && item.kids.length ?*/}
+                    {/*<CategoryList list={item.kids}*/}
+                                  {/*parentIndex={fullIndex}*/}
+                                  {/*toggle={toggle}*/}
+                                  {/*remove={remove}*/}
+                                  {/*rename={rename}*/}
+                                  {/*add={add}*/}
+                                  {/*selectCategory={selectCategory}*/}
+                                  {/*routeParams={routeParams}*/}
+                    {/*/>*/}
+                    {/*: null*/}
+                {/*}*/}
+              {/*</Category>*/}
+            {/*);*/}
+          {/*})*/}
+        {/*}*/}
       </ul>
     )
-  }
 
 };
+
+export default CategoryList;

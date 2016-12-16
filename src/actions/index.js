@@ -21,6 +21,10 @@ export const renameCategory = (id, name) => ({
     type: 'CLOSE_CATEGORY',
     payload: { id, name }
 });
+export const selectCategory = id => ({
+    type: 'SELECT_CATEGORY',
+    payload: id
+});
 
 
 /**
@@ -53,4 +57,10 @@ export const editTask = (id, editedTask) => ({
 export const setProgress = value => ({
     type: 'SET_PROGRESS',
     payload: value
+});
+export const openSidebar = () => ({
+    type: 'OPEN_SIDEBAR'
+});
+export const closeSidebar = () => ({
+    type: 'CLOSE_SIDEBAR'
 });
