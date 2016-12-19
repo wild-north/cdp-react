@@ -11,7 +11,7 @@ export const getLastKeyOfCollection = collection => {
 };
 
 export const unflattenTree = (list) => {
-
+    /* MAGIC: please, keep out */
     const copy = JSON.parse(JSON.stringify(list));
 
     map(copy, item => {
@@ -23,12 +23,10 @@ export const unflattenTree = (list) => {
             }
         }
     });
-    const val = reduce(copy, (acc, item) => {
+    return reduce(copy, (acc, item) => {
         if (isNull(item.parentId)) {
             acc.push(item);
         }
         return acc;
     }, []);
-    console.log(val);
-    return val;
 };
