@@ -1,9 +1,11 @@
+export const createAction = type => payload => ({type, payload});
+
 /**
  * Categories
  */
-export const addCategory = (name, parentId) => ({
+export const addCategory = (parentId, name) => ({
     type: 'ADD_CATEGORY',
-    payload: { name, parentId }
+    payload: { parentId, name }
 });
 export const removeCategory = id => ({
     type: 'REMOVE_CATEGORY',
@@ -18,7 +20,7 @@ export const closeCategory = id => ({
     payload: id
 });
 export const renameCategory = (id, name) => ({
-    type: 'CLOSE_CATEGORY',
+    type: 'RENAME_CATEGORY',
     payload: { id, name }
 });
 export const selectCategory = id => ({

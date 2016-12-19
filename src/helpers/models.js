@@ -8,10 +8,11 @@ export class Task {
     }
 }
 export class Category {
-    constructor(id, name, parentId) {
+    constructor(id, name, parentId, kids = []) {
         this.id = id;
         this.name = name;
         this.parentId = parentId;
         this.opened = false;
+        this.kidsIds = kids;
     }
 }

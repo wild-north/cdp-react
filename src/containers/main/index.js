@@ -1,13 +1,15 @@
 import React from 'react';
 import Sidebar from '../../components/sidebar';
 import AddItem from '../../components/add-item';
-
+import { unflatTree } from '../../helpers';
 // import Content from '../../components/content';
-import CategoryList from '../../components/category-list';
+import { CategoryList } from '../../components/category-list';
 
 import { mainConnector } from './connector';
 
 const Main = (props) => {
+    const list = unflatTree(props.categories);
+
     return (
         <div className="two-columns project-list">
 
@@ -18,17 +20,15 @@ const Main = (props) => {
                     </div>
                 </div>
                 <div className="categories-holder">
-                    <CategoryList list={props.categories}
+                    <CategoryList list={list}
                                   selectedCategoryId={props.selectedCategoryId}
                                   selectCategory={props.selectCategory}
                                   routeParams={props.routeParams}
-
                                   open={props.openCategory}
-                                  close={props.openCategory}
-                                  remove={props.closeCategory}
+                                  close={props.closeCategory}
+                                  remove={props.removeCategory}
                                   rename={props.renameCategory}
                                   add={props.addCategory}
-
                     />
                 </div>
             </Sidebar>
