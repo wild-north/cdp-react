@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './styles.css';
 import classnames from 'classnames';
-// import {getFullIndex} from '../../helpers';
+import {getFullIndex} from '../../helpers';
 // import {Link} from 'react-router';
 // import {SEPARATOR, LINK_SEPARATOR, PROJ_ID} from '../../constants';
 
@@ -12,7 +12,7 @@ class EditTitle extends Component {
     }
 
     render() {
-        const {tmpTitle, item, onChange, save, disableEdit} = this.props;
+        const { tmpTitle, item, onChange, save, disableEdit } = this.props;
 
         return (
             <form className="edit-title" action="" onSubmit={save(item.id)}>
@@ -30,7 +30,7 @@ class EditTitle extends Component {
     }
 }
 
-const Title = ({item, showOpener, enableEdit, remove, toggle, add, selectCategory, routeParams, selectedCategoryId}) => {
+const Title = ({ item, showOpener, fullIndex, enableEdit, remove, toggle, add, selectCategory, routeParams, selectedCategoryId }) => {
     return (
         <div>
             <div className="input-holder">
@@ -42,27 +42,26 @@ const Title = ({item, showOpener, enableEdit, remove, toggle, add, selectCategor
                 }
                 {/*<Link to={`/category/${fullIndex.split(SEPARATOR).join(LINK_SEPARATOR)}`} activeClassName="active">*/}
                 <span onClick={selectCategory(item.id)} className={classnames("title", {'active': item.id === selectedCategoryId})}>
-                {/*<small>{' '}</small>*/}
-                    {item.name}
-            </span>
+                    <small>{fullIndex}</small> {item.name}
+                </span>
                 {/*</Link>*/}
             </div>
             <div className="actions-holder">
-                {/*{*/}
-                    {/*!routeParams.projectId ?*/}
-                        {/*<div className="actions">*/}
-                            {/*<button title="Edit category name" className="fa fa-pencil-square-o"*/}
-                                    {/*onClick={enableEdit}>{' '}</button>*/}
-                            {/*<button title="Add sub-category" className="fa fa-plus-square-o"*/}
-                                    {/*onClick={add(item.id)}>{' '}</button>*/}
-                            {/*<button title="Delete this category" className="fa fa-trash-o"*/}
-                                    {/*onClick={remove(item.id)}>{' '}</button>*/}
-                        {/*</div>*/}
-                        {/*:*/}
-                        {/*<div className="actions">*/}
-                            {/*<button title="Move to this category" className="fa fa-arrow-circle-o-left">{' '}</button>*/}
-                        {/*</div>*/}
-                {/*}*/}
+                {
+                    !routeParams.projectId ?
+                        <div className="actions">
+                            <button title="Edit category name" className="fa fa-pencil-square-o"
+                                    onClick={enableEdit}>{' '}</button>
+                            <button title="Add sub-category" className="fa fa-plus-square-o"
+                                    onClick={add(item.id)}>{' '}</button>
+                            <button title="Delete this category" className="fa fa-trash-o"
+                                    onClick={remove(item.id)}>{' '}</button>
+                        </div>
+                        :
+                        <div className="actions">
+                            <button title="Move to this category" className="fa fa-arrow-circle-o-left">{' '}</button>
+                        </div>
+                }
 
             </div>
         </div>
@@ -145,13 +144,16 @@ export default class Category extends Component {
     }
 
     render() {
-        const {children, item, routeParams, selectedCategoryId} = this.props;
+        const {children, item, index, routeParams, selectedCategoryId, parentIndex} = this.props;
         const {editMode, tmpTitle} = this.state;
+        const fullIndex = getFullIndex(parentIndex, index);
+
         return (
             <li className={classnames("category", {'no-children': !children})}>
                 {
                     editMode ?
                         <EditTitle tmpTitle={tmpTitle}
+                                   fullIndex={fullIndex}
                                    item={item}
                                    save={this.save}
                                    onChange={this.onChange}
@@ -160,6 +162,7 @@ export default class Category extends Component {
 
                         : <Title showOpener={!!children}
                                  item={item}
+                                 fullIndex={fullIndex}
                                  selectedCategoryId={selectedCategoryId}
                                  enableEdit={this.enableEdit}
                                  remove={this.remove}
