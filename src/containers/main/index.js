@@ -1,14 +1,14 @@
 import React from 'react';
 import Sidebar from '../../components/sidebar';
 import AddItem from '../../components/add-item';
-import { unflatTree } from '../../helpers';
+import { unflattenTree } from '../../helpers';
 // import Content from '../../components/content';
 import { CategoryList } from '../../components/category-list';
 
 import { mainConnector } from './connector';
 
 const Main = (props) => {
-    const list = unflatTree(props.categories);
+    const list = unflattenTree(props.categories);
 
     return (
         <div className="two-columns project-list">

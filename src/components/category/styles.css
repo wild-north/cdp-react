@@ -42,8 +42,12 @@ button.fa.red {
 .category .title {
     cursor: default;
 }
-.category .title:hover{
+.category .title:hover,
+.category .title.active{
     text-decoration: underline;
+}
+.category .title.active {
+    font-weight:bold;
 }
 .actions-holder{
     float: right;

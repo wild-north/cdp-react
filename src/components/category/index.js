@@ -30,7 +30,7 @@ class EditTitle extends Component {
     }
 }
 
-const Title = ({item, showOpener, enableEdit, remove, toggle, add, selectCategory, routeParams}) => {
+const Title = ({item, showOpener, enableEdit, remove, toggle, add, selectCategory, routeParams, selectedCategoryId}) => {
     return (
         <div>
             <div className="input-holder">
@@ -41,28 +41,28 @@ const Title = ({item, showOpener, enableEdit, remove, toggle, add, selectCategor
                         : null
                 }
                 {/*<Link to={`/category/${fullIndex.split(SEPARATOR).join(LINK_SEPARATOR)}`} activeClassName="active">*/}
-                <span className="title" onClick={selectCategory(item.id)}>
+                <span onClick={selectCategory(item.id)} className={classnames("title", {'active': item.id === selectedCategoryId})}>
                 {/*<small>{' '}</small>*/}
                     {item.name}
             </span>
                 {/*</Link>*/}
             </div>
             <div className="actions-holder">
-                {
-                    !routeParams.projectId ?
-                        <div className="actions">
-                            <button title="Edit category name" className="fa fa-pencil-square-o"
-                                    onClick={enableEdit}>{' '}</button>
-                            <button title="Add sub-category" className="fa fa-plus-square-o"
-                                    onClick={add(item.id)}>{' '}</button>
-                            <button title="Delete this category" className="fa fa-trash-o"
-                                    onClick={remove(item.id)}>{' '}</button>
-                        </div>
-                        :
-                        <div className="actions">
-                            <button title="Move to this category" className="fa fa-arrow-circle-o-left">{' '}</button>
-                        </div>
-                }
+                {/*{*/}
+                    {/*!routeParams.projectId ?*/}
+                        {/*<div className="actions">*/}
+                            {/*<button title="Edit category name" className="fa fa-pencil-square-o"*/}
+                                    {/*onClick={enableEdit}>{' '}</button>*/}
+                            {/*<button title="Add sub-category" className="fa fa-plus-square-o"*/}
+                                    {/*onClick={add(item.id)}>{' '}</button>*/}
+                            {/*<button title="Delete this category" className="fa fa-trash-o"*/}
+                                    {/*onClick={remove(item.id)}>{' '}</button>*/}
+                        {/*</div>*/}
+                        {/*:*/}
+                        {/*<div className="actions">*/}
+                            {/*<button title="Move to this category" className="fa fa-arrow-circle-o-left">{' '}</button>*/}
+                        {/*</div>*/}
+                {/*}*/}
 
             </div>
         </div>
@@ -145,7 +145,8 @@ export default class Category extends Component {
     }
 
     render() {
-        const {children, item, routeParams} = this.props;
+        console.log(this.props);
+        const {children, item, routeParams, selectedCategoryId} = this.props;
         const {editMode, tmpTitle} = this.state;
         return (
             <li className={classnames("category", {'no-children': !children})}>
@@ -160,6 +161,7 @@ export default class Category extends Component {
 
                         : <Title showOpener={!!children}
                                  item={item}
+                                 selectedCategoryId={selectedCategoryId}
                                  enableEdit={this.enableEdit}
                                  remove={this.remove}
                                  toggle={this.toggle}

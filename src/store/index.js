@@ -4,7 +4,7 @@ import { Category } from '../helpers/models';
 
 export const defaultState = {
     categories: {
-        0: (new Category(0, 'cat 1',        9, [1]      )),
+        0: (new Category(0, 'cat 1',        9,   [1]    )),
         1: (new Category(1, 'cat 1.1',      0           )),
         2: (new Category(2, 'cat 2',        null        )),
         3: (new Category(3, 'cat 3',        null        )),
@@ -38,5 +38,4 @@ export const store = createStore(rootReducer, defaultState,
 // console.table(newState.categories);
 // console.table(newState.tasks);
 store.subscribe(() => console.log(store.getState()));
-console.log(store.getState());
 /* EOF testing Redux */

@@ -5,6 +5,7 @@ import Category from '../category';
 export const CategoryList = (props) => {
     let { list, selectedCategoryId, routeParams,
             selectCategory, open, close, add, remove, rename } = props;
+    console.log(selectedCategoryId);
     return (
         <ul>
             {
