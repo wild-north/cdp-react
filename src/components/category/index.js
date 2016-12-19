@@ -145,7 +145,6 @@ export default class Category extends Component {
     }
 
     render() {
-        console.log(this.props);
         const {children, item, routeParams, selectedCategoryId} = this.props;
         const {editMode, tmpTitle} = this.state;
         return (

@@ -14,17 +14,21 @@ export const unflattenTree = (list) => {
 
     const copy = JSON.parse(JSON.stringify(list));
 
-    map(list, item => {
-        const parent = copy[item.parentId];
-        if (!isUndefined(parent)) {
-            parent.kids = isArray(parent.kids) ? parent.kids : [];
-            parent.kids.push(item);
+    map(copy, item => {
+        if (item.kidsIds.length) {
+            item.kids = [];
+            for (let i = 0; i < item.kidsIds.length; i++) {
+                let key = item.kidsIds[i];
+                item.kids.push(copy[key]);
+            }
         }
     });
-    return reduce(copy, (acc, item) => {
+    const val = reduce(copy, (acc, item) => {
         if (isNull(item.parentId)) {
             acc.push(item);
         }
         return acc;
     }, []);
+    console.log(val);
+    return val;
 };
