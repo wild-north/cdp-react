@@ -2,7 +2,6 @@ import { Category } from './models';
 import { map, forEach, isUndefined, indexOf, remove } from 'lodash';
 
 export const addCategory = (state, { parentId, name }) => {
-    // const newState = cloneDeep(state);
     const newState = Object.assign({}, state);
     let keys = Object.keys(newState.categories);
     const id = +keys[keys.length - 1] + 1;
@@ -12,7 +11,7 @@ export const addCategory = (state, { parentId, name }) => {
 };
 export const toggleCategory = (state, id) => {
     return Object.assign({}, state, {
-        categories: map(state.categories, (category, index) => {
+        categories: map(state.categories, category => {
             if (category.id === id) {
                 return Object.assign({}, category, { opened: !category.opened });
             }
@@ -21,15 +20,15 @@ export const toggleCategory = (state, id) => {
     });
 };
 export const renameCategory = (state, { id, name }) => {
-    const newState = Object.assign({}, state);
-    newState.categories[id].name = name;
-    return newState;
+    const categories = JSON.parse(JSON.stringify(state.categories));
+    categories[id].name = name;
+    return Object.assign({}, state, { categories: categories });
 };
 export const removeCategory = (state, id) => {
     if (!confirm('Are you sure?')) return state;
-    const newState = Object.assign({}, state);
-    deleteCategoryRecursive(newState.categories, id);
-    return newState;
+    const categories = JSON.parse(JSON.stringify(state.categories));
+    deleteCategoryRecursive(categories, id);
+    return Object.assign({}, state, { categories: categories });
 };
 export const selectCategory = (state, id) => {
     const newState = Object.assign({}, state);
@@ -37,7 +36,7 @@ export const selectCategory = (state, id) => {
     return newState;
 };
 
-function deleteCategoryRecursive(list, id) {
+const deleteCategoryRecursive = (list, id) => {
     if (isUndefined(list[id])) return;
     forEach(list[id].kidsIds, id => {
         deleteCategoryRecursive(list, id);
@@ -50,5 +49,5 @@ function deleteCategoryRecursive(list, id) {
         }
     }
     delete list[id];
-}
+};
 
