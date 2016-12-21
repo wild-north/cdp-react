@@ -1,12 +1,18 @@
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 
-const mapStateToProps = state => {
-    return state;
-};
-// const mapDispatchToProps = dispatch => ({ ...actions });
+const mapStateToProps = state => ({
+    isSidebarOpen: state.get('isSidebarOpen'),
+    progress: state.get('progress')
+});
 
-export const appConnector = connect(mapStateToProps, {
+/**
+ * common way to pass actions into connected component:
+ *
+ * const mapDispatchToProps = dispatch => ({ ...actions });
+ */
+
+export const connector = connect(mapStateToProps, {
     openSidebar: actions.openSidebar,
     closeSidebar: actions.closeSidebar
 });

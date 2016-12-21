@@ -19,7 +19,7 @@ export default class AddItem extends Component {
     add(e) {
         e.preventDefault();
         if (this.state.text) {
-            this.props.add(this.state.text);
+            this.props.add(this.state.text, null);
             this.setState(this.defaultState);
         }
     }

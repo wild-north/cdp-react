@@ -33,19 +33,6 @@ class EditTitle extends Component {
 const Title = ({ item, showOpener, fullIndex, enableEdit, remove, toggle, add, selectCategory, routeParams, selectedCategoryId }) => {
     return (
         <div>
-            <div className="input-holder">
-                {
-                    showOpener ?
-                        <button onClick={toggle(item.id)}
-                                className={classnames("fa fa-angle-double-right opener", {'active': !item.opened})}/>
-                        : null
-                }
-                {/*<Link to={`/category/${fullIndex.split(SEPARATOR).join(LINK_SEPARATOR)}`} activeClassName="active">*/}
-                <span onClick={selectCategory(item.id)} className={classnames("title", {'active': item.id === selectedCategoryId})}>
-                    <small>{fullIndex}</small> {item.name}
-                </span>
-                {/*</Link>*/}
-            </div>
             <div className="actions-holder">
                 {
                     !routeParams.projectId ?
@@ -63,6 +50,19 @@ const Title = ({ item, showOpener, fullIndex, enableEdit, remove, toggle, add, s
                         </div>
                 }
 
+            </div>
+            <div className="input-holder">
+                {
+                    showOpener ?
+                        <button onClick={toggle(item.id)}
+                                className={classnames("fa fa-angle-double-right opener", {'active': !item.opened})}/>
+                        : null
+                }
+                {/*<Link to={`/category/${fullIndex.split(SEPARATOR).join(LINK_SEPARATOR)}`} activeClassName="active">*/}
+                <span onClick={selectCategory(item.id)} className={classnames("title", {'active': item.id === selectedCategoryId})}>
+                    <small>{fullIndex}</small> {item.name}
+                </span>
+                {/*</Link>*/}
             </div>
         </div>
     );

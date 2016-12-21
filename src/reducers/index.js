@@ -1,6 +1,6 @@
 import { addCategory, toggleCategory, renameCategory, removeCategory, selectCategory } from '../helpers/categories';
 import { addTask } from '../helpers/tasks';
-import { setProgress, openSidebar, closeSidebar } from '../helpers/common';
+import { setProgress, openSidebar, closeSidebar } from '../helpers/app';
 import { defaultState } from '../store';
 
 const rootReducer = (state = defaultState, { type, payload }) => {

@@ -1,22 +1,18 @@
+import Immutable from 'immutable';
 import { Category } from './models';
-import { map, forEach, isUndefined, indexOf, remove } from 'lodash';
+import { map, forEach, isUndefined, indexOf, remove, uniqueId } from 'lodash';
+
+
+export const toggleCategory = (state, id) => {
+    return state.updateIn(['categories', `${id}`, 'opened'], opened => !opened);
+};
+
 
 export const addCategory = (state, { parentId, name }) => {
-    const newState = Object.assign({}, state);
-    let keys = Object.keys(newState.categories);
+    const keys = Object.keys(state.get('categories').toJS());
     const id = +keys[keys.length - 1] + 1;
-    newState.categories[id] = new Category(id, name, parentId);
-    newState.categories[parentId].kids.push(id);
-    return newState;
-};
-export const toggleCategory = (state, id) => {
-    return Object.assign({}, state, {
-        categories: map(state.categories, category => {
-            if (category.id === id) {
-                return Object.assign({}, category, { opened: !category.opened });
-            }
-            return category;
-        })
+    return state.updateIn(['categories'], categories => {
+        return categories.set(id, Immutable.Map(new Category(id, name, parentId)))
     });
 };
 export const renameCategory = (state, { id, name }) => {

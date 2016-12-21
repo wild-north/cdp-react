@@ -2,7 +2,7 @@ import React from 'react';
 import {Router, Route, IndexRoute, hashHistory} from 'react-router';
 import Header from '../../components/header';
 import ProgressBar from '../../components/progress-bar';
-import {appConnector} from './connector';
+import { connector } from './connector';
 import Main from '../../containers/main';
 
 
@@ -21,7 +21,7 @@ const View = (props) => {
     </div>
 )};
 
-const ViewWrap = appConnector(View);
+const ViewWrap = connector(View);
 
 const App = () => {
     return (
