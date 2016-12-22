@@ -3,9 +3,8 @@ import { Category } from '../helpers/models';
 import { addCategory, removeCategory, renameCategory, selectCategory, toggleCategory } from '../helpers/categories';
 
 
-
 const defaultState = Immutable.Map({
-    categories: {
+    categories: Immutable.Map({
         0: Immutable.Map((new Category(0,     'Frontend',     null,   [2,3,4,5]  ))),
         1: Immutable.Map((new Category(1,     'Markup',       null,   [11,12]     ))),
         2: Immutable.Map((new Category(2,     'ES6',          0,      []          ))),
@@ -20,11 +19,11 @@ const defaultState = Immutable.Map({
         11: Immutable.Map((new Category(11,    'HTML5',        1,      []          ))),
         12: Immutable.Map((new Category(12,    'CSS3',         1,      [13]        ))),
         13: Immutable.Map((new Category(13,    'Flexbox',     12,      []          )))
-    },
+    }),
     selectedCategoryId: 0
 });
 
-const categoriesReducer = (state = defaultState, { type, payload }) => {
+export default (state = defaultState, { type, payload }) => {
     switch (type) {
         case 'ADD_CATEGORY':
             return addCategory(state, payload);
@@ -41,6 +40,3 @@ const categoriesReducer = (state = defaultState, { type, payload }) => {
             return state;
     }
 };
-
-
-export default rootReducer;

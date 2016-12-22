@@ -3,9 +3,9 @@ export const createAction = type => payload => ({type, payload});
 /**
  * Categories
  */
-export const addCategory = (name, parentId) => ({
+export const addCategory = (parentId, name) => ({
     type: 'ADD_CATEGORY',
-    payload: { name, parentId }
+    payload: { parentId, name }
 });
 export const removeCategory = id => ({
     type: 'REMOVE_CATEGORY',

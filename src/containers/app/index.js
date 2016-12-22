@@ -1,33 +1,30 @@
 import React from 'react';
-import {Router, Route, IndexRoute, hashHistory} from 'react-router';
-import Header from '../../components/header';
-import ProgressBar from '../../components/progress-bar';
-import { connector } from './connector';
-import Main from '../../containers/main';
-
-
-// import DetailsLayout from '../../layout/details';
+import { Router, Route, IndexRoute, hashHistory } from 'react-router';
+import Header from '../header';
+import headerConnector from '../header/connector';
+import Main from '../main';
+import mainConnector from '../main/connector';
 import '../../index.css';
+// import DetailsLayout from '../../layout/details';
+
+
+const HeaderContainer = headerConnector(Header);
+const MainContainer = mainConnector(Main);
 
 
 const View = (props) => {
     return (
     <div id="app">
-        <Header openSidebar={props.openSidebar} closeSidebar={props.closeSidebar} isSidebarOpen={props.isSidebarOpen}/>
-        <main className="main">
-            <ProgressBar progress={props.progress}/>
-            {props.children}
-        </main>
+        <HeaderContainer />
+        {props.children}
     </div>
 )};
-
-const ViewWrap = connector(View);
 
 const App = () => {
     return (
         <Router history={hashHistory}>
-            <Route path="/" component={ViewWrap}>
-                <Route path={`category/:categoryId`} component={Main}/>
+            <Route path="/" component={View}>
+                <Route path={`category/:categoryId`} component={MainContainer}/>
                 {/*<Route path={`category/:categoryId/project/:projectId`} component={DetailsLayout}/>*/}
 
                 <IndexRoute component={Main}/>

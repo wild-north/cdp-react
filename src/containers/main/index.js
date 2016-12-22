@@ -1,11 +1,14 @@
+import connector from './connector';
 import React from 'react';
 import Sidebar from '../../components/sidebar';
 import AddItem from '../../components/add-item';
 import { unflattenTree } from '../../helpers';
-// import Content from '../../components/content';
 import { CategoryList } from '../../components/category-list';
-
-import { mainConnector } from './connector';
+// // import Content from '../../components/content';
+// {/*<Content list={this.state.selectedCategory.projects}*/}
+//          {/*toggle={this.toggleProject}*/}
+//          {/*routeParams={this.props.routeParams}*/}
+// {/*/>*/}
 
 const Main = (props) => {
     const list = unflattenTree(props.categories);
@@ -32,11 +35,7 @@ const Main = (props) => {
                     />
                 </div>
             </Sidebar>
-            {/*<Content list={this.state.selectedCategory.projects}*/}
-                     {/*toggle={this.toggleProject}*/}
-                     {/*routeParams={this.props.routeParams}*/}
-            {/*/>*/}
         </div>
     );
 };
-export default mainConnector(Main);
+export default connector(Main);

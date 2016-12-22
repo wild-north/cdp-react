@@ -22,8 +22,7 @@ button.fa.red {
     border: none;
 }
 .category .input-holder {
-    /*display: inline-block;*/
-    /*max-width: 190px;*/
+    display: inline-block;
 }
 .category .input-holder .title {
     margin-right:3px;

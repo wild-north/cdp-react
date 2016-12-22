@@ -1,9 +1,9 @@
 import React from 'react';
-import SearchForm from '../search-form';
-import ToggleSidebar from '../sidebar/toggle-sidebar';
+import SearchForm from '../../components/search-form';
+import ToggleSidebar from '../../components/sidebar/toggle-sidebar';
 import logo from './logo.svg';
 import './styles.css';
-
+import ProgressBar from '../../components/progress-bar';
 
 const Header = (props) => {
     return (
@@ -20,6 +20,7 @@ const Header = (props) => {
             <div className="search-holder">
                 <SearchForm/>
             </div>
+            <ProgressBar progress={props.progress}/>
         </header>
     );
 };

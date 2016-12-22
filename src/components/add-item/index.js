@@ -4,22 +4,18 @@ import './styles.css';
 export default class AddItem extends Component {
     constructor() {
         super();
-        this.defaultState = {
-            text: ''
-        };
+        this.defaultState = { text: '' };
         this.state = this.defaultState;
         this.onChange = this.onChange.bind(this);
         this.add = this.add.bind(this);
     }
     onChange(e) {
-        this.setState({
-            text: e.target.value
-        });
+        this.setState({ text: e.target.value });
     }
     add(e) {
         e.preventDefault();
         if (this.state.text) {
-            this.props.add(this.state.text, null);
+            this.props.add(null, this.state.text);
             this.setState(this.defaultState);
         }
     }

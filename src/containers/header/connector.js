@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 
-const mapStateToProps = state => ({
-    isSidebarOpen: state.get('isSidebarOpen'),
-    progress: state.get('progress')
+const mapStateToProps = ({ header }) => ({
+    isSidebarOpen: header.get('isSidebarOpen'),
+    progress: header.get('progress')
 });
 
 /**
@@ -12,7 +12,7 @@ const mapStateToProps = state => ({
  * const mapDispatchToProps = dispatch => ({ ...actions });
  */
 
-export const connector = connect(mapStateToProps, {
+export default connect(mapStateToProps, {
     openSidebar: actions.openSidebar,
     closeSidebar: actions.closeSidebar
 });

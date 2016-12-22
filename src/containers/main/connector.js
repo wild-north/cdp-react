@@ -1,6 +1,19 @@
-import { connect } from 'react-redux';
 import * as actions from '../../actions';
+import { connect } from 'react-redux';
 
-const mapStateToProps = state => state.toJS();
+const mapStateToProps = ({ sidebar, header }) => {
+    return ({
+        isSidebarOpen: header.get('isSidebarOpen'),
+        categories: sidebar.get('categories').toJS(),
+        selectedCategoryId: sidebar.get('selectedCategoryId')
+    })
+};
 
-export const mainConnector = connect(mapStateToProps, actions );
+export default connect(mapStateToProps, {
+    selectCategory: actions.selectCategory,
+    openCategory: actions.openCategory,
+    closeCategory: actions.closeCategory,
+    removeCategory: actions.removeCategory,
+    renameCategory: actions.renameCategory,
+    addCategory: actions.addCategory
+});

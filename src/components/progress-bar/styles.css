@@ -1,7 +1,6 @@
 .progress-bar {
     height: 5px;
-    background-color: #fff;
-    margin-top:-5px;
+    background-color: #f8f8f8;
 }
 .progress-bar .progress {
     background: limegreen;

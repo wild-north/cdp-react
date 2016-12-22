@@ -1,8 +1,6 @@
 header {
     background-color: #343434;
     color: #ddd;
-    padding-left:10px;
-    height:56px;
 }
 header strong,
 header .search-holder{
@@ -34,4 +32,19 @@ header .search-holder {
 }
 .logo:hover img {
     animation: app-logo-spin infinite 4s linear;
+}
+.toggle-sidebar.fa {
+    background-color: transparent;
+    font-size: 18px;
+    border: none;
+    color: #ddd;
+    height: auto;
+    padding: 0;
+    margin: 0 0 0 10px;
+}
+.toggle-sidebar {
+    transition: 250ms linear all;
+}
+.toggle-sidebar.active {
+    transform: rotate(90deg);
 }
