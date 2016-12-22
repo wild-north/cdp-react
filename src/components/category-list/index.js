@@ -4,7 +4,7 @@ import Category from '../category';
 import { SEPARATOR } from '../../constants';
 
 export const CategoryList = (props) => {
-    let { list, selectedCategoryId, routeParams, parentIndex,
+    let { list, selectedCategoryId, isProjectEditing, parentIndex,
             selectCategory, open, close, add, remove, rename } = props;
 
     return (
@@ -25,7 +25,7 @@ export const CategoryList = (props) => {
                                   rename={rename}
                                   selectCategory={selectCategory}
                                   selectedCategoryId={selectedCategoryId}
-                                  routeParams={routeParams}>
+                                  isProjectEditing={isProjectEditing}>
                             {
                                 item.kids && item.kids.length ?
                                     <CategoryList list={item.kids}
@@ -37,7 +37,7 @@ export const CategoryList = (props) => {
                                                   rename={rename}
                                                   selectCategory={selectCategory}
                                                   selectedCategoryId={selectedCategoryId}
-                                                  routeParams={routeParams}/>
+                                                  isProjectEditing={isProjectEditing}/>
                                     : null
                             }
                         </Category>

@@ -21,10 +21,12 @@ export const unflattenTree = (list) => {
             copy[key].kids = group;
         }
     });
-    return reduce(copy, (acc, item) => {
+    const flat = reduce(copy, (acc, item) => {
         if (isNull(item.parentId)) {
             acc.push(item)
         }
         return acc;
     }, []);
+    console.log(flat);
+    return flat;
 };

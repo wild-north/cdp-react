@@ -54,26 +54,16 @@ export default class Category extends Component {
         }
     }
 
-    remove(id) {
-        return () => {
-            this.props.remove(id);
-        }
-    }
-
-    toggle(index) {
-        return () => {
-            this.props.item.opened ?
-                this.props.close(index) :
-                this.props.open(index);
-        }
-    }
-
 
     render() {
-        const {children, item, index, routeParams, selectedCategoryId, parentIndex, selectCategory, add} = this.props;
-        const {editMode, tmpTitle} = this.state;
+        const { children, item, index, selectedCategoryId, parentIndex, isProjectEditing, selectCategory, add, remove, open, close } = this.props;
+        const { editMode, tmpTitle } = this.state;
         const fullIndex = getFullIndex(parentIndex, index);
-
+        const toggle = () => {
+            console.log(item.opened);
+            console.log(item.id);
+            item.opened ? close(item.id) : open(item.id);
+        }
         return (
             <li className={classnames("category", {'no-children': !children})}>
                 {
@@ -90,12 +80,12 @@ export default class Category extends Component {
                                  item={item}
                                  fullIndex={fullIndex}
                                  selectedCategoryId={selectedCategoryId}
+                                 toggle={toggle}
                                  enableEdit={this.enableEdit}
-                                 remove={this.remove}
-                                 toggle={this.toggle}
-                                 addCategory={add}
-                                 selectCategory={selectCategory}
-                                 routeParams={routeParams}
+                                 remove={() => remove(item.id)}
+                                 add={() => add(item.id)}
+                                 selectCategory={() => selectCategory(item.id)}
+                                 isProjectEditing={isProjectEditing}
                         />
                 }
 

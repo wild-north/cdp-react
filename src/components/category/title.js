@@ -5,28 +5,21 @@ import { replaceSeparators } from '../../helpers';
 import classnames from 'classnames';
 
 
-export default ({ item, showOpener, fullIndex, enableEdit, remove, toggle, addCategory, selectCategory, routeParams, selectedCategoryId }) => {
+export default ({ item, showOpener, fullIndex, enableEdit, remove, toggle, add, selectCategory, isProjectEditing }) => {
     const fullIndexForLink = replaceSeparators(fullIndex, SEPARATOR, LINK_SEPARATOR);
-
-    const add = (id) => () => {
-        const newTitle = prompt('Enter sub-category name', 'New category');
-        if (newTitle) {
-            addCategory(id, newTitle);
-        }
-    };
 
     return (
         <div>
             <div className="actions-holder">
                 {
-                    !routeParams.projectId ?
+                    !isProjectEditing ?
                         <div className="actions">
                             <button title="Edit category name" className="fa fa-pencil-square-o"
                                     onClick={enableEdit}>{' '}</button>
                             <button title="Add sub-category" className="fa fa-plus-square-o"
-                                    onClick={add(item.id)}>{' '}</button>
+                                    onClick={add}>{' '}</button>
                             <button title="Delete this category" className="fa fa-trash-o"
-                                    onClick={remove(item.id)}>{' '}</button>
+                                    onClick={remove}>{' '}</button>
                         </div>
                         :
                         <div className="actions">
@@ -39,7 +32,7 @@ export default ({ item, showOpener, fullIndex, enableEdit, remove, toggle, addCa
                 {
                     !showOpener ?
                         null :
-                        <button onClick={toggle(item.id)}
+                        <button onClick={toggle}
                                 className={classnames("fa fa-angle-double-right opener", {'active': !item.opened})}/>
                 }
                 <Link to={`/category/${fullIndexForLink}`} className="title" activeClassName="active" onClick={selectCategory}>

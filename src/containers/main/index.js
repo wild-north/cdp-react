@@ -26,7 +26,7 @@ const Main = (props) => {
                     <CategoryList list={list}
                                   selectedCategoryId={props.selectedCategoryId}
                                   selectCategory={props.selectCategory}
-                                  routeParams={props.routeParams}
+                                  isProjectEditing={props.isProjectEditing}
                                   open={props.openCategory}
                                   close={props.closeCategory}
                                   remove={props.removeCategory}

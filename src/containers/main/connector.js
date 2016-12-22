@@ -5,7 +5,8 @@ const mapStateToProps = ({ sidebar, header }) => {
     return ({
         isSidebarOpen: header.get('isSidebarOpen'),
         categories: sidebar.get('categories').toJS(),
-        selectedCategoryId: sidebar.get('selectedCategoryId')
+        selectedCategoryId: sidebar.get('selectedCategoryId'),
+        isProjectEditing: sidebar.get('isProjectEditing'),
     })
 };
 

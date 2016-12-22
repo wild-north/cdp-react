@@ -4,7 +4,7 @@ export class Task {
         this.name = name;
         this.categoryId = catId;
         this.description = desc;
-        this.done = false;
+        this.isActive = false;
     }
 }
 export class Category {
@@ -13,6 +13,5 @@ export class Category {
         this.name = name;
         this.parentId = parentId;
         this.opened = false;
-        this.kidsIds = kids;
     }
 }
