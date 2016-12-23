@@ -1,6 +1,6 @@
 import Immutable from 'immutable';
 import { Category } from '../helpers/models';
-import { addCategory, removeCategory, renameCategory, selectCategory, toggleCategory } from '../helpers/categories';
+import { addCategory, removeCategory, renameCategory, selectCategory, toggleCategory } from '../helpers/reducers/categories';
 
 
 const defaultState = Immutable.Map({

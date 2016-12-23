@@ -1,6 +1,6 @@
 // import { cloneDeep } from 'lodash';
-import { Task } from './models';
-import { getLastKeyOfCollection } from './index';
+import { Task } from '../models';
+import { getLastKeyOfCollection } from '../index';
 
 export const addTask = (state, { name, catId }) => {
     const newState = JSON.parse(JSON.stringify(state));

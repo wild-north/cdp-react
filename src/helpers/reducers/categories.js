@@ -1,12 +1,9 @@
 import Immutable from 'immutable';
-import { Category } from './models';
+import { Category } from '../models';
 import { keys, forEach } from 'lodash';
 
 
-export const toggleCategory = (state, id) => {
-    // console.log(state.getIn(['categories', `${id}`]).toJS());
-    return state.updateIn(['categories', `${id}`, 'opened'], opened => !opened)
-};
+export const toggleCategory = (state, id) => state.updateIn(['categories', `${id}`, 'opened'], opened => !opened);
 export const renameCategory = (state, { id, name:newName }) => state.updateIn(['categories', `${id}`, 'name'], name => newName);;
 export const getLastKeyOfCollection = (collection) => {
     const keysList = keys(collection);
@@ -14,10 +11,8 @@ export const getLastKeyOfCollection = (collection) => {
 };
 export const addCategory = (state, { parentId, name }) => {
     name = name || prompt('Enter sub-category name', 'New category');
-    const id = Number(getLastKeyOfCollection(state.get('categories').toJS())) + 1;
-    const s = state.updateIn(['categories'], categories => categories.set(id, Immutable.Map(new Category(id, name, parentId))));
-    console.log(s.toJS());
-    return s
+    const id = (Number(getLastKeyOfCollection(state.get('categories').toJS())) + 1).toString();
+    return state.updateIn(['categories'], categories => categories.set(id, Immutable.Map(new Category(id, name, parentId))))
 };
 
 const deleteCategoryRecursive = (categories, id) => {

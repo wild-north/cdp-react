@@ -26,44 +26,16 @@ export default class Category extends Component {
         // this.selectCategory = this.selectCategory.bind(this);
     }
 
-    enableEdit() {
-        this.setState({
-            tmpTitle: this.props.item.name,
-            editMode: true
-        });
-    }
-
-    disableEdit(e) {
-        e.preventDefault();
-        this.setState(this.defaultState);
-    }
-
-    onChange(e) {
-        this.setState({
-            tmpTitle: e.target.value
-        });
-    }
-
-    save(id) {
-        return (e) => {
-            e.preventDefault();
-            if (this.props.item.name !== this.state.tmpTitle) {
-                this.props.rename(id, this.state.tmpTitle);
-            }
-            this.setState(this.defaultState);
-        }
-    }
-
 
     render() {
-        const { children, item, index, selectedCategoryId, parentIndex, isProjectEditing, selectCategory, add, remove, open, close } = this.props;
+        const { children, item, index, selectedCategoryId, parentIndex, isProjectEditing, selectCategory, add, remove, open, close, rename } = this.props;
         const { editMode, tmpTitle } = this.state;
         const fullIndex = getFullIndex(parentIndex, index);
         const toggle = () => {
-            console.log(item.opened);
-            console.log(item.id);
             item.opened ? close(item.id) : open(item.id);
-        }
+        };
+
+
         return (
             <li className={classnames("category", {'no-children': !children})}>
                 {
@@ -71,7 +43,7 @@ export default class Category extends Component {
                         <EditTitle tmpTitle={tmpTitle}
                                    fullIndex={fullIndex}
                                    item={item}
-                                   save={this.save}
+                                   {/*save={save}*/}
                                    onChange={this.onChange}
                                    disableEdit={this.disableEdit}
                         />

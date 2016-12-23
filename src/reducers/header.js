@@ -1,5 +1,5 @@
 import Immutable from 'immutable';
-import { setProgress, openSidebar, closeSidebar } from '../helpers/app';
+import { setProgress, openSidebar, closeSidebar } from '../helpers/reducers/header';
 
 const defaultState = Immutable.fromJS({
     tasks: Immutable.Map({}),
