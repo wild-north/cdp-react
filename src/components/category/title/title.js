@@ -1,13 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router';
-import { SEPARATOR, LINK_SEPARATOR } from '../../constants';
-import { replaceSeparators } from '../../helpers';
+import { SEPARATOR, LINK_SEPARATOR } from '../../../constants';
+import { replaceSeparators } from '../../../helpers';
 import classnames from 'classnames';
 
 
 export default ({ item, showOpener, fullIndex, enableEdit, remove, toggle, add, selectCategory, isProjectEditing }) => {
     const fullIndexForLink = replaceSeparators(fullIndex, SEPARATOR, LINK_SEPARATOR);
-
     return (
         <div>
             <div className="actions-holder">

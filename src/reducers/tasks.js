@@ -14,3 +14,14 @@ export default (state = defaultState, { type, payload }) => {
             return state;
     }
 };
+
+
+// function addTask (state, { name, catId }) {
+//     // const newState = JSON.parse(JSON.stringify(state));
+//     //
+//     // const id = (+getLastKeyOfCollection(newState.tasks) + 1) || 0;
+//     //
+//     // newState.tasks[id] = new Task(id, name, catId, 'no description');
+//     //
+//     // return newState;
+// }

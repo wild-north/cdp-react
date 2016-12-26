@@ -27,6 +27,5 @@ export const unflattenTree = (list) => {
         }
         return acc;
     }, []);
-    console.log(flat);
     return flat;
 };

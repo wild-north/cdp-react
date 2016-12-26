@@ -4,8 +4,8 @@ import Category from '../category';
 import { SEPARATOR } from '../../constants';
 
 export const CategoryList = (props) => {
-    let { list, selectedCategoryId, isProjectEditing, parentIndex,
-            selectCategory, open, close, add, remove, rename } = props;
+    let { list, selectedCategoryId, editCategoryId, parentIndex, isProjectEditing, enableEdit,
+            selectCategory, open, close, add, remove, rename, tmpTitle } = props;
 
     return (
         <ul>
@@ -25,7 +25,10 @@ export const CategoryList = (props) => {
                                   rename={rename}
                                   selectCategory={selectCategory}
                                   selectedCategoryId={selectedCategoryId}
-                                  isProjectEditing={isProjectEditing}>
+                                  editCategoryId={editCategoryId}
+                                  isProjectEditing={isProjectEditing}
+                                  tmpTitle={tmpTitle}
+                                  enableEdit={enableEdit} >
                             {
                                 item.kids && item.kids.length ?
                                     <CategoryList list={item.kids}
@@ -37,7 +40,10 @@ export const CategoryList = (props) => {
                                                   rename={rename}
                                                   selectCategory={selectCategory}
                                                   selectedCategoryId={selectedCategoryId}
-                                                  isProjectEditing={isProjectEditing}/>
+                                                  editCategoryId={editCategoryId}
+                                                  isProjectEditing={isProjectEditing}
+                                                  tmpTitle={tmpTitle}
+                                                  enableEdit={enableEdit} />
                                     : null
                             }
                         </Category>

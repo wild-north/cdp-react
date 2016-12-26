@@ -27,6 +27,23 @@ export const selectCategory = id => ({
     type: 'SELECT_CATEGORY',
     payload: id
 });
+export const enableEdit = (id, title) => ({
+    type: 'CATEGORY_TITLE_EDIT_ENABLE',
+    payload: { id, title }
+});
+export const disableEdit = id => ({
+    type: 'CATEGORY_TITLE_EDIT_DISABLE',
+    payload: id
+});
+export const changeTmpTitle = (id, tmpTitle) => ({
+    type: 'CATEGORY_TITLE_TMP_CHANGE',
+    payload: { id, tmpTitle }
+});
+
+
+// case 'CATEGORY_TITLE_TMP_CHANGE':
+// return changeTmpTitle(state, payload); // payload = id
+// case 'CATEGORY_TITLE_SAVE':
 
 
 /**

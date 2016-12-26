@@ -4,6 +4,7 @@ import Sidebar from '../../components/sidebar';
 import AddItem from '../../components/add-item';
 import { unflattenTree } from '../../helpers';
 import { CategoryList } from '../../components/category-list';
+
 // // import Content from '../../components/content';
 // {/*<Content list={this.state.selectedCategory.projects}*/}
 //          {/*toggle={this.toggleProject}*/}
@@ -25,13 +26,15 @@ const Main = (props) => {
                 <div className="categories-holder">
                     <CategoryList list={list}
                                   selectedCategoryId={props.selectedCategoryId}
+                                  editCategoryId={props.editCategoryId}
                                   selectCategory={props.selectCategory}
-                                  isProjectEditing={props.isProjectEditing}
+                                  enableEdit={props.enableEdit}
                                   open={props.openCategory}
                                   close={props.closeCategory}
                                   remove={props.removeCategory}
                                   rename={props.renameCategory}
                                   add={props.addCategory}
+                                  tmpTitle={props.tmpTitle}
                     />
                 </div>
             </Sidebar>

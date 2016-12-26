@@ -1,6 +1,7 @@
 import Immutable from 'immutable';
-import { Category } from '../helpers/models';
-import { addCategory, removeCategory, renameCategory, selectCategory, toggleCategory } from '../helpers/reducers/categories';
+import { Category } from '../models';
+// import { saveCategoryTitle } from '../helpers/reducers/category';
+import { keys, forEach } from 'lodash';
 
 
 const defaultState = Immutable.Map({
@@ -40,3 +41,40 @@ export default (state = defaultState, { type, payload }) => {
             return state;
     }
 };
+
+
+
+function toggleCategory (state, id) {
+    return state.updateIn(['categories', `${id}`, 'opened'], opened => !opened);
+}
+function renameCategory(state, { id, name:newName }) {
+    return state.updateIn(['categories', `${id}`, 'name'], name => newName);
+}
+function getLastKeyOfCollection(collection) {
+    const keysList = keys(collection);
+    return keysList[keysList.length - 1];
+}
+function addCategory(state, { parentId, name }) {
+    name = name || prompt('Enter sub-category name', 'New category');
+    const id = (Number(getLastKeyOfCollection(state.get('categories').toJS())) + 1).toString();
+    return state.updateIn(['categories'], categories => categories.set(id, Immutable.Map(new Category(id, name, parentId))))
+}
+function deleteCategoryRecursive(categories, id) {
+    if (!categories || !(id in categories)) {
+        return categories;
+    }
+    delete categories[id];
+    forEach(categories, ({ parentId }) => {
+        if (parentId === id) {
+            categories = deleteCategoryRecursive(categories, parentId);
+        }
+    });
+    return categories;
+}
+function removeCategory(state, id) {
+    if (!confirm('Are you sure?')) return state;
+    return state.set('categories', Immutable.fromJS(deleteCategoryRecursive(state.get('categories').toJS(), id)));
+}
+function selectCategory(state, id) {
+    return state.set('selectedCategoryId', id);
+}
