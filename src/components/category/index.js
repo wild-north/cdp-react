@@ -8,28 +8,22 @@ import editTitleConnector from './edit-title/connector';
 import Title from './title/title';
 // import { noop } from 'lodash';
 
-const EditTitleConnected = editTitleConnector(EditTitle);
-
 
 const Category = (props) => {
-    const { children, item, index, selectedCategoryId, parentIndex, tmpTitle,
-        editCategoryId, selectCategory, add, remove, open, close, enableEdit, disableEdit, changeTmpTitle, rename } = props;
+    const { children, item, index, selectedCategoryId, parentIndex,
+        editCategoryId, selectCategory, add, remove, open, close, enableEdit } = props;
     const fullIndex = getFullIndex(parentIndex, index);
     const toggle = () => {
         item.opened ? close(item.id) : open(item.id);
     };
     const isTitleEditing = editCategoryId === item.id;
+    const EditTitleConnected = editTitleConnector()(EditTitle);
 
     return (
         <li className={classnames("category", {'no-children': !children})}>
             {
-                isTitleEditing ?
-                    <EditTitleConnected tmpTitle={tmpTitle}
-                               item={item}
-                               save={() => rename(item.id)}
-                               onChange={changeTmpTitle}
-                               disableEdit={disableEdit}
-                    />
+                isTitleEditing
+                    ? <EditTitleConnected />
 
                     : <Title showOpener={!!children}
                              item={item}

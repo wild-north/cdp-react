@@ -1,6 +1,7 @@
 import React from 'react';
 
 const EditTitle = (props) => {
+    console.log(props);
     const { tmpTitle, onChange, save, disableEdit } = props;
     return (
         <form className="edit-title" action="" onSubmit={save}>
