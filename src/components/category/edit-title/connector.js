@@ -9,10 +9,10 @@ const mapActionsToProps = {
 };
 
 export default (additionalProps = {}) => {
-    const mapStateToProps = ({ category }) => {
+    const mapStateToProps = ({ sidebar }) => {
         return ({
-            editCategoryId: category.get('editCategoryId'),
-            tmpTitle: category.get('tmpTitle'),
+            editCategoryId: sidebar.get('editCategoryId'),
+            tmpTitle: sidebar.get('tmpTitle'),
             ...additionalProps
         })
     };

@@ -1,8 +1,22 @@
 import React from 'react';
 
 const EditTitle = (props) => {
-    console.log(props);
-    const { tmpTitle, onChange, save, disableEdit } = props;
+    const { tmpTitle, renameCategory, disableEdit, changeTmpTitle } = props;
+
+    const onChange = (e) => {
+        e.preventDefault();
+        changeTmpTitle(e.target.value);
+    };
+    const save = (e) => {
+        e.preventDefault();
+        renameCategory();
+        disableEdit();
+    };
+    const disable = (e) => {
+        e.preventDefault();
+        disableEdit();
+    };
+
     return (
         <form className="edit-title" action="" onSubmit={save}>
             <div className="input-holder">
@@ -11,7 +25,7 @@ const EditTitle = (props) => {
             <div className="actions-holder">
                 <div className="actions">
                     <button className="fa fa-check green" type="submit">{' '}</button>
-                    <button className="fa fa-times red" onClick={disableEdit}>{' '}</button>
+                    <button className="fa fa-times red" onClick={disable}>{' '}</button>
                 </div>
             </div>
         </form>

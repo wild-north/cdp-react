@@ -19,9 +19,8 @@ export const closeCategory = id => ({
     type: 'CLOSE_CATEGORY',
     payload: id
 });
-export const renameCategory = (id, name) => ({
-    type: 'RENAME_CATEGORY',
-    payload: { id, name }
+export const renameCategory = () => ({
+    type: 'RENAME_CATEGORY'
 });
 export const selectCategory = id => ({
     type: 'SELECT_CATEGORY',
@@ -35,16 +34,10 @@ export const disableEdit = id => ({
     type: 'CATEGORY_TITLE_EDIT_DISABLE',
     payload: id
 });
-export const changeTmpTitle = (id, tmpTitle) => ({
+export const changeTmpTitle = tmpTitle => ({
     type: 'CATEGORY_TITLE_TMP_CHANGE',
-    payload: { id, tmpTitle }
+    payload: tmpTitle
 });
-
-
-// case 'CATEGORY_TITLE_TMP_CHANGE':
-// return changeTmpTitle(state, payload); // payload = id
-// case 'CATEGORY_TITLE_SAVE':
-
 
 /**
  * Tasks
