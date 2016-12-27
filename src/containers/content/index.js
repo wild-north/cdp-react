@@ -1,25 +1,20 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './styles.css';
+import AddItem from '../../components/add-item';
+import TodoList from '../../components/todo-list';
 
-import AddItem from '../add-item';
-import TodoList from '../todo-list';
 
-
-export default class Content extends Component {
-    render() {
-        return (
-            <div className="content">
-                <div className="row">
-                    <div className="add-item-holder">
-                        <AddItem placeholder="Enter item title"/>
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="list-holder">
-                        <TodoList {...this.props} />
-                    </div>
-                </div>
+const Content = (props) => {
+    return (
+        <div className="content">
+            <div className="row add-item-holder">
+                <AddItem placeholder="Enter item title"/>
             </div>
-        );
-    }
+            <div className="row list-holder">
+                <TodoList {...props} />
+            </div>
+        </div>
+    );
 };
+
+export default Content;

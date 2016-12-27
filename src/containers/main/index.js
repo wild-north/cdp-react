@@ -3,7 +3,7 @@ import Sidebar from '../../components/sidebar';
 import AddItem from '../../components/add-item';
 import { unflattenTree } from '../../helpers';
 import { CategoryList } from '../../components/category-list';
-// import Content from '../../components/content';
+import Content from '../content';
 
 const Main = ({ isSidebarOpen, addCategory, categories }) => {
 
@@ -18,10 +18,7 @@ const Main = ({ isSidebarOpen, addCategory, categories }) => {
                     <CategoryList list={unflattenTree(categories)} />
                 </div>
             </Sidebar>
-            {/*<Content list={this.state.selectedCategory.projects}*/}
-                      {/*toggle={this.toggleProject}*/}
-                      {/*routeParams={this.props.routeParams}*/}
-            {/*/>*/}
+            <Content />
         </div>
     );
 };
