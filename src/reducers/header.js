@@ -3,9 +3,7 @@ import Immutable from 'immutable';
 const defaultState = Immutable.fromJS({
     tasks: Immutable.Map({}),
     progress: 30,
-    selectedTaskId: null,
-    isSidebarOpen: true,
-    isProjectEditing: false
+    isSidebarOpen: true
 });
 
 export default (state = defaultState, { type, payload }) => {

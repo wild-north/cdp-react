@@ -8,13 +8,14 @@ const mapActionsToProps = {
     changeTmpTitle: actions.changeTmpTitle
 };
 
-export default (additionalProps = {}) => {
-    const mapStateToProps = ({ sidebar }) => {
-        return ({
-            editCategoryId: sidebar.get('editCategoryId'),
-            tmpTitle: sidebar.get('tmpTitle'),
-            ...additionalProps
-        })
-    };
-    return connect(mapStateToProps, mapActionsToProps);
-}
+// export default (additionalProps = {}) => {
+
+// }
+
+const mapStateToProps = ({ sidebar }) => {
+    return ({
+        editCategoryId: sidebar.get('editCategoryId'),
+        tmpTitle: sidebar.get('tmpTitle')
+    })
+};
+export default connect(mapStateToProps, mapActionsToProps);

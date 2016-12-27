@@ -1,12 +1,9 @@
-import { includes, reduce, isNull, isNumber, groupBy, forEach, cloneDeep } from 'lodash';
+import { includes, reduce, isNull, groupBy, forEach, cloneDeep } from 'lodash';
 import { SEPARATOR, LINK_SEPARATOR } from '../constants';
 
 export const getSeparator = (string) => includes(string, LINK_SEPARATOR) ? LINK_SEPARATOR : SEPARATOR;
 export const replaceSeparators = (string, from, to) => string.split(from).join(to);
-
-export const getFullIndex = (parentIndex, index) => {
-    return (isNumber(parentIndex) ? parentIndex + getSeparator(parentIndex) : '') + index
-};
+export const getFullIndex = (parentIndex, index) => parentIndex ? `${parentIndex}${getSeparator(parentIndex)}${index}` : `${index}`;
 
 export const unflattenTree = (list) => {
     /** MAGIC: please, do not touch */

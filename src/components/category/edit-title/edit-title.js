@@ -24,8 +24,8 @@ const EditTitle = (props) => {
             </div>
             <div className="actions-holder">
                 <div className="actions">
-                    <button className="fa fa-check green" type="submit">{' '}</button>
-                    <button className="fa fa-times red" onClick={disable}>{' '}</button>
+                    <button className="fa fa-check green" type="submit" />
+                    <button className="fa fa-times red" onClick={disable} />
                 </div>
             </div>
         </form>

@@ -20,7 +20,7 @@ const defaultState = Immutable.Map({
        '12': Immutable.Map((new Category(  '12',     'CSS3',         '1'        ))),
        '13': Immutable.Map((new Category(  '13',     'Flexbox',     '12'        )))
     }),
-    selectedCategoryId: 0,
+    selectedCategoryId: '0',
     editCategoryId: null,
     tmpTitle: ''
 
