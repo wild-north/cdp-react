@@ -1,44 +1,28 @@
-import connector from './connector';
 import React from 'react';
 import Sidebar from '../../components/sidebar';
 import AddItem from '../../components/add-item';
 import { unflattenTree } from '../../helpers';
 import { CategoryList } from '../../components/category-list';
+// import Content from '../../components/content';
 
-// // import Content from '../../components/content';
-// {/*<Content list={this.state.selectedCategory.projects}*/}
-//          {/*toggle={this.toggleProject}*/}
-//          {/*routeParams={this.props.routeParams}*/}
-// {/*/>*/}
-
-const Main = (props) => {
-    const list = unflattenTree(props.categories);
+const Main = ({ isSidebarOpen, addCategory, categories }) => {
 
     return (
         <div className="two-columns project-list">
 
-            <Sidebar isSidebarOpen={props.isSidebarOpen}>
-                <div className="row">
-                    <div className="add-item-holder">
-                        <AddItem placeholder="Enter category title" add={props.addCategory}/>
-                    </div>
+            <Sidebar isSidebarOpen={isSidebarOpen}>
+                <div className="row add-item-holder">
+                    <AddItem placeholder="Enter category title" add={addCategory}/>
                 </div>
-                <div className="categories-holder">
-                    <CategoryList list={list}
-                                  selectedCategoryId={props.selectedCategoryId}
-                                  editCategoryId={props.editCategoryId}
-                                  selectCategory={props.selectCategory}
-                                  enableEdit={props.enableEdit}
-                                  open={props.openCategory}
-                                  close={props.closeCategory}
-                                  remove={props.removeCategory}
-                                  rename={props.renameCategory}
-                                  add={props.addCategory}
-                                  tmpTitle={props.tmpTitle}
-                    />
+                <div className="row categories-holder">
+                    <CategoryList list={unflattenTree(categories)} />
                 </div>
             </Sidebar>
+            {/*<Content list={this.state.selectedCategory.projects}*/}
+                      {/*toggle={this.toggleProject}*/}
+                      {/*routeParams={this.props.routeParams}*/}
+            {/*/>*/}
         </div>
     );
 };
-export default connector(Main);
+export default Main;

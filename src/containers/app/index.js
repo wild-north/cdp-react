@@ -12,26 +12,23 @@ const HeaderContainer = headerConnector(Header);
 const MainContainer = mainConnector(Main);
 
 
-const View = (props) => {
-    return (
+const View = ({children}) => (
     <div id="app">
         <HeaderContainer />
-        {props.children}
+        {children}
     </div>
-)};
+);
 
-const App = () => {
-    return (
-        <Router history={hashHistory}>
-            <Route path="/" component={View}>
-                <Route path={`category/:categoryId`} component={MainContainer}/>
-                {/*<Route path={`category/:categoryId/project/:projectId`} component={DetailsLayout}/>*/}
+const App = () => (
+    <Router history={hashHistory}>
+        <Route path="/" component={View}>
+            <Route path={`category/:categoryId`} component={MainContainer}/>
+            {/*<Route path={`category/:categoryId/project/:projectId`} component={DetailsLayout}/>*/}
 
-                <IndexRoute component={Main}/>
-                <Route path="*" component={Main}/>
-            </Route>
-        </Router>
-    );
-};
+            <IndexRoute component={MainContainer}/>
+            <Route path="*" component={MainContainer}/>
+        </Route>
+    </Router>
+);
 
 export default App;
