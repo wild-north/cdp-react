@@ -14,7 +14,7 @@ const mapActionsToProps = {
 export default (additionalProps = {}) => {
     const mapStateToProps = ({ sidebar, content }) => {
         return ({
-            editProjectId: content.get('editProjectId'),
+            selectedProjectId: content.get('selectedProjectId'),
             selectedCategoryId: sidebar.get('selectedCategoryId'),
             ...additionalProps
         })

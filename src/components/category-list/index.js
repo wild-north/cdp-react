@@ -5,7 +5,7 @@ import { getFullIndex } from '../../helpers';
 
 const Category = categoryConnector(CategoryComponent);
 
-export const CategoryList = ({ list, parentIndex }) => (
+const CategoryList = ({ list, parentIndex }) => (
     <ul>
         {
             list.map((item, key) => {
@@ -23,3 +23,5 @@ export const CategoryList = ({ list, parentIndex }) => (
         }
     </ul>
 );
+
+export default CategoryList;

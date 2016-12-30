@@ -60,6 +60,10 @@ export const editTask = (id, editedTask) => ({
     type: 'EDIT_TASK',
     payload: { id, editedTask }
 });
+export const selectTask = id => ({
+    type: 'SELECT_TASK',
+    payload: id
+});
 
 /**
  * Common

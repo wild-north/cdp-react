@@ -7,7 +7,7 @@ import { isNull, noop } from 'lodash';
 
 
 export default (props) => {
-    const { item, index, hasChildren, selectedCategoryId, editProjectId,
+    const { item, index, hasChildren, selectedCategoryId, selectedProjectId,
         addCategory, removeCategory, openCategory, closeCategory, selectCategory, enableEdit } = props;
     const fullIndexForLink = replaceSeparators(index, SEPARATOR, LINK_SEPARATOR);
     const toggle = () => item.opened ? openCategory(item.id) : closeCategory(item.id);
@@ -17,7 +17,7 @@ export default (props) => {
         <div>
             <div className="actions-holder">
                 {
-                    isNull(editProjectId)
+                    !selectedProjectId
                       ? <div className="actions">
                             <button title="Edit category name" className="fa fa-pencil-square-o" onClick={() => enableEdit(item.id, item.name)} />
                             <button title="Add sub-category" className="fa fa-plus-square-o" onClick={() => addCategory(item.id)} />

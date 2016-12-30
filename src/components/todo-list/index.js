@@ -1,32 +1,33 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './styles.css';
 import TodoItem from '../todo-item';
+import { map, filter } from 'lodash';
 
-export default class TodoList extends Component {
-    render() {
-        const { list, toggle, routeParams } = this.props;
+const TodoList = (props) => {
+    const { tasks, selectedCategoryId, completeTask, uncompleteTask, selectTask } = props;
+    const list = filter(tasks, {'categoryId': selectedCategoryId});
 
-        return (
-            <div className="list-holder">
-                <table className="todo-list">
-                    <tbody>
-                        {
-                            list && list.length ?
-                                list.map(({title, isActive}, key) => (
-                                        <TodoItem key={key}
-                                                  index={key}
-                                                  title={title}
-                                                  isActive={isActive}
-                                                  toggle={toggle}
-                                                  routeParams={routeParams}
-                                        />
-                                    )
+    return (
+        <div className="list-holder">
+            <table className="todo-list">
+                <tbody>
+                    {
+                        !list || !list.length
+                           ? null
+                           : map(list, (item, key) => (
+                                    <TodoItem key={key}
+                                              item={item}
+                                              selectedCategoryId={selectedCategoryId}
+                                              completeTask={completeTask}
+                                              uncompleteTask={uncompleteTask}
+                                              selectTask={selectTask} />
                                 )
-                                : null
-                        }
-                    </tbody>
-                </table>
-            </div>
-        );
-    }
+                            )
+                    }
+                </tbody>
+            </table>
+        </div>
+    );
 };
+
+export default TodoList;
