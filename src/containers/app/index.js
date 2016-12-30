@@ -23,7 +23,7 @@ const App = () => (
     <Router history={hashHistory}>
         <Route path="/" component={View}>
             <Route path={`category/:categoryId`} component={Main}/>
-            <Route path={`project/:projectId`} component={Details}/>
+            <Route path={`category/:categoryId/project/:projectId`} component={Details}/>
 
             <IndexRoute component={Main}/>
             <Route path="*" component={Main}/>

@@ -50,7 +50,9 @@ const defaultState = Immutable.Map({
     //     name: ''
     // }),
     editCategoryId: null,
-    tmpTitle: ''
+    tmpTitle: '',
+    progress: 30,
+    isSidebarOpen: true
 
 });
 
@@ -77,6 +79,12 @@ export default (state = defaultState, { type, payload }) => {
             return moveProjectToCategory(state, payload);
         case 'SELECT_TASK':
             return selectTask(state, payload);
+        case 'SET_PROGRESS':
+            return setProgress(state, payload);
+        case 'OPEN_SIDEBAR':
+            return openSidebar(state);
+        case 'CLOSE_SIDEBAR':
+            return closeSidebar(state);
         default:
             return state;
     }
@@ -137,6 +145,19 @@ function moveProjectToCategory(state, newCategoryId) {
 function selectTask(state, id = null) {
     return state.set('selectedProjectId', id);
 }
-// function changeTaskActivity(state, id, value = true) {
-//     return state.setIn(['tasks', id, 'isActive'], value);
-// }
+/*
+function changeTaskActivity(state, id, value = true) {
+    return state.setIn(['tasks', id, 'isActive'], value);
+}
+*/
+
+
+function setProgress(state, value) {
+    return state.set('progress', value);
+}
+function openSidebar(state) {
+    return state.set('isSidebarOpen', true);
+}
+function closeSidebar(state) {
+    return state.set('isSidebarOpen', false);
+}

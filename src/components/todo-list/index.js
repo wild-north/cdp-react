@@ -22,6 +22,7 @@ const TodoList = (props) => {
                                     <TodoItem key={key}
                                               item={item}
                                               completeTask={completeTask}
+                                              selectedCategoryId={selectedCategoryId}
                                               uncompleteTask={uncompleteTask}
                                               selectTask={selectTask} />
                                 )

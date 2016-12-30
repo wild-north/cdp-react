@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 
-const mapStateToProps = ({ header }) => ({
-    isSidebarOpen: header.get('isSidebarOpen'),
-    progress: header.get('progress')
+const mapStateToProps = ({ main }) => ({
+    isSidebarOpen: main.get('isSidebarOpen'),
+    progress: main.get('progress')
 });
 
 /**

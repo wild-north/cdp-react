@@ -1,11 +1,11 @@
 // import * as actions from '../../actions';
 import { connect } from 'react-redux';
 
-const mapStateToProps = ({ header, main }) => {
+const mapStateToProps = ({ main }) => {
     const selectedProjectId = main.get('selectedProjectId');
     const selectedCategoryId = main.get('selectedCategoryId');
     return ({
-        isSidebarOpen: header.get('isSidebarOpen'),
+        isSidebarOpen: main.get('isSidebarOpen'),
         categories: main.get('categories').toJS(),
         selectedCategoryId: selectedCategoryId,
         task: selectedProjectId ? main.getIn(['tasks', selectedProjectId]).toJS() : null,

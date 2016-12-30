@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 import './styles.css';
 
 const TodoItem = (props) => {
-    const { item, completeTask, uncompleteTask, selectTask } = props;
+    const { item, selectedCategoryId, completeTask, uncompleteTask, selectTask } = props;
 
     const toggleActive = () => item.isActive ? completeTask(item.id) : uncompleteTask(item.id);
     return (
@@ -16,7 +16,7 @@ const TodoItem = (props) => {
             </td>
             <td className="item-actions">
                 <div className="actions" onClick={() => selectTask(item.id)}>
-                    <Link to={`/project/${item.id}`}>
+                    <Link to={`/category/${selectedCategoryId}/project/${item.id}`}>
                         <button className="fa fa-pencil-square-o"/>
                     </Link>
                 </div>
