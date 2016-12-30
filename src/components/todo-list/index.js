@@ -13,11 +13,14 @@ const TodoList = (props) => {
                 <tbody>
                     {
                         !list || !list.length
-                           ? null
+                           ? <tr>
+                                <td colSpan="3">
+                                    <h2>{'Unfortunately you have no tasks for this category'}</h2>
+                                </td>
+                            </tr>
                            : map(list, (item, key) => (
                                     <TodoItem key={key}
                                               item={item}
-                                              selectedCategoryId={selectedCategoryId}
                                               completeTask={completeTask}
                                               uncompleteTask={uncompleteTask}
                                               selectTask={selectTask} />

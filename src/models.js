@@ -3,7 +3,7 @@ export class Category {
         this.id = id;
         this.name = name;
         this.parentId = parentId;
-        this.opened = false;
+        this.opened = true;
     }
 }
 export class Task {

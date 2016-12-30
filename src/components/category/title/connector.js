@@ -8,14 +8,16 @@ const mapActionsToProps = {
     openCategory: actions.openCategory,
     closeCategory: actions.closeCategory,
     selectCategory: actions.selectCategory,
-    enableEdit: actions.enableEdit
+    enableEdit: actions.enableEdit,
+    moveProjectToCategory: actions.moveProjectToCategory,
+    selectTask: actions.selectTask
 };
 
 export default (additionalProps = {}) => {
-    const mapStateToProps = ({ sidebar, content }) => {
+    const mapStateToProps = ({ main }) => {
         return ({
-            selectedProjectId: content.get('selectedProjectId'),
-            selectedCategoryId: sidebar.get('selectedCategoryId'),
+            selectedProjectId: main.get('selectedProjectId'),
+            selectedCategoryId: main.get('selectedCategoryId'),
             ...additionalProps
         })
     };

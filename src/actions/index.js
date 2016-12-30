@@ -36,6 +36,10 @@ export const changeTmpTitle = tmpTitle => ({
     type: 'CATEGORY_TITLE_TMP_CHANGE',
     payload: tmpTitle
 });
+export const moveProjectToCategory = categoryId => ({
+    type: 'MOVE_PROJECT_TO_CATEGORY',
+    payload: categoryId
+});
 
 /**
  * Tasks

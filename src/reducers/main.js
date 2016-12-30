@@ -1,6 +1,7 @@
 import Immutable from 'immutable';
-import { Category } from '../models';
+import { Category, Task } from '../models';
 import { forEach, uniqueId } from 'lodash';
+import { parseUrlHash } from '../helpers';
 
 
 const defaultState = Immutable.Map({
@@ -20,7 +21,34 @@ const defaultState = Immutable.Map({
        '12': Immutable.Map((new Category(  '12',     'CSS3',         '1'        ))),
        '13': Immutable.Map((new Category(  '13',     'Flexbox',     '12'        )))
     }),
-    selectedCategoryId: '0',
+    tasks: Immutable.Map({
+        '0': Immutable.Map((new Task(   '0',   'Task 0',    '0' ))),
+        '1': Immutable.Map((new Task(   '1',   'Task 1',    '1' ))),
+        '2': Immutable.Map((new Task(   '2',   'Task 2',    '2' ))),
+        '3': Immutable.Map((new Task(   '3',   'Task 3',    '3' ))),
+        '4': Immutable.Map((new Task(   '4',   'Task 4',    '4' ))),
+        '5': Immutable.Map((new Task(   '5',   'Task 5',    '5' ))),
+        '6': Immutable.Map((new Task(   '6',   'Task 6',    '6' ))),
+        '7': Immutable.Map((new Task(   '7',   'Task 7',    '7' ))),
+        '8': Immutable.Map((new Task(   '8',   'Task 8',    '8' ))),
+        '9': Immutable.Map((new Task(   '9',   'Task 9',    '9' ))),
+        '10': Immutable.Map((new Task(  '10',  'Task 10',   '10' ))),
+        '11': Immutable.Map((new Task(  '11',  'Task 11',   '11' ))),
+        '12': Immutable.Map((new Task(  '12',  'Task 12',   '12' ))),
+        '13': Immutable.Map((new Task(  '13',  'Task 13',   '13' ))),
+        '14': Immutable.Map((new Task(  '14',  'Task 14',    '0' ))),
+    }),
+    selectedProjectId: parseUrlHash().project || null,
+    selectedCategoryId: parseUrlHash().category || '0',
+    // editCategory: Immutable.fromJS({
+    //     id: null,
+    //     title: ''
+    // }),
+    // editProject: Immutable.fromJS({
+    //     id: null,
+    //     descripttion: '',
+    //     name: ''
+    // }),
     editCategoryId: null,
     tmpTitle: ''
 
@@ -45,6 +73,10 @@ export default (state = defaultState, { type, payload }) => {
             return disableEdit(state);
         case 'CATEGORY_TITLE_TMP_CHANGE':
             return changeTmpTitle(state, payload);
+        case 'MOVE_PROJECT_TO_CATEGORY':
+            return moveProjectToCategory(state, payload);
+        case 'SELECT_TASK':
+            return selectTask(state, payload);
         default:
             return state;
     }
@@ -94,3 +126,17 @@ function removeCategory(state, id) {
 function selectCategory(state, id) {
     return state.set('selectedCategoryId', id);
 }
+function moveProjectToCategory(state, newCategoryId) {
+    const categoryName = state.getIn(['categories', newCategoryId, 'name']);
+    if (!confirm(`Are you sure you want to move this task into category "${categoryName}"?`)) return state;
+    const projectId = state.get('selectedProjectId');
+    return state
+        .setIn(['tasks', projectId, 'categoryId'], newCategoryId)
+        .set('selectedCategoryId', newCategoryId);
+}
+function selectTask(state, id = null) {
+    return state.set('selectedProjectId', id);
+}
+// function changeTaskActivity(state, id, value = true) {
+//     return state.setIn(['tasks', id, 'isActive'], value);
+// }

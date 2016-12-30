@@ -1,12 +1,8 @@
 import { combineReducers } from 'redux';
-import sidebar from './sidebar';
-import tasks from './tasks';
+import main from './main';
 import header from './header';
-import content from './content';
 
 export default combineReducers({
     header,
-    sidebar,
-    tasks,
-    content
+    main
 });

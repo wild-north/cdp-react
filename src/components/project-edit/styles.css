@@ -32,7 +32,6 @@
 .project-info label {
     font-size: 13px;
 }
-
 .project-info textarea {
     display: block;
     width: 98%;
@@ -40,4 +39,8 @@
     resize: none;
     padding:5px;
     font-size:13px;
+}
+
+.row.default-empty {
+    height: 44px;
 }

@@ -1,10 +1,10 @@
 import * as actions from '../../actions';
 import { connect } from 'react-redux';
 
-const mapStateToProps = ({ sidebar, header }) => {
+const mapStateToProps = ({ header, main }) => {
     return ({
         isSidebarOpen: header.get('isSidebarOpen'),
-        categories: sidebar.get('categories').toJS()
+        categories: main.get('categories').toJS()
     })
 };
 

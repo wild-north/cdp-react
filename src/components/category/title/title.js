@@ -1,17 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router';
-import { SEPARATOR, LINK_SEPARATOR } from '../../../constants';
-import { replaceSeparators } from '../../../helpers';
 import classnames from 'classnames';
-import { isNull, noop } from 'lodash';
 
 
 export default (props) => {
     const { item, index, hasChildren, selectedCategoryId, selectedProjectId,
-        addCategory, removeCategory, openCategory, closeCategory, selectCategory, enableEdit } = props;
-    const fullIndexForLink = replaceSeparators(index, SEPARATOR, LINK_SEPARATOR);
-    const toggle = () => item.opened ? openCategory(item.id) : closeCategory(item.id);
-    const select = () => selectedCategoryId === item.id ? noop() : selectCategory(item.id);
+        addCategory, removeCategory, openCategory, closeCategory,
+        selectCategory, enableEdit, moveProjectToCategory, selectTask } = props;
+
+    const toggle = () => item.opened ? closeCategory(item.id) : openCategory(item.id);
+    const select = () => {
+        if (selectedCategoryId !== item.id) {
+            selectCategory(item.id);
+            selectTask(null);
+        }
+    };
 
     return (
         <div>
@@ -24,7 +27,7 @@ export default (props) => {
                             <button title="Delete this category" className="fa fa-trash-o" onClick={() => removeCategory(item.id)} />
                         </div>
                       : <div className="actions">
-                            <button title="Move to this category" className="fa fa-arrow-circle-o-left" onClick={() => alert('TODO')}/>
+                            <button title="Move to this category" className="fa fa-arrow-circle-o-left" onClick={() => moveProjectToCategory(item.id)}/>
                         </div>
                 }
 
@@ -35,8 +38,10 @@ export default (props) => {
                         ? <button onClick={toggle} className={classnames("fa fa-angle-double-right opener", {'active': !item.opened})}/>
                         : null
                 }
-                <Link to={`/category/${fullIndexForLink}`} className="title" activeClassName="active" onClick={select}>
-                    <small>{index}</small> {item.name}
+                <Link to={`/category/${item.id}`} className="title" activeClassName="active" onClick={select}>
+                    <span className={classnames({'active': selectedCategoryId === item.id})}>
+                        <small>{index}</small> {item.name}
+                    </span>
                 </Link>
             </div>
         </div>

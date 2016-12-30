@@ -1,19 +1,16 @@
 import * as actions from '../../../actions';
 import { connect } from 'react-redux';
 
-const mapStateToProps = ({ content, sidebar }) => {
+const mapStateToProps = ({ main }) => {
     return ({
-        tasks: content.get('tasks').toJS(),
-        selectedCategoryId: sidebar.get('selectedCategoryId'),
-        selectedProjectId: content.get('selectedProjectId')
+        tasks: main.get('tasks').toJS(),
+        selectedCategoryId: main.get('selectedCategoryId'),
+        selectedProjectId: main.get('selectedProjectId')
     })
 };
 
-const mapActionsToProps = {
+export default connect(mapStateToProps, {
     completeTask: actions.completeTask,
     uncompleteTask: actions.uncompleteTask,
     selectTask: actions.selectTask
-};
-
-
-export default connect(mapStateToProps, mapActionsToProps);
+});
