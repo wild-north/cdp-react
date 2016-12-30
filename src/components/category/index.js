@@ -1,29 +1,28 @@
 import React from 'react';
 import './styles.css';
 import classnames from 'classnames';
-import EditTitle from './edit-title/edit-title';
+import EditTitleComponent from './edit-title/edit-title';
 import editTitleConnector from './edit-title/connector';
 
-import Title from './title/title';
+import TitleComponent from './title/title';
 import titleConnector from './title/connector';
-
-const EditTitleConnected = editTitleConnector(EditTitle);
+const EditTitle = editTitleConnector(EditTitleComponent);
 
 
 const Category = (props) => {
     const { children, item, index, editCategoryId } = props;
     const isTitleEditing = editCategoryId === item.id;
 
-    const TitleConnected = titleConnector({
-        showOpener: !!children,
+    const Title = titleConnector({
+        hasChildren: !!children,
         item: item,
         index: index,
         isTitleEditing: isTitleEditing
-    })(Title);
+    })(TitleComponent);
 
     return (
         <li className={classnames("category", {'no-children': !children})}>
-            { isTitleEditing ? <EditTitleConnected /> : <TitleConnected /> }
+            { isTitleEditing ? <EditTitle/> : <Title/> }
             { item.opened && children ? children : null }
         </li>
     );

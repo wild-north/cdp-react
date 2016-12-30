@@ -4,24 +4,13 @@ import { connect } from 'react-redux';
 const mapStateToProps = ({ sidebar, header }) => {
     return ({
         isSidebarOpen: header.get('isSidebarOpen'),
-        categories: sidebar.get('categories').toJS(),
-        selectedCategoryId: sidebar.get('selectedCategoryId'),
-        isProjectEditing: sidebar.get('isProjectEditing'),
-        editCategoryId: sidebar.get('editCategoryId'),
-        tmpTitle: sidebar.get('tmpTitle'),
+        categories: sidebar.get('categories').toJS()
     })
 };
 
-const mappedActionsToProps = {
-    selectCategory: actions.selectCategory,
-    openCategory: actions.openCategory,
-    closeCategory: actions.closeCategory,
-    removeCategory: actions.removeCategory,
-    addCategory: actions.addCategory,
-    enableEdit: actions.enableEdit,
-    disableEdit: actions.disableEdit,
-    changeTmpTitle: actions.changeTmpTitle
+const mapActionsToProps = {
+    addCategory: actions.addCategory
 };
 
 
-export default connect(mapStateToProps, mappedActionsToProps);
+export default connect(mapStateToProps, mapActionsToProps);

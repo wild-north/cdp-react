@@ -1,17 +1,21 @@
 import React from 'react';
 import './styles.css';
-import AddItem from '../../components/add-item';
+import AddItemComponent from '../../components/add-item';
+import addItemConnector from './connectors/add-item';
+
+const AddItem = addItemConnector(AddItemComponent);
+
 import TodoList from '../../components/todo-list';
 
 
-const Content = (props) => {
+const Content = () => {
     return (
         <div className="content">
             <div className="row add-item-holder">
                 <AddItem placeholder="Enter item title"/>
             </div>
             <div className="row list-holder">
-                <TodoList {...props} />
+                <TodoList />
             </div>
         </div>
     );

@@ -7,7 +7,7 @@ import { isNull, noop } from 'lodash';
 
 
 export default (props) => {
-    const { item, index, showOpener, selectedCategoryId, editProjectId,
+    const { item, index, hasChildren, selectedCategoryId, editProjectId,
         addCategory, removeCategory, openCategory, closeCategory, selectCategory, enableEdit } = props;
     const fullIndexForLink = replaceSeparators(index, SEPARATOR, LINK_SEPARATOR);
     const toggle = () => item.opened ? openCategory(item.id) : closeCategory(item.id);
@@ -31,9 +31,9 @@ export default (props) => {
             </div>
             <div className="input-holder">
                 {
-                    !showOpener
-                        ? null
-                        : <button onClick={toggle} className={classnames("fa fa-angle-double-right opener", {'active': !item.opened})}/>
+                    hasChildren
+                        ? <button onClick={toggle} className={classnames("fa fa-angle-double-right opener", {'active': !item.opened})}/>
+                        : null
                 }
                 <Link to={`/category/${fullIndexForLink}`} className="title" activeClassName="active" onClick={select}>
                     <small>{index}</small> {item.name}

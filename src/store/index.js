@@ -16,11 +16,11 @@ export const store = createStore(rootReducer, {},
 // const newState = store.getState();
 // console.table(newState.categories);
 // console.table(newState.tasks);
-// store.subscribe(() => {
-//     const { category, tasks, sidebar, header } = store.getState();
-//     console.log('category', category.toJS());
-//     console.log('tasks', tasks.toJS());
-//     console.log('sidebar', sidebar.toJS());
-//     console.log('header', header.toJS());
-// });
+store.subscribe(() => {
+    const { content, tasks, sidebar, header } = store.getState();
+    console.log('tasks', tasks.toJS());
+    console.log('sidebar', sidebar.toJS());
+    console.log('header', header.toJS());
+    console.log('content', content.toJS());
+});
 /* EOF testing Redux */

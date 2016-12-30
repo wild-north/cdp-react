@@ -1,12 +1,11 @@
 import React from 'react';
-import './styles.css';
 import CategoryComponent from '../category';
 import categoryConnector from '../category/connector';
 import { getFullIndex } from '../../helpers';
 
 const Category = categoryConnector(CategoryComponent);
 
-export const CategoryList = ({ list, editCategoryId, parentIndex }) => (
+export const CategoryList = ({ list, parentIndex }) => (
     <ul>
         {
             list.map((item, key) => {
@@ -15,7 +14,7 @@ export const CategoryList = ({ list, editCategoryId, parentIndex }) => (
                     <Category key={key} item={item} index={fullIndex} >
                         {
                             item.kids && item.kids.length
-                                ? <CategoryList list={item.kids} parentIndex={fullIndex} editCategoryId={editCategoryId}/>
+                                ? <CategoryList list={item.kids} parentIndex={fullIndex}/>
                                 : null
                         }
                     </Category>

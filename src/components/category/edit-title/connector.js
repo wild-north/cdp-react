@@ -8,10 +8,6 @@ const mapActionsToProps = {
     changeTmpTitle: actions.changeTmpTitle
 };
 
-// export default (additionalProps = {}) => {
-
-// }
-
 const mapStateToProps = ({ sidebar }) => {
     return ({
         editCategoryId: sidebar.get('editCategoryId'),
