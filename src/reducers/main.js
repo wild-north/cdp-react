@@ -51,7 +51,7 @@ const defaultState = Immutable.Map({
     // }),
     editCategoryId: null,
     tmpTitle: '',
-    progress: 30,
+    progress: 0,
     isSidebarOpen: true
 
 });
@@ -85,6 +85,8 @@ export default (state = defaultState, { type, payload }) => {
             return openSidebar(state);
         case 'CLOSE_SIDEBAR':
             return closeSidebar(state);
+        case 'ADD_TASK':
+            return addTask(state, payload);
         default:
             return state;
     }
@@ -111,6 +113,7 @@ function changeTmpTitle(state, newTmpTitle) {
     return state.set('tmpTitle', newTmpTitle);
 }
 function addCategory(state, { parentId, name }) {
+    debugger;
     name = name || prompt('Enter sub-category name', 'New sub category');
     const id = uniqueId('category_');
     return state.updateIn(['categories'], categories => categories.set(id, Immutable.Map(new Category(id, name, parentId))))
@@ -146,9 +149,9 @@ function selectTask(state, id = null) {
     return state.set('selectedProjectId', id);
 }
 /*
-function changeTaskActivity(state, id, value = true) {
-    return state.setIn(['tasks', id, 'isActive'], value);
-}
+    function changeTaskActivity(state, id, value = true) {
+        return state.setIn(['tasks', id, 'isActive'], value);
+    }
 */
 
 
@@ -160,4 +163,10 @@ function openSidebar(state) {
 }
 function closeSidebar(state) {
     return state.set('isSidebarOpen', false);
+}
+
+function addTask(state, newName) {
+    const id = uniqueId('task_');
+    const selectedCategoryId = state.get('selectedCategoryId');
+    return state.updateIn(['tasks'], tasks => tasks.set(id, Immutable.Map(new Task(id, newName, selectedCategoryId))))
 }

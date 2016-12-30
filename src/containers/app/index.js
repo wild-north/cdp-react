@@ -22,8 +22,8 @@ const View = ({children}) => (
 const App = () => (
     <Router history={hashHistory}>
         <Route path="/" component={View}>
-            <Route path={`category/:categoryId`} component={Main}/>
-            <Route path={`category/:categoryId/project/:projectId`} component={Details}/>
+            <Route path={`category/:categoryId`} component={Main} />
+            <Route path={`category/:categoryId/project/:projectId`} />
 
             <IndexRoute component={Main}/>
             <Route path="*" component={Main}/>

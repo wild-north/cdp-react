@@ -1,9 +1,9 @@
 /**
  * Categories
  */
-export const addCategory = (parentId, name) => ({
+export const addCategory = (name, parentId) => ({
     type: 'ADD_CATEGORY',
-    payload: { parentId, name }
+    payload: { name, parentId }
 });
 export const removeCategory = id => ({
     type: 'REMOVE_CATEGORY',
@@ -44,9 +44,9 @@ export const moveProjectToCategory = categoryId => ({
 /**
  * Tasks
  */
-export const addTask = (name, catId) => ({
+export const addTask = name => ({
     type: 'ADD_TASK',
-    payload: { name, catId }
+    payload: name
 });
 export const removeTask = (name, catId) => ({
     type: 'REMOVE_TASK',

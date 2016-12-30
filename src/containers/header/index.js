@@ -6,12 +6,13 @@ import './styles.css';
 import ProgressBar from '../../components/progress-bar';
 
 const Header = (props) => {
+    const { openSidebar, closeSidebar, isSidebarOpen, progress } = props;
     return (
         <header>
             <div className="button-holder">
-                <ToggleSidebar open={props.openSidebar}
-                               close={props.closeSidebar}
-                               isOpen={props.isSidebarOpen} />
+                <ToggleSidebar open={openSidebar}
+                               close={closeSidebar}
+                               isOpen={isSidebarOpen} />
             </div>
             <strong className="logo">
                 <img src={logo} alt="logo"/>
@@ -20,7 +21,7 @@ const Header = (props) => {
             <div className="search-holder">
                 <SearchForm/>
             </div>
-            <ProgressBar progress={props.progress}/>
+            <ProgressBar progress={progress}/>
         </header>
     );
 };
