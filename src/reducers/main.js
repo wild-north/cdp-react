@@ -77,6 +77,10 @@ export default (state = defaultState, { type, payload }) => {
             return changeTmpTitle(state, payload);
         case 'MOVE_PROJECT_TO_CATEGORY':
             return moveProjectToCategory(state, payload);
+        case 'COMPLETE_TASK':
+            return changeTaskActivity(state, payload, false);
+        case 'UNCOMPLETE_TASK':
+            return changeTaskActivity(state, payload, true);
         case 'SELECT_TASK':
             return selectTask(state, payload);
         case 'SET_PROGRESS':
@@ -88,6 +92,7 @@ export default (state = defaultState, { type, payload }) => {
         case 'ADD_TASK':
             return addTask(state, payload);
         default:
+            console.log('%cDefault state returned!', 'color: yellow;');
             return state;
     }
 };
@@ -113,7 +118,6 @@ function changeTmpTitle(state, newTmpTitle) {
     return state.set('tmpTitle', newTmpTitle);
 }
 function addCategory(state, { parentId, name }) {
-    debugger;
     name = name || prompt('Enter sub-category name', 'New sub category');
     const id = uniqueId('category_');
     return state.updateIn(['categories'], categories => categories.set(id, Immutable.Map(new Category(id, name, parentId))))
@@ -147,6 +151,9 @@ function moveProjectToCategory(state, newCategoryId) {
 }
 function selectTask(state, id = null) {
     return state.set('selectedProjectId', id);
+}
+function changeTaskActivity(state, id, value = true) {
+    return state.setIn(['tasks', id, 'isActive'], value);
 }
 /*
     function changeTaskActivity(state, id, value = true) {
