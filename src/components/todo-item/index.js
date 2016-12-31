@@ -8,8 +8,8 @@ const TodoItem = (props) => {
     const toggleActive = () => item.isActive ? completeTask(item.id) : uncompleteTask(item.id);
     return (
         <tr className="todo-item row">
-            <td className="check">
-                <input type="checkbox" id={`todo-item-${item.id}`} checked={item.isActive} onChange={toggleActive}/>
+            <td className="check" title="Is task completed">
+                <input type="checkbox" id={`todo-item-${item.id}`} checked={!item.isActive} onChange={toggleActive}/>
             </td>
             <td className="info">
                 <label htmlFor={`todo-item-${item.id}`}>{item.name}</label>

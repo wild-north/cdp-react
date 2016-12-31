@@ -2,20 +2,23 @@ import React from 'react';
 import Sidebar from '../../components/sidebar';
 import { unflattenTree } from '../../helpers';
 import CategoryList from '../../components/category-list';
-import ProjectEdit from '../../components/project-edit';
+import ProjectEditComponent from '../../components/project-edit';
+import { projectEditConnector } from '../../containers/details/connector';
 
-const Details = ({ isSidebarOpen, categories, task, activeCategory, selectedCategoryId }) => {
+const ProjectEdit = projectEditConnector(ProjectEditComponent);
+
+const Details = ({ isSidebarOpen, categories, taskName, activeCategoryName }) => {
     return (
         <div className="two-columns project-list">
             <Sidebar isSidebarOpen={isSidebarOpen}>
                 <div className="row add-item-holder">
-                    <h2>{activeCategory.name} <i className="small fa fa-chevron-right"/> {task.name}</h2>
+                    <h2>{activeCategoryName} <i className="small fa fa-chevron-right"/> {taskName}</h2>
                 </div>
                 <div className="row categories-holder">
                     <CategoryList list={unflattenTree(categories)} />
                 </div>
             </Sidebar>
-            <ProjectEdit item={task} selectedCategoryId={selectedCategoryId}/>
+            <ProjectEdit />
         </div>
     );
 };

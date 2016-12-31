@@ -6,7 +6,7 @@ import MainComponent from '../main';
 import mainConnector from '../main/connector';
 import '../../index.css';
 import DetailsComponent from '../details';
-import detailsConnector from '../details/connector';
+import { detailsConnector } from '../details/connector';
 
 const Header = headerConnector(HeaderComponent);
 const Main = mainConnector(MainComponent);

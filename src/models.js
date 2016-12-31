@@ -13,6 +13,6 @@ export class Task {
         this.name = name;
         this.categoryId = catId;
         this.description = desc;
-        this.isActive = false;
+        this.isActive = true;
     }
 }

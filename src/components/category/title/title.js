@@ -29,7 +29,9 @@ export default (props) => {
                       : selectedCategoryId === item.id
                           ? null
                           : <div className="actions">
-                                <button title="Move to this category" className="fa fa-arrow-circle-o-left" onClick={() => moveProjectToCategory(item.id)}/>
+                                <Link to={`/category/${selectedCategoryId}/project/${selectedProjectId}`} onClick={() => moveProjectToCategory(item.id)}>
+                                    <button title="Move to this category" className="fa fa-arrow-circle-o-left"/>
+                                </Link>
                             </div>
                 }
 

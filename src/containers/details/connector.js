@@ -1,17 +1,24 @@
-// import * as actions from '../../actions';
+import * as actions from '../../actions';
 import { connect } from 'react-redux';
 
-const mapStateToProps = ({ main }) => {
+export const detailsConnector = connect(({ main }) => {
     const selectedProjectId = main.get('selectedProjectId');
     const selectedCategoryId = main.get('selectedCategoryId');
     return ({
         isSidebarOpen: main.get('isSidebarOpen'),
         categories: main.get('categories').toJS(),
-        selectedCategoryId: selectedCategoryId,
-        task: selectedProjectId ? main.getIn(['tasks', selectedProjectId]).toJS() : null,
-        activeCategory: selectedCategoryId ? main.getIn(['categories', selectedCategoryId]).toJS() : null
+        taskName: selectedProjectId ? main.getIn(['tasks', selectedProjectId, 'name']) : null,
+        activeCategoryName: selectedCategoryId ? main.getIn(['categories', selectedCategoryId, 'name']) : null
     })
-};
+}, null);
 
-
-export default connect(mapStateToProps, null);
+export const projectEditConnector = connect(({ main }) => {
+    const selectedProjectId = main.get('selectedProjectId');
+    return ({
+        selectedCategoryId: main.get('selectedCategoryId'),
+        task: selectedProjectId ? main.getIn(['tasks', selectedProjectId]).toJS() : null
+    })
+}, {
+    completeTask: actions.completeTask,
+    uncompleteTask: actions.uncompleteTask
+});
