@@ -4,7 +4,7 @@ import './styles.css';
 const ProjectEdit = (props) => {
     const { task, setActive, setInactive, changeDescription, changeName, saveTask, cancelEdit } = props;
 
-    const toggleActive = () => task.isActive ? setInactive(task.id) : setActive(task.id);
+    const toggleActive = () => task.done ? setInactive(task.id) : setActive(task.id);
     return (
         <div className="content project-info">
             <div className="row default-empty"></div>
@@ -18,7 +18,7 @@ const ProjectEdit = (props) => {
                 </div>
                 <div className="row">
                     <label htmlFor="is-project-active">Active</label>
-                    <input type="checkbox" id="is-project-active" checked={task.isActive} onChange={toggleActive}/>
+                    <input type="checkbox" id="is-project-active" checked={!task.done} onChange={toggleActive}/>
                 </div>
                 <div className="row">
                     <textarea cols="30" rows="10" value={task.description} onChange={(e) => changeDescription(e.target.value)}/>

@@ -8,11 +8,11 @@ export class Category {
     }
 }
 export class Task {
-    constructor(id, name, catId, desc = '') {
+    constructor(id, name, catId, desc = '', done = false) {
         this.id = id;
         this.name = name;
         this.categoryId = catId;
         this.description = desc;
-        this.isActive = true;
+        this.done = done;
     }
 }

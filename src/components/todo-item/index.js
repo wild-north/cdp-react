@@ -5,11 +5,11 @@ import './styles.css';
 const TodoItem = (props) => {
     const { item, selectedCategoryId, completeTask, uncompleteTask, selectTask } = props;
 
-    const toggleActive = () => item.isActive ? completeTask(item.id) : uncompleteTask(item.id);
+    const toggleActive = () => item.done ? completeTask(item.id) : uncompleteTask(item.id);
     return (
         <tr className="todo-item row">
             <td className="check" title="Is task completed">
-                <input type="checkbox" id={`todo-item-${item.id}`} checked={!item.isActive} onChange={toggleActive}/>
+                <input type="checkbox" id={`todo-item-${item.id}`} checked={item.done} onChange={toggleActive}/>
             </td>
             <td className="info">
                 <label htmlFor={`todo-item-${item.id}`}>{item.name}</label>

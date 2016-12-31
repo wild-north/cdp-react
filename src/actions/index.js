@@ -44,7 +44,7 @@ export const moveProjectToCategory = categoryId => ({
 /**
  * Tasks
  */
-export const addTask = name => ({
+export const addTask = (id, name) => ({
     type: 'ADD_TASK',
     payload: name
 });

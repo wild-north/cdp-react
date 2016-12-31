@@ -27,7 +27,7 @@ export default (props) => {
                             <button title="Delete this category" className="fa fa-trash-o" onClick={() => removeCategory(item.id)} />
                         </div>
                       : <div className={classnames('actions', {'disabled': selectedCategoryId === item.id})}>
-                            <Link to={`/category/${selectedCategoryId}/project/${selectedProjectId}`} onClick={() => moveProjectToCategory(item.id)}>
+                            <Link to={`/category/${item.id}/project/${selectedProjectId}`} onClick={() => moveProjectToCategory(item.id)}>
                                 <button title="Move to this category" className="fa fa-arrow-circle-o-left"/>
                             </Link>
                         </div> 
