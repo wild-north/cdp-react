@@ -4,7 +4,6 @@ export class Category {
         this.name = name;
         this.parentId = parentId;
         this.opened = true;
-        this.completed = false;
     }
 }
 export class Task {

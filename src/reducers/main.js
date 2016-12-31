@@ -44,17 +44,16 @@ const defaultState = Immutable.Map({
     tasks: Immutable.Map(defaultTasks),
     selectedProjectId: (projectIdFromURL in defaultTasks.toJS()) ? projectIdFromURL : null,
     selectedCategoryId: (categoryIdFromURL in defaultCategories.toJS()) ? categoryIdFromURL : '0',
-    editProject: (categoryIdFromURL in defaultCategories.toJS() && projectIdFromURL in defaultTasks.toJS())
-                    ? defaultTasks.get(projectIdFromURL)
-                    : Immutable.Map((new Task(null, '', null, ''))),
+    editProject: getDefaultEditProject(),
     editCategoryId: null,
     tmpTitle: '',
     progress: getProgressValue(defaultTasks.toJS()),
     isSidebarOpen: true,
-    // editCategory: Immutable.fromJS({
-    //     id: null,
-    //     title: ''
-    // }),
+    /**
+     * TODO: change editCategoryId AND tmpTitle to editCategory, as shown below
+     * 
+     * editCategory: Immutable.Map((new Category(null, '', null)))
+     * */
 });
 
 export default (state = defaultState, { type, payload }) => {
@@ -115,10 +114,16 @@ export default (state = defaultState, { type, payload }) => {
         case 'ADD_TASK':
             return addTask(state, payload);
         default:
-            console.log('%cDefault state returned!', 'color: yellow;');
             return state;
     }
 };
+
+function getDefaultEditProject() {
+    return categoryIdFromURL in defaultCategories.toJS() && projectIdFromURL in defaultTasks.toJS()
+        ? defaultTasks.get(projectIdFromURL)
+        : Immutable.Map((new Task(null, '', null, '')));
+}
+
 
 function renameCategory(state) {
     const id = state.get('editCategoryId');
