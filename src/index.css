@@ -95,3 +95,9 @@ button.fa:hover {
   vertical-align: middle;
   color: #686868;
 }
+
+*.disabled {
+  opacity: 0.35;
+  pointer-events: none;
+  cursor: default;
+}

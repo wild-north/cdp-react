@@ -26,13 +26,11 @@ export default (props) => {
                             <button title="Add sub-category" className="fa fa-plus-square-o" onClick={() => addCategory(item.id)} />
                             <button title="Delete this category" className="fa fa-trash-o" onClick={() => removeCategory(item.id)} />
                         </div>
-                      : selectedCategoryId === item.id
-                          ? null
-                          : <div className="actions">
-                                <Link to={`/category/${selectedCategoryId}/project/${selectedProjectId}`} onClick={() => moveProjectToCategory(item.id)}>
-                                    <button title="Move to this category" className="fa fa-arrow-circle-o-left"/>
-                                </Link>
-                            </div>
+                      : <div className={classnames('actions', {'disabled': selectedCategoryId === item.id})}>
+                            <Link to={`/category/${selectedCategoryId}/project/${selectedProjectId}`} onClick={() => moveProjectToCategory(item.id)}>
+                                <button title="Move to this category" className="fa fa-arrow-circle-o-left"/>
+                            </Link>
+                        </div> 
                 }
 
             </div>

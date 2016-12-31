@@ -60,9 +60,11 @@ export const uncompleteTask = id => ({
     type: 'UNCOMPLETE_TASK',
     payload: id
 });
-export const editTask = (id, editedTask) => ({
-    type: 'EDIT_TASK',
-    payload: { id, editedTask }
+export const editTask = () => ({
+    type: 'EDIT_TASK'
+});
+export const cancelEditTask = () => ({
+    type: 'CANCEL_EDIT_TASK'
 });
 export const selectTask = id => ({
     type: 'SELECT_TASK',
@@ -81,4 +83,22 @@ export const openSidebar = () => ({
 });
 export const closeSidebar = () => ({
     type: 'CLOSE_SIDEBAR'
+});
+
+/**
+ * Edit project
+ */
+export const completeTaskInEditMode = () => ({
+    type: 'COMPLETE_TASK__EDIT_MODE'
+});
+export const incompleteTaskInEditMode = () => ({
+    type: 'INCOMPLETE_TASK__EDIT_MODE'
+});
+export const changeTaskDescriptionInEditMode = description => ({
+    type: 'CHANGE_TASK_DESCRIPTION__EDIT_MODE',
+    payload: description
+});
+export const changeTaskNameInEditMode = name => ({
+    type: 'CHANGE_TASK_NAME__EDIT_MODE',
+    payload: name
 });

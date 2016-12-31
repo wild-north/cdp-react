@@ -13,12 +13,14 @@ export const detailsConnector = connect(({ main }) => {
 }, null);
 
 export const projectEditConnector = connect(({ main }) => {
-    const selectedProjectId = main.get('selectedProjectId');
     return ({
-        selectedCategoryId: main.get('selectedCategoryId'),
-        task: selectedProjectId ? main.getIn(['tasks', selectedProjectId]).toJS() : null
+        task: main.get('editProject').toJS()
     })
 }, {
-    completeTask: actions.completeTask,
-    uncompleteTask: actions.uncompleteTask
+    setInactive: actions.completeTaskInEditMode,
+    setActive: actions.incompleteTaskInEditMode,    
+    changeDescription: actions.changeTaskDescriptionInEditMode,
+    changeName: actions.changeTaskNameInEditMode,
+    saveTask: actions.editTask,
+    cancelEdit: actions.cancelEditTask,
 });
