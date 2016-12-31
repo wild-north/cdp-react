@@ -15,7 +15,7 @@ export default class AddItem extends Component {
     add(e) {
         e.preventDefault();
         if (this.state.text) {
-            this.props.add(this.state.text, null);
+            this.props.add(null, this.state.text);
             this.setState(this.defaultState);
         }
     }
@@ -26,7 +26,7 @@ export default class AddItem extends Component {
             <div className="add-item">
                 <form action="" onSubmit={this.add}>
                     <input type="text" placeholder={placeholder} value={text} onChange={this.onChange}/>
-                    <button className="fa fa-plus-square" type="submit">{' '}</button>
+                    <button className="fa fa-plus-square" type="submit"/>
                 </form>
             </div>
         );

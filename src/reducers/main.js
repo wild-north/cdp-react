@@ -155,13 +155,6 @@ function selectTask(state, id = null) {
 function changeTaskActivity(state, id, value = true) {
     return state.setIn(['tasks', id, 'isActive'], value);
 }
-/*
-    function changeTaskActivity(state, id, value = true) {
-        return state.setIn(['tasks', id, 'isActive'], value);
-    }
-*/
-
-
 function setProgress(state, value) {
     return state.set('progress', value);
 }

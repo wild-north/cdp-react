@@ -9,7 +9,7 @@ const Details = ({ isSidebarOpen, categories, task, activeCategory, selectedCate
         <div className="two-columns project-list">
             <Sidebar isSidebarOpen={isSidebarOpen}>
                 <div className="row add-item-holder">
-                    <h2>{activeCategory.name} > {task.name}</h2>
+                    <h2>{activeCategory.name} <i className="small fa fa-chevron-right"/> {task.name}</h2>
                 </div>
                 <div className="row categories-holder">
                     <CategoryList list={unflattenTree(categories)} />

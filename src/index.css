@@ -89,3 +89,9 @@ button.fa.smaller{
 button.fa:hover {
   color: #61dafb;
 }
+.fa.small {
+  font-weight: normal;
+  font-size: 14px;
+  vertical-align: middle;
+  color: #686868;
+}
