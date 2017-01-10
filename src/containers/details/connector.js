@@ -1,20 +1,20 @@
 import * as actions from '../../actions';
 import { connect } from 'react-redux';
 
-export const detailsConnector = connect(({ main }) => {
-    const selectedProjectId = main.get('selectedProjectId');
-    const selectedCategoryId = main.get('selectedCategoryId');
+export const detailsConnector = connect(state => {
+    const selectedProjectId = state.get('selectedProjectId');
+    const selectedCategoryId = state.get('selectedCategoryId');
     return ({
-        isSidebarOpen: main.get('isSidebarOpen'),
-        categories: main.get('categories').toJS(),
-        taskName: selectedProjectId ? main.getIn(['tasks', selectedProjectId, 'name']) : null,
-        activeCategoryName: selectedCategoryId ? main.getIn(['categories', selectedCategoryId, 'name']) : null
+        isSidebarOpen: state.get('isSidebarOpen'),
+        categories: state.get('categories').toJS(),
+        taskName: selectedProjectId ? state.getIn(['tasks', selectedProjectId, 'name']) : null,
+        activeCategoryName: selectedCategoryId ? state.getIn(['categories', selectedCategoryId, 'name']) : null
     })
 }, null);
 
-export const projectEditConnector = connect(({ main }) => {
+export const projectEditConnector = connect(state => {
     return ({
-        task: main.get('editProject').toJS()
+        task: state.get('editProject').toJS()
     })
 }, {
     setInactive: actions.completeTaskInEditMode,

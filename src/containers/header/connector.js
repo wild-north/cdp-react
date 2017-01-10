@@ -1,10 +1,12 @@
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 
-const mapStateToProps = ({ main }) => ({
-    isSidebarOpen: main.get('isSidebarOpen'),
-    progress: main.get('progress')
-});
+const mapStateToProps = (state) => {
+    return ({
+        isSidebarOpen: state.get('isSidebarOpen'),
+        progress: state.get('progress')
+    })
+};
 
 /**
  * common way to pass actions into connected component:

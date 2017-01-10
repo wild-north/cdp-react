@@ -1,6 +1,40 @@
+import { createAction } from './../helpers';
+
 /**
  * Categories
  */
+
+
+export const addCategory = createAction('ADD_CATEGORY');
+export const removeCategory = createAction('REMOVE_CATEGORY');
+export const openCategory = createAction('OPEN_CATEGORY');
+export const closeCategory = createAction('CLOSE_CATEGORY');
+export const renameCategory = createAction('RENAME_CATEGORY');
+export const selectCategory = createAction('SELECT_CATEGORY');
+export const enableEdit = createAction('CATEGORY_TITLE_EDIT_ENABLE');
+export const disableEdit = createAction('CATEGORY_TITLE_EDIT_DISABLE');
+export const changeTmpTitle = createAction('CATEGORY_TITLE_TMP_CHANGE');
+export const moveProjectToCategory = createAction('MOVE_PROJECT_TO_CATEGORY');
+
+export const addTask = createAction('ADD_TASK');
+export const removeTask = createAction('REMOVE_TASK');
+export const completeTask = createAction('COMPLETE_TASK');
+export const uncompleteTask = createAction('UNCOMPLETE_TASK');
+export const editTask = createAction('EDIT_TASK');
+export const cancelEditTask = createAction('CANCEL_EDIT_TASK');
+export const selectTask = createAction('SELECT_TASK');
+
+export const setProgress = createAction('SET_PROGRESS');
+export const openSidebar = createAction('OPEN_SIDEBAR');
+export const closeSidebar = createAction('CLOSE_SIDEBAR');
+
+export const completeTaskInEditMode = createAction('COMPLETE_TASK__EDIT_MODE');
+export const incompleteTaskInEditMode = createAction('INCOMPLETE_TASK__EDIT_MODE');
+export const changeTaskDescriptionInEditMode = createAction('CHANGE_TASK_DESCRIPTION__EDIT_MODE');
+export const changeTaskNameInEditMode = createAction('CHANGE_TASK_NAME__EDIT_MODE');
+
+
+
 export const addCategory = (parentId, name) => ({
     type: 'ADD_CATEGORY',
     payload: { parentId, name }

@@ -8,10 +8,10 @@ const mapActionsToProps = {
     changeTmpTitle: actions.changeTmpTitle
 };
 
-const mapStateToProps = ({ main }) => {
+const mapStateToProps = (state) => {
     return ({
-        editCategoryId: main.get('editCategoryId'),
-        tmpTitle: main.get('tmpTitle')
+        editCategoryId: state.get('editCategoryId'),
+        tmpTitle: state.get('tmpTitle')
     })
 };
 export default connect(mapStateToProps, mapActionsToProps);

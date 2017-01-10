@@ -40,6 +40,7 @@ export const getProgressValue = (list) => {
         completed: 0,
         total: 0
     });
-    console.log(data);
     return data.completed / data.total * 100; 
 };
+
+export const createAction = type => payload => ({type, payload}); 

@@ -14,13 +14,11 @@ const mapActionsToProps = {
 };
 
 export default (additionalProps = {}) => {
-    const mapStateToProps = ({ main }) => {
-        return ({
-            selectedProjectId: main.get('selectedProjectId'),
-            selectedCategoryId: main.get('selectedCategoryId'),
+    const mapStateToProps = state => ({
+            selectedProjectId: state.get('selectedProjectId'),
+            selectedCategoryId: state.get('selectedCategoryId'),
             ...additionalProps
-        })
-    };
+        });
     return connect(mapStateToProps, mapActionsToProps);
 }
 

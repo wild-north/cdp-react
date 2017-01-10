@@ -1,11 +1,11 @@
 import * as actions from '../../../actions';
 import { connect } from 'react-redux';
 
-const mapStateToProps = ({ main }) => {
+const mapStateToProps = (state) => {
     return ({
-        tasks: main.get('tasks').toJS(),
-        selectedCategoryId: main.get('selectedCategoryId'),
-        selectedProjectId: main.get('selectedProjectId')
+        tasks: state.get('tasks').toJS(),
+        selectedCategoryId: state.get('selectedCategoryId'),
+        selectedProjectId: state.get('selectedProjectId')
     })
 };
 
