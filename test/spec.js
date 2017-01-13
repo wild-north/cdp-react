@@ -24,7 +24,7 @@ const mockedState = Immutable.fromJS({
 describe('reducer', () => {
     it('should add new category', () => {
         expect(
-            reducer(mockedState, {type: "ADD_CATEGORY", payload: { parentId: "0", name: "Test category" }}).get('categories').toJS()
-        ).toContain('WTF are U want?!!!');
+            reducer(mockedState, {type: "ADD_CATEGORY", payload: { parentId: "0", name: "Test category" }}).getIn(['categories', "category_1"]).toJS()
+        ).toEqual(new Category("category_1", "Test category", "0"));
     });
 });
