@@ -3,19 +3,15 @@ import './styles.css';
 import TodoItem from '../todo-item';
 import { map, filter } from 'lodash';
 
-/*const TableHead = () => (
+const TableHead = () => (
     <thead>
-    <tr className="row">
-        <th className="is-active">
-            Done
-        </th>
-        <th>
-            Task Name
-        </th>
-        <th></th>
-    </tr>
+        <tr className="row">
+            <th className="is-active">Is done</th>
+            <th>Task Name</th>
+            <th/>
+        </tr>
     </thead>
-);*/
+);
 
 const TodoList = (props) => {
     const { tasks, selectedCategoryId, completeTask, incompleteTask, selectTask } = props;
@@ -23,14 +19,14 @@ const TodoList = (props) => {
 
     return (
         <div className="list-holder">
-            <table className="todo-list">
-                <tbody>
-                    {
-                        !list || !list.length
-                           ? <tr>
-                                <td colSpan="3"><h2>{'Unfortunately you have no tasks for this category'}</h2></td>
-                            </tr>
-                           : map(list, (item, key) => (
+            {
+                !list || !list.length
+                    ? <h2 className="empty-list">{'Unfortunately you have no tasks for this category'}</h2>
+                    : <table className="todo-list">
+                        <TableHead/>
+                        <tbody>
+                        {
+                            map(list, (item, key) => (
                                     <TodoItem key={key}
                                               item={item}
                                               completeTask={completeTask}
@@ -39,9 +35,10 @@ const TodoList = (props) => {
                                               selectTask={selectTask} />
                                 )
                             )
-                    }
-                </tbody>
-            </table>
+                        }
+                        </tbody>
+                    </table>
+            }
         </div>
     );
 };

@@ -16,7 +16,7 @@
 }
 
 .todo-item:nth-child(odd) {
-    background-color: #8b8b8b;
+    background-color: #aeaeae;
     color: #fff;
 }
 .todo-item:nth-child(odd) button.fa {

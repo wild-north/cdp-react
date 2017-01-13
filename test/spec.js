@@ -2,11 +2,7 @@ import reducer from '../src/reducers';
 import Immutable from 'immutable';
 import { Category, Task } from '../src/models';
 
-function sum(a, b) {
-    return a + b;
-}
-
-const defaultState = Immutable.fromJS({
+const mockedState = Immutable.fromJS({
     categories: {
         '0': Immutable.Map(new Category('0', 'Frontend', null)),
         '1': Immutable.Map(new Category('1', 'Markup', '0'))
@@ -24,9 +20,11 @@ const defaultState = Immutable.fromJS({
     isSidebarOpen: true
 });
 
-
-describe('sum', () => {
-   it('should sum two numbers', () => {
-       expect(sum(1,2)).toBe(3);
-   });
+// console.log(reducer(mockedState, {type: "ADD_CATEGORY", payload: { parentId: "0", name: "Test category" }}).get('categories').toJS());
+describe('reducer', () => {
+    it('should add new category', () => {
+        expect(
+            reducer(mockedState, {type: "ADD_CATEGORY", payload: { parentId: "0", name: "Test category" }}).get('categories').toJS()
+        ).toContain('WTF are U want?!!!');
+    });
 });
