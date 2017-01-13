@@ -3,9 +3,9 @@ import { Link } from 'react-router';
 import './styles.css';
 
 const TodoItem = (props) => {
-    const { item, selectedCategoryId, completeTask, uncompleteTask, selectTask } = props;
+    const { item, selectedCategoryId, completeTask, incompleteTask, selectTask } = props;
 
-    const toggleActive = () => item.done ? completeTask(item.id) : uncompleteTask(item.id);
+    const toggleActive = () => !!item.done ? incompleteTask(item.id) : completeTask(item.id);
     return (
         <tr className="todo-item row">
             <td className="check" title="Is task completed">

@@ -18,7 +18,7 @@ import { map, filter } from 'lodash';
 );*/
 
 const TodoList = (props) => {
-    const { tasks, selectedCategoryId, completeTask, uncompleteTask, selectTask } = props;
+    const { tasks, selectedCategoryId, completeTask, incompleteTask, selectTask } = props;
     const list = filter(tasks, {'categoryId': selectedCategoryId});
 
     return (
@@ -35,7 +35,7 @@ const TodoList = (props) => {
                                               item={item}
                                               completeTask={completeTask}
                                               selectedCategoryId={selectedCategoryId}
-                                              uncompleteTask={uncompleteTask}
+                                              incompleteTask={incompleteTask}
                                               selectTask={selectTask} />
                                 )
                             )

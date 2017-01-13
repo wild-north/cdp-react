@@ -5,7 +5,6 @@ import App from './containers/app';
 import './index.css'
 import store from './store';
 
-
 render(
     <Provider store={store}>
         <App />

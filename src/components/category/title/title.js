@@ -22,15 +22,15 @@ export default (props) => {
                 {
                     !selectedProjectId
                       ? <div className="actions">
-                            <button title="Edit category name" className="fa fa-pencil-square-o" onClick={() => enableEdit(item.id, item.name)} />
-                            <button title="Add sub-category" className="fa fa-plus-square-o" onClick={() => addCategory(item.id)} />
+                            <button title="Edit category name" className="fa fa-pencil-square-o" onClick={() => enableEdit({ id: item.id, title: item.name }, )} />
+                            <button title="Add sub-category" className="fa fa-plus-square-o" onClick={() => addCategory({ parentId: item.id, name: null })} />
                             <button title="Delete this category" className="fa fa-trash-o" onClick={() => removeCategory(item.id)} />
                         </div>
                       : <div className={classnames('actions', {'disabled': selectedCategoryId === item.id})}>
                             <Link to={`/category/${item.id}/project/${selectedProjectId}`} onClick={() => moveProjectToCategory(item.id)}>
                                 <button title="Move to this category" className="fa fa-arrow-circle-o-left"/>
                             </Link>
-                        </div> 
+                        </div>
                 }
 
             </div>

@@ -15,7 +15,7 @@ export default class AddItem extends Component {
     add(e) {
         e.preventDefault();
         if (this.state.text) {
-            this.props.add(null, this.state.text);
+            this.props.add({ parentId: null, name: this.state.text });
             this.setState(this.defaultState);
         }
     }

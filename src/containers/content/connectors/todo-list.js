@@ -11,6 +11,6 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, {
     completeTask: actions.completeTask,
-    uncompleteTask: actions.uncompleteTask,
+    incompleteTask: actions.incompleteTask,
     selectTask: actions.selectTask
 });

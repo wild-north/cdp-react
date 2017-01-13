@@ -1,13 +1,8 @@
-// import { combineReducers } from 'redux';
-// import main from './main';
-//
-// export default combineReducers({
-//     main
-// });
 import Immutable from 'immutable';
 import { Category, Task } from '../models';
 import { forEach, uniqueId } from 'lodash';
 import { parseUrlHash, getProgressValue } from '../helpers';
+import * as c from '../constants';
 
 const defaultCategories = Immutable.Map({
     '0': Immutable.Map((new Category(   '0',     'Frontend',     null       ))),
@@ -45,7 +40,7 @@ const defaultTasks = Immutable.Map({
 const projectIdFromURL =  parseUrlHash().project;
 const categoryIdFromURL =  parseUrlHash().category;
 
-const defaultState = Immutable.Map({
+export const defaultState = Immutable.Map({
     categories: Immutable.Map(defaultCategories),
     tasks: Immutable.Map(defaultTasks),
     selectedProjectId: (projectIdFromURL in defaultTasks.toJS()) ? projectIdFromURL : null,
@@ -67,57 +62,57 @@ export default (state = defaultState, { type, payload }) => {
         /**
          * Categories
          */
-        case 'ADD_CATEGORY':
+        case c.ADD_CATEGORY:
             return addCategory(state, payload);
-        case 'REMOVE_CATEGORY':
+        case c.REMOVE_CATEGORY:
             return removeCategory(state, payload);
-        case 'RENAME_CATEGORY':
+        case c.RENAME_CATEGORY:
             return renameCategory(state);
-        case 'SELECT_CATEGORY':
+        case c.SELECT_CATEGORY:
             return selectCategory(state, payload);
-        case 'OPEN_CATEGORY':
-        case 'CLOSE_CATEGORY':
+        case c.OPEN_CATEGORY:
+        case c.CLOSE_CATEGORY:
             return toggleCategory(state, payload);
-        case 'CATEGORY_TITLE_EDIT_ENABLE':
+        case c.CATEGORY_TITLE_EDIT_ENABLE:
             return enableEdit(state, payload);
-        case 'CATEGORY_TITLE_EDIT_DISABLE':
+        case c.CATEGORY_TITLE_EDIT_DISABLE:
             return disableEdit(state);
-        case 'CATEGORY_TITLE_TMP_CHANGE':
+        case c.CATEGORY_TITLE_TMP_CHANGE:
             return changeTmpTitle(state, payload);
         /**
          * Tasks (projects)
          */
-        case 'MOVE_PROJECT_TO_CATEGORY':
+        case c.MOVE_PROJECT_TO_CATEGORY:
             return moveProjectToCategory(state, payload);
-        case 'COMPLETE_TASK':
-            return changeTaskActivity(state, payload, false);
-        case 'UNCOMPLETE_TASK':
+        case c.COMPLETE_TASK:
             return changeTaskActivity(state, payload, true);
-        case 'SELECT_TASK':
+        case c.INCOMPLETE_TASK:
+            return changeTaskActivity(state, payload, false);
+        case c.SELECT_TASK:
             return selectTask(state, payload);
-        case 'EDIT_TASK':
+        case c.EDIT_TASK:
             return editTask(state);
-        case 'CANCEL_EDIT_TASK':
+        case c.CANCEL_EDIT_TASK:
             return cancelEditTask(state);
 
-        case 'COMPLETE_TASK__EDIT_MODE':
+        case c.COMPLETE_TASK__EDIT_MODE:
             return toggleTaskActivityInEditMode(state, false);
-        case 'INCOMPLETE_TASK__EDIT_MODE':
+        case c.INCOMPLETE_TASK__EDIT_MODE:
             return toggleTaskActivityInEditMode(state, true);
-        case 'CHANGE_TASK_DESCRIPTION__EDIT_MODE':
+        case c.CHANGE_TASK_DESCRIPTION__EDIT_MODE:
             return changeTaskDescriptionInEditMode(state, payload);
-        case 'CHANGE_TASK_NAME__EDIT_MODE':
+        case c.CHANGE_TASK_NAME__EDIT_MODE:
             return changeTaskNameInEditMode(state, payload);
         /**
          * Common
          */
-        case 'SET_PROGRESS':
+        case c.SET_PROGRESS:
             return setProgress(state, payload);
-        case 'OPEN_SIDEBAR':
+        case c.OPEN_SIDEBAR:
             return openSidebar(state);
-        case 'CLOSE_SIDEBAR':
+        case c.CLOSE_SIDEBAR:
             return closeSidebar(state);
-        case 'ADD_TASK':
+        case c.ADD_TASK:
             return addTask(state, payload);
         default:
             return state;
@@ -204,10 +199,10 @@ function closeSidebar(state) {
     return state.set('isSidebarOpen', false);
 }
 
-function addTask(state, newName) {
+function addTask(state, { name }) {
     const id = uniqueId('task_');
     const selectedCategoryId = state.get('selectedCategoryId');
-    return state.updateIn(['tasks'], tasks => tasks.set(id, Immutable.Map(new Task(id, newName, selectedCategoryId))))
+    return state.updateIn(['tasks'], tasks => tasks.set(id, Immutable.Map(new Task(id, name, selectedCategoryId))))
 }
 function editTask(state) {
     if (!confirm('Save changes?')) return state;

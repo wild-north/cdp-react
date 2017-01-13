@@ -2,9 +2,8 @@ import { includes, reduce, isNull, groupBy, forEach, cloneDeep, chunk } from 'lo
 import { SEPARATOR, LINK_SEPARATOR } from '../constants';
 
 export const getSeparator = (string) => includes(string, LINK_SEPARATOR) ? LINK_SEPARATOR : SEPARATOR;
-// export const replaceSeparators = (string, from, to) => string.split(from).join(to);
-export const getFullIndex = (parentIndex, index) => parentIndex ? `${parentIndex}${getSeparator(parentIndex)}${index}` : `${index}`;
 
+export const getFullIndex = (parentIndex, index) => parentIndex ? `${parentIndex}${getSeparator(parentIndex)}${index}` : `${index}`;
 
 export const unflattenTree = (list) => {
     /** MAGIC: please, do not touch */
@@ -21,6 +20,7 @@ export const unflattenTree = (list) => {
         return acc;
     }, []);
 };
+
 export const parseUrlHash = () => {
     const URL_SEPARATOR = '/';
     return chunk(window.location.hash.split(URL_SEPARATOR).slice(1), 2).reduce((acc, pairArr) => {
@@ -30,17 +30,22 @@ export const parseUrlHash = () => {
 };
 
 export const getProgressValue = (list) => {
-    const data = reduce(list, (acc, item) => {
-        if (item.done) {
-            acc.completed++;
-        }
-        acc.total++;
-        return acc;
-    }, {
+    const data = reduce(list, (acc, item) => ({
+        completed: item.done ? acc.completed + 1 : acc.completed,
+        total: acc.total + 1
+    }), {
         completed: 0,
         total: 0
     });
-    return data.completed / data.total * 100; 
+    return data.completed / data.total * 100;
 };
 
-export const createAction = type => payload => ({type, payload}); 
+export const createAction = type => payload => ({type, payload});
+
+
+/**
+ * *** temporary unused ***
+ *
+ * export const replaceSeparators = (string, from, to) => string.split(from).join(to);
+ *
+ * */
