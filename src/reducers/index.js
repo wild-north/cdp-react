@@ -2,7 +2,7 @@ import * as helpers from '../helpers/reducer';
 import * as constants from '../constants';
 import defaultState from './default-state';
 
-export default (state = defaultState, { type, payload }) => {
+const reducer = (state = defaultState, { type, payload }) => {
     switch (type) {
         /**
          * Categories
@@ -64,4 +64,4 @@ export default (state = defaultState, { type, payload }) => {
     }
 };
 
-
+export default reducer;

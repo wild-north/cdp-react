@@ -15,6 +15,15 @@ export default (props) => {
             selectTask(null);
         }
     };
+    const remove = () => {
+        if (!confirm('Are you sure?')) return;
+        removeCategory(item.id);
+    };
+    
+    const moveToCategory = () => {
+        if (!confirm(`Are you sure you want to move this task into category "${item.name}"?`)) return;
+        moveProjectToCategory(item.id);
+    };
 
     return (
         <div>
@@ -24,10 +33,10 @@ export default (props) => {
                       ? <div className="actions">
                             <button title="Edit category name" className="fa fa-pencil-square-o" onClick={() => enableEdit({ id: item.id, title: item.name }, )} />
                             <button title="Add sub-category" className="fa fa-plus-square-o" onClick={() => addCategory({ parentId: item.id, name: null })} />
-                            <button title="Delete this category" className="fa fa-trash-o" onClick={() => removeCategory(item.id)} />
+                            <button title="Delete this category" className="fa fa-trash-o" onClick={remove} />
                         </div>
                       : <div className={classnames('actions', {'disabled': selectedCategoryId === item.id})}>
-                            <Link to={`/category/${item.id}/project/${selectedProjectId}`} onClick={() => moveProjectToCategory(item.id)}>
+                            <Link to={`/category/${item.id}/project/${selectedProjectId}`} onClick={moveToCategory}>
                                 <button title="Move to this category" className="fa fa-arrow-circle-o-left"/>
                             </Link>
                         </div>

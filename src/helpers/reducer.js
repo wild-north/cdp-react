@@ -29,28 +29,26 @@ export const addCategory = (state, { parentId, name }) => {
     const id = uniqueId('category_');
     return state.updateIn(['categories'], categories => categories.set(id, Immutable.Map(new Category(id, name, parentId))))
 };
-export const deleteCategoryRecursive = (categories, id) => {
-    if (!categories || !(id in categories)) {
+export const deleteCategoryRecursive = (categories, deleteCategoryId) => {
+    if (!categories || !(deleteCategoryId in categories)) {
         return categories;
     }
-    delete categories[id];
-    forEach(categories, ({ parentId }) => {
-        if (parentId === id) {
-            categories = deleteCategoryRecursive(categories, parentId);
+    delete categories[deleteCategoryId];
+    forEach(categories, (category) => {
+        if (!category) return;
+        if (category.parentId === deleteCategoryId) {
+            categories = deleteCategoryRecursive(categories, category.id);
         }
     });
     return categories;
 };
 export const removeCategory = (state, id) => {
-    if (!confirm('Are you sure?')) return state;
     return state.set('categories', Immutable.fromJS(deleteCategoryRecursive(state.get('categories').toJS(), id)));
 };
 export const selectCategory = (state, id) => {
     return state.set('selectedCategoryId', id);
 };
 export const moveProjectToCategory = (state, newCategoryId) => {
-    const categoryName = state.getIn(['categories', newCategoryId, 'name']);
-    if (!confirm(`Are you sure you want to move this task into category "${categoryName}"?`)) return state;
     const selectedProjectId = state.get('selectedProjectId');
     return state
         .setIn(['tasks', selectedProjectId, 'categoryId'], newCategoryId)
