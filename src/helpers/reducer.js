@@ -81,7 +81,6 @@ export const addTask = (state, { name }) => {
     return state.updateIn(['tasks'], tasks => tasks.set(id, Immutable.Map(new Task(id, name, selectedCategoryId))))
 };
 export const editTask = (state) => {
-    if (!confirm('Save changes?')) return state;
     const editProject = state.get('editProject');
     const id = editProject.get('id');
     const currentTask = state.getIn(['tasks', id]);
@@ -93,7 +92,6 @@ export const editTask = (state) => {
 };
 
 export const cancelEditTask = (state) => {
-    if (!confirm('Cancel changes?')) return state;
     window.location.hash = `/category/${state.get('selectedCategoryId')}`;
     return state
         .set('editProject', Immutable.Map((new Task(null, '', null, ''))))

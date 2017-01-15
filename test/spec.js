@@ -102,6 +102,15 @@ describe('Reducer', () => {
     });
 
     describe('Tasks', () => {
+
+        it('should add new task with id "task_1"', () => {
+            const state = reducer(mockedState, {
+                type: "ADD_TASK",
+                payload: { name: "Test task" }
+            });
+            expect(state.getIn(['tasks', "task_2"]).toJS()).toEqual(new Task("task_2", "Test task", "0"));
+        });
+
         it('should select task with id = "0"', () => {
             const state = reducer(mockedState, {
                 type: "SELECT_TASK",
@@ -128,6 +137,101 @@ describe('Reducer', () => {
 
             expect(state.getIn(['tasks', '0', 'categoryId'])).toBe('1');
         });
+
+        it('should mark task with id = "0" as done', () => {
+            let state = reducer(mockedState, {
+                type: "COMPLETE_TASK",
+                payload: "0"
+            });
+
+            expect(state.getIn(['tasks', '0', 'done'])).toBe(true);
+        });
+        
+        it('should mark task with id = "0" as undone', () => {
+            let state = reducer(mockedState, {
+                type: "INCOMPLETE_TASK",
+                payload: "0"
+            });
+
+            expect(state.getIn(['tasks', '0', 'done'])).toBe(false);
+        });
+        
+        it('should save changes to task with id = "0"', () => {
+            const editedCategory = new Task("0", 'Test', "0", 'description');
+            let tmpState = mockedState.set('editProject', Immutable.Map(editedCategory));
+
+            const state = reducer(tmpState, {
+                type: "EDIT_TASK"
+            });
+
+            expect(state.getIn(['tasks', "0"]).toJS()).toEqual(editedCategory);
+        });
+        
+        it('should reset changes for editing task', () => {
+            const state = reducer(mockedState, {
+                type: "CANCEL_EDIT_TASK"
+            });
+            expect(state.get('editProject').toJS()).toEqual(mockedState.get('editProject').toJS());
+        });
+
+        it('should complete task in edit mode', () => {
+            let state = mockedState.set('editProject', Immutable.Map(new Task("0", 'Test', "0", 'description')));
+            state = reducer(state, {
+                type: "COMPLETE_TASK__EDIT_MODE"
+            });
+            expect(state.getIn(['editProject', 'done'])).toBe(true);
+        });
+
+        it('should incomplete task in edit mode', () => {
+            let state = mockedState.set('editProject', Immutable.Map(new Task("0", 'Test', "0", 'description')));
+            state = reducer(state, {
+                type: "INCOMPLETE_TASK__EDIT_MODE"
+            });
+            expect(state.getIn(['editProject', 'done'])).toBe(false);
+        });
+
+        it('should change task description in edit mode', () => {
+            let state = mockedState.set('editProject', Immutable.Map(new Task("0", 'Test', "0", '')));
+            state = reducer(state, {
+                type: "CHANGE_TASK_DESCRIPTION__EDIT_MODE",
+                payload: "Test description"
+            });
+            expect(state.getIn(['editProject', 'description'])).toBe("Test description");
+        });
+
+        it('should change task name in edit mode', () => {
+            let state = mockedState.set('editProject', Immutable.Map(new Task("0", 'Test', "0", '')));
+            state = reducer(state, {
+                type: "CHANGE_TASK_NAME__EDIT_MODE",
+                payload: "Test name"
+            });
+            expect(state.getIn(['editProject', 'name'])).toBe("Test name");
+        });
+    });
+    
+    describe('Common', () => {
+        it('should open sidebar', () => {
+            const state = reducer(mockedState, {
+                type: "OPEN_SIDEBAR"
+            });
+            expect(state.get('isSidebarOpen')).toBe(true);
+        });
+        
+        it('should close sidebar', () => {
+            const state = reducer(mockedState, {
+                type: "CLOSE_SIDEBAR"
+            });
+            expect(state.get('isSidebarOpen')).toBe(false);
+        });
+        
+        it('should set progress bar to 100%', () => {
+            const state = reducer(mockedState, {
+                type: "SET_PROGRESS",
+                payload: 100 
+            });
+            expect(state.get('progress')).toBe(100);
+        });
+        
     });
     
 });

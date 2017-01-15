@@ -27,6 +27,8 @@ const reducer = (state = defaultState, { type, payload }) => {
         /**
          * Tasks (projects)
          */
+        case constants.ADD_TASK:
+            return helpers.addTask(state, payload);
         case constants.MOVE_PROJECT_TO_CATEGORY:
             return helpers.moveProjectToCategory(state, payload);
         case constants.COMPLETE_TASK:
@@ -41,9 +43,9 @@ const reducer = (state = defaultState, { type, payload }) => {
             return helpers.cancelEditTask(state);
 
         case constants.COMPLETE_TASK__EDIT_MODE:
-            return helpers.toggleTaskActivityInEditMode(state, false);
-        case constants.INCOMPLETE_TASK__EDIT_MODE:
             return helpers.toggleTaskActivityInEditMode(state, true);
+        case constants.INCOMPLETE_TASK__EDIT_MODE:
+            return helpers.toggleTaskActivityInEditMode(state, false);
         case constants.CHANGE_TASK_DESCRIPTION__EDIT_MODE:
             return helpers.changeTaskDescriptionInEditMode(state, payload);
         case constants.CHANGE_TASK_NAME__EDIT_MODE:
@@ -57,8 +59,6 @@ const reducer = (state = defaultState, { type, payload }) => {
             return helpers.openSidebar(state);
         case constants.CLOSE_SIDEBAR:
             return helpers.closeSidebar(state);
-        case constants.ADD_TASK:
-            return helpers.addTask(state, payload);
         default:
             return state;
     }
