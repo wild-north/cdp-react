@@ -24,23 +24,22 @@ describe('Reducer', () => {
 
     describe('Categories', () => {
         it('should add new category with id "category_1"', () => {
-            expect(
-                reducer(mockedState, {
-                    type: "ADD_CATEGORY",
-                    payload: {
-                        parentId: "0",
-                        name: "Test category"
-                    }
-                }).getIn(['categories', "category_1"]).toJS()
-            ).toEqual(new Category("category_1", "Test category", "0"));
+            const state = reducer(mockedState, {
+                type: "ADD_CATEGORY",
+                payload: {
+                    parentId: "0",
+                    name: "Test category"
+                }
+            });
+            expect(state.getIn(['categories', "category_1"]).toJS()).toEqual(new Category("category_1", "Test category", "0"));
         });
 
         it('should remove category with id = "0"', () => {
-            const tmpState = reducer(mockedState, {
+            const state = reducer(mockedState, {
                 type: "REMOVE_CATEGORY",
                 payload: "0"
-            }).getIn(['categories', "0"]);
-            expect(tmpState).toBeUndefined();
+            });
+            expect(state.getIn(['categories', "0"])).toBeUndefined();
         });
 
         it('should rename category with id = "0" to "Test"', () => {
@@ -129,10 +128,10 @@ describe('Reducer', () => {
                 type: "SELECT_TASK",
                 payload: "0"
             });
-            
+
             state = reducer(state, {
                 type: "MOVE_PROJECT_TO_CATEGORY",
-                payload: "1" 
+                payload: "1"
             });
 
             expect(state.getIn(['tasks', '0', 'categoryId'])).toBe('1');
@@ -146,7 +145,7 @@ describe('Reducer', () => {
 
             expect(state.getIn(['tasks', '0', 'done'])).toBe(true);
         });
-        
+
         it('should mark task with id = "0" as undone', () => {
             let state = reducer(mockedState, {
                 type: "INCOMPLETE_TASK",
@@ -155,7 +154,7 @@ describe('Reducer', () => {
 
             expect(state.getIn(['tasks', '0', 'done'])).toBe(false);
         });
-        
+
         it('should save changes to task with id = "0"', () => {
             const editedCategory = new Task("0", 'Test', "0", 'description');
             let tmpState = mockedState.set('editProject', Immutable.Map(editedCategory));
@@ -166,7 +165,7 @@ describe('Reducer', () => {
 
             expect(state.getIn(['tasks', "0"]).toJS()).toEqual(editedCategory);
         });
-        
+
         it('should reset changes for editing task', () => {
             const state = reducer(mockedState, {
                 type: "CANCEL_EDIT_TASK"
@@ -208,7 +207,7 @@ describe('Reducer', () => {
             expect(state.getIn(['editProject', 'name'])).toBe("Test name");
         });
     });
-    
+
     describe('Common', () => {
         it('should open sidebar', () => {
             const state = reducer(mockedState, {
@@ -216,22 +215,22 @@ describe('Reducer', () => {
             });
             expect(state.get('isSidebarOpen')).toBe(true);
         });
-        
+
         it('should close sidebar', () => {
             const state = reducer(mockedState, {
                 type: "CLOSE_SIDEBAR"
             });
             expect(state.get('isSidebarOpen')).toBe(false);
         });
-        
+
         it('should set progress bar to 100%', () => {
             const state = reducer(mockedState, {
                 type: "SET_PROGRESS",
-                payload: 100 
+                payload: 100
             });
             expect(state.get('progress')).toBe(100);
         });
-        
+
     });
-    
+
 });
